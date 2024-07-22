@@ -31,6 +31,10 @@
 		68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */; };
 		68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7DE2C4E5556004B812F /* Observable.swift */; };
 		68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */; };
+		68C0A7E32C4E5DB4004B812F /* SelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E22C4E5DB4004B812F /* SelectImageView.swift */; };
+		68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */; };
+		68C0A7E72C4E5F61004B812F /* ReusableProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */; };
+		68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
 		68C0A7DE2C4E5556004B812F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageViewController.swift; sourceTree = "<group>"; };
+		68C0A7E22C4E5DB4004B812F /* SelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageView.swift; sourceTree = "<group>"; };
+		68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageViewModel.swift; sourceTree = "<group>"; };
+		68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableProtocol+.swift"; sourceTree = "<group>"; };
+		68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,7 @@
 				68C0A7CA2C4E4294004B812F /* UIColor+.swift */,
 				68C0A7CC2C4E4357004B812F /* UILabel+.swift */,
 				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
+				68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -144,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
+				68C0A7E22C4E5DB4004B812F /* SelectImageView.swift */,
+				68C0A7E82C4E5F70004B812F /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
+				68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -170,6 +182,14 @@
 				68C0A7DE2C4E5556004B812F /* Observable.swift */,
 			);
 			path = Observable;
+			sourceTree = "<group>";
+		};
+		68C0A7E82C4E5F70004B812F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +279,8 @@
 			files = (
 				68C0A7CD2C4E4357004B812F /* UILabel+.swift in Sources */,
 				68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */,
+				68C0A7E32C4E5DB4004B812F /* SelectImageView.swift in Sources */,
+				68C0A7E72C4E5F61004B812F /* ReusableProtocol+.swift in Sources */,
 				68C0A79C2C4E1791004B812F /* OnBoardingViewController.swift in Sources */,
 				68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */,
 				68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */,
@@ -267,11 +289,13 @@
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
+				68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */,
 				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
 				68C0A79A2C4E1791004B812F /* SceneDelegate.swift in Sources */,
 				68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */,
 				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A7C62C4E2F9A004B812F /* View+.swift in Sources */,
+				68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */,
 				68C0A7C32C4E2EB8004B812F /* ViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

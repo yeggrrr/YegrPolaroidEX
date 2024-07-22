@@ -95,6 +95,7 @@ final class ProfileSettingViewController: UIViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension ProfileSettingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }

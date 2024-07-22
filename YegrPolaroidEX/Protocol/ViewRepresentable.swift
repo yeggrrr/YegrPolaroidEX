@@ -10,5 +10,5 @@ import Foundation
 protocol ViewRepresentable {
     func addSubviews()
     func setConstraints()
-    func configure()
+    func configureUI()
 }

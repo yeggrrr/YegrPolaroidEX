@@ -21,7 +21,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
      
         addSubviews()
         setConstraints()
-        configure()
+        configureUI()
         configureAction()
     }
     
@@ -58,7 +58,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
         }
     }
     
-    internal func configure() {
+    internal func configureUI() {
         view.backgroundColor = .white
         
         logoLabel.text = "HELLO\nMY MEMORIES"

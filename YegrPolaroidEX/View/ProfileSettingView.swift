@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ProfileSettingView: UIView {
+final class ProfileSettingView: UIView, ViewRepresentable {
     private let profileView = UIView()
     private let profileBorderView = UIView()
     private let camerView = UIView()
@@ -24,8 +24,8 @@ final class ProfileSettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureHierarchy()
-        configureLayout()
+        addSubviews()
+        setConstraints()
         configureUI()
     }
     
@@ -33,14 +33,14 @@ final class ProfileSettingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureHierarchy() {
+    internal func addSubviews() {
         addSubviews([profileView, camerView, profileTabGestureView, nicknameTextField, dividerView, noticeLabel, completeButton])
         profileView.addSubview(profileBorderView)
         profileBorderView.addSubview(profileImageView)
         camerView.addSubview(cameraImageView)
     }
     
-    private func configureLayout() {
+    internal func setConstraints() {
         let safeArea = safeAreaLayoutGuide
         
         profileView.snp.makeConstraints {
@@ -99,7 +99,7 @@ final class ProfileSettingView: UIView {
         }
     }
     
-    private func configureUI() {
+    internal func configureUI() {
         profileView.backgroundColor = .white
         
         profileBorderView.layer.borderWidth = 3
