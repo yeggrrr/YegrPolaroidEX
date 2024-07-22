@@ -35,7 +35,22 @@
 		68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */; };
 		68C0A7E72C4E5F61004B812F /* ReusableProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */; };
 		68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */; };
+		68C0A7EB2C4E661C004B812F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B52C4E18FB004B812F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		68C0A7EC2C4E661C004B812F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				68C0A7EB2C4E661C004B812F /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		68C0A7942C4E1791004B812F /* YegrPolaroidEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YegrPolaroidEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +217,7 @@
 				68C0A7902C4E1791004B812F /* Sources */,
 				68C0A7912C4E1791004B812F /* Frameworks */,
 				68C0A7922C4E1791004B812F /* Resources */,
+				68C0A7EC2C4E661C004B812F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

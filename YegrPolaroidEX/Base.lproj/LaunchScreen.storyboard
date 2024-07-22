@@ -23,7 +23,7 @@
                                 <color key="textColor" red="0.6930576496334363" green="0.55323094081819146" blue="0.75896990740740744" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yegrLaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-aj-PbV">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchPosterImage" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-aj-PbV">
                                 <rect key="frame" x="20" y="255" width="353" height="353"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Sae-aj-PbV" secondAttribute="height" multiplier="1:1" id="A5R-r5-Fat"/>
@@ -60,7 +60,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="yegrLaunchImage" width="335" height="374"/>
+        <image name="launchPosterImage" width="335" height="374"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
