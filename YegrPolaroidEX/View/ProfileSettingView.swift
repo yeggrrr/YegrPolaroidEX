@@ -179,11 +179,9 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         mbtiLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
         
         mbtiStackView.setUI(SVAxis: .horizontal, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
-        eiStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
-        
-        snStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
-        tfStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
-        jpStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        [eiStackView, snStackView, tfStackView, jpStackView].forEach { stv in
+            stv.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        }
         
         eButton.setMbtiUI(title: "E")
         iButton.setMbtiUI(title: "I")
@@ -193,7 +191,15 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         fButton.setMbtiUI(title: "F")
         jButton.setMbtiUI(title: "J")
         pButton.setMbtiUI(title: "P")
+        updateButtonColor()
         
         completeButton.setPointUI(title: "완료", bgColor: .incompleteColor)
+    }
+    
+    func updateButtonColor() {
+        [eButton, iButton, sButton, nButton, tButton, fButton, jButton, pButton].forEach { btn in
+            btn.backgroundColor = btn.isSelected ? .customPoint : .clear
+            btn.isSelected ? btn.setTitleColor(.white, for: .normal) : btn.setTitleColor(.incompleteColor, for: .normal)
+        }
     }
 }

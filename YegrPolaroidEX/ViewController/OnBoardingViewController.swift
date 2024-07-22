@@ -60,6 +60,8 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
     
     internal func configureUI() {
         view.backgroundColor = .white
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = .customPoint
         
         logoLabel.text = "HELLO\nMY MEMORIES"
         logoLabel.setUI(
