@@ -24,6 +24,13 @@
 		68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7C72C4E3E93004B812F /* UIButton+.swift */; };
 		68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7CA2C4E4294004B812F /* UIColor+.swift */; };
 		68C0A7CD2C4E4357004B812F /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7CC2C4E4357004B812F /* UILabel+.swift */; };
+		68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */; };
+		68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */; };
+		68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7D52C4E4E2C004B812F /* UITextField+.swift */; };
+		68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */; };
+		68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */; };
+		68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7DE2C4E5556004B812F /* Observable.swift */; };
+		68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +48,13 @@
 		68C0A7C72C4E3E93004B812F /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		68C0A7CA2C4E4294004B812F /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		68C0A7CC2C4E4357004B812F /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		68C0A7D52C4E4E2C004B812F /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		68C0A7DE2C4E5556004B812F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +97,12 @@
 				68C0A7992C4E1791004B812F /* SceneDelegate.swift */,
 				68C0A7A02C4E1792004B812F /* Assets.xcassets */,
 				68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */,
+				68C0A7D72C4E52DE004B812F /* UserDefaults */,
+				68C0A7DD2C4E5523004B812F /* Observable */,
 				68C0A7C92C4E3EBC004B812F /* Protocol */,
 				68C0A7C42C4E2F85004B812F /* Extension */,
+				68C0A7D22C4E4C76004B812F /* View */,
+				68C0A7DA2C4E54EE004B812F /* ViewModel */,
 				68C0A7BE2C4E2DAC004B812F /* ViewController */,
 				68C0A7A52C4E1792004B812F /* Info.plist */,
 				68C0A7BC2C4E1C34004B812F /* APIKey.swift */,
@@ -96,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				68C0A79B2C4E1791004B812F /* OnBoardingViewController.swift */,
+				68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */,
+				68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -107,6 +127,7 @@
 				68C0A7C72C4E3E93004B812F /* UIButton+.swift */,
 				68C0A7CA2C4E4294004B812F /* UIColor+.swift */,
 				68C0A7CC2C4E4357004B812F /* UILabel+.swift */,
+				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -117,6 +138,38 @@
 				68C0A7C22C4E2EB8004B812F /* ViewRepresentable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		68C0A7D22C4E4C76004B812F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68C0A7D72C4E52DE004B812F /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		68C0A7DA2C4E54EE004B812F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		68C0A7DD2C4E5523004B812F /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7DE2C4E5556004B812F /* Observable.swift */,
+			);
+			path = Observable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,12 +258,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C0A7CD2C4E4357004B812F /* UILabel+.swift in Sources */,
+				68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */,
 				68C0A79C2C4E1791004B812F /* OnBoardingViewController.swift in Sources */,
+				68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */,
+				68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */,
+				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
+				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
 				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
 				68C0A79A2C4E1791004B812F /* SceneDelegate.swift in Sources */,
+				68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */,
+				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A7C62C4E2F9A004B812F /* View+.swift in Sources */,
 				68C0A7C32C4E2EB8004B812F /* ViewRepresentable.swift in Sources */,
 			);
