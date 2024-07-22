@@ -10,9 +10,14 @@
 		68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7972C4E1791004B812F /* AppDelegate.swift */; };
 		68C0A79A2C4E1791004B812F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7992C4E1791004B812F /* SceneDelegate.swift */; };
 		68C0A79C2C4E1791004B812F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A79B2C4E1791004B812F /* ViewController.swift */; };
-		68C0A79F2C4E1791004B812F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 68C0A79E2C4E1791004B812F /* Base */; };
 		68C0A7A12C4E1792004B812F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68C0A7A02C4E1792004B812F /* Assets.xcassets */; };
 		68C0A7A42C4E1792004B812F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 68C0A7A32C4E1792004B812F /* Base */; };
+		68C0A7AD2C4E1888004B812F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7AC2C4E1888004B812F /* SnapKit */; };
+		68C0A7B02C4E1899004B812F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7AF2C4E1899004B812F /* Kingfisher */; };
+		68C0A7B32C4E18B0004B812F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B22C4E18B0004B812F /* Alamofire */; };
+		68C0A7B62C4E18FB004B812F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B52C4E18FB004B812F /* RealmSwift */; };
+		68C0A7B92C4E1906004B812F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B82C4E1906004B812F /* Toast */; };
+		68C0A7BB2C4E1927004B812F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 68C0A7BA2C4E1927004B812F /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +25,10 @@
 		68C0A7972C4E1791004B812F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68C0A7992C4E1791004B812F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		68C0A79B2C4E1791004B812F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		68C0A79E2C4E1791004B812F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68C0A7A02C4E1792004B812F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68C0A7A32C4E1792004B812F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68C0A7A52C4E1792004B812F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68C0A7BA2C4E1927004B812F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C0A7B62C4E18FB004B812F /* RealmSwift in Frameworks */,
+				68C0A7B32C4E18B0004B812F /* Alamofire in Frameworks */,
+				68C0A7B02C4E1899004B812F /* Kingfisher in Frameworks */,
+				68C0A7B92C4E1906004B812F /* Toast in Frameworks */,
+				68C0A7AD2C4E1888004B812F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +50,7 @@
 		68C0A78B2C4E1791004B812F = {
 			isa = PBXGroup;
 			children = (
+				68C0A7BA2C4E1927004B812F /* .gitignore */,
 				68C0A7962C4E1791004B812F /* YegrPolaroidEX */,
 				68C0A7952C4E1791004B812F /* Products */,
 			);
@@ -59,7 +70,6 @@
 				68C0A7972C4E1791004B812F /* AppDelegate.swift */,
 				68C0A7992C4E1791004B812F /* SceneDelegate.swift */,
 				68C0A79B2C4E1791004B812F /* ViewController.swift */,
-				68C0A79D2C4E1791004B812F /* Main.storyboard */,
 				68C0A7A02C4E1792004B812F /* Assets.xcassets */,
 				68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */,
 				68C0A7A52C4E1792004B812F /* Info.plist */,
@@ -83,6 +93,13 @@
 			dependencies = (
 			);
 			name = YegrPolaroidEX;
+			packageProductDependencies = (
+				68C0A7AC2C4E1888004B812F /* SnapKit */,
+				68C0A7AF2C4E1899004B812F /* Kingfisher */,
+				68C0A7B22C4E18B0004B812F /* Alamofire */,
+				68C0A7B52C4E18FB004B812F /* RealmSwift */,
+				68C0A7B82C4E1906004B812F /* Toast */,
+			);
 			productName = YegrPolaroidEX;
 			productReference = 68C0A7942C4E1791004B812F /* YegrPolaroidEX.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,13 @@
 				Base,
 			);
 			mainGroup = 68C0A78B2C4E1791004B812F;
+			packageReferences = (
+				68C0A7AB2C4E1888004B812F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				68C0A7AE2C4E1899004B812F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				68C0A7B12C4E18B0004B812F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				68C0A7B42C4E18FB004B812F /* XCRemoteSwiftPackageReference "realm-swift" */,
+				68C0A7B72C4E1906004B812F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = 68C0A7952C4E1791004B812F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C0A7A12C4E1792004B812F /* Assets.xcassets in Resources */,
+				68C0A7BB2C4E1927004B812F /* .gitignore in Resources */,
 				68C0A7A42C4E1792004B812F /* Base in Resources */,
-				68C0A79F2C4E1791004B812F /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +171,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		68C0A79D2C4E1791004B812F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				68C0A79E2C4E1791004B812F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,13 +308,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3G6N8FDHBM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YegrPolaroidEX/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "김예진";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +324,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YJ.YegrPolaroidEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,13 +341,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3G6N8FDHBM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YegrPolaroidEX/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "김예진";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,9 +357,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YJ.YegrPolaroidEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -361,6 +389,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		68C0A7AB2C4E1888004B812F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		68C0A7AE2C4E1899004B812F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		68C0A7B12C4E18B0004B812F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		68C0A7B42C4E18FB004B812F /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.52.2;
+			};
+		};
+		68C0A7B72C4E1906004B812F /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		68C0A7AC2C4E1888004B812F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C0A7AB2C4E1888004B812F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		68C0A7AF2C4E1899004B812F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C0A7AE2C4E1899004B812F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		68C0A7B22C4E18B0004B812F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C0A7B12C4E18B0004B812F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		68C0A7B52C4E18FB004B812F /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C0A7B42C4E18FB004B812F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		68C0A7B82C4E1906004B812F /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C0A7B72C4E1906004B812F /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 68C0A78C2C4E1791004B812F /* Project object */;
 }
