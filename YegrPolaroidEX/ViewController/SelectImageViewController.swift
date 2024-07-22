@@ -25,13 +25,14 @@ class SelectImageViewController: UIViewController {
         
         configureUI()
         configureCollecionView()
+        bindData()
     }
     
     // MARK: Functions
     private func bindData() {
         viewModel.inputImageName.bind { value in
-            self.selectImageView.profileImageView.image = UIImage(named: value)
             UserDefaultsManager.userTempProfileImageName = value
+            self.selectImageView.profileImageView.image = UIImage(named: value)
             self.selectImageView.selectImageCollectionView.reloadData()
         }
     }

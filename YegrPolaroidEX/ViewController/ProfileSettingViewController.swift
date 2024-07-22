@@ -31,7 +31,6 @@ final class ProfileSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bindData()
         configure()
         setInitialData()
         profileTabGesture()

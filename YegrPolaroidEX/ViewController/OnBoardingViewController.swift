@@ -68,7 +68,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
             fontStyle: .systemFont(ofSize: 35, weight: .black),
             numOfLines: 2)
         
-        posterImageView.image = UIImage(named: "yegrLaunchImage")
+        posterImageView.image = UIImage(named: "launchPosterImage")
         posterImageView.contentMode = .scaleAspectFill
         
         nameLabel.text = "김예진"
