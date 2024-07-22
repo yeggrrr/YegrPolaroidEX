@@ -11,4 +11,8 @@ extension UIColor {
     static var pointColor: UIColor {
         return UIColor(named: "CustomPointColor") ?? .systemPurple
     }
+    
+    static var incompleteColor: UIColor {
+        return .systemGray2
+    }
 }
