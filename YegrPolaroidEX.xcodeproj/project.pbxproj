@@ -18,6 +18,7 @@
 		68C0A7B62C4E18FB004B812F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B52C4E18FB004B812F /* RealmSwift */; };
 		68C0A7B92C4E1906004B812F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B82C4E1906004B812F /* Toast */; };
 		68C0A7BB2C4E1927004B812F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 68C0A7BA2C4E1927004B812F /* .gitignore */; };
+		68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7BC2C4E1C34004B812F /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		68C0A7A32C4E1792004B812F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68C0A7A52C4E1792004B812F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68C0A7BA2C4E1927004B812F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		68C0A7BC2C4E1C34004B812F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				68C0A7A02C4E1792004B812F /* Assets.xcassets */,
 				68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */,
 				68C0A7A52C4E1792004B812F /* Info.plist */,
+				68C0A7BC2C4E1C34004B812F /* APIKey.swift */,
 			);
 			path = YegrPolaroidEX;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			files = (
 				68C0A79C2C4E1791004B812F /* ViewController.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
+				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
 				68C0A79A2C4E1791004B812F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
