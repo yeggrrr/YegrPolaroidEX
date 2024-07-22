@@ -36,6 +36,7 @@
 		68C0A7E72C4E5F61004B812F /* ReusableProtocol+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */; };
 		68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */; };
 		68C0A7EB2C4E661C004B812F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B52C4E18FB004B812F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +79,7 @@
 		68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageViewModel.swift; sourceTree = "<group>"; };
 		68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableProtocol+.swift"; sourceTree = "<group>"; };
 		68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				68C0A7CC2C4E4357004B812F /* UILabel+.swift */,
 				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
 				68C0A7E62C4E5F61004B812F /* ReusableProtocol+.swift */,
+				68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				68C0A79C2C4E1791004B812F /* OnBoardingViewController.swift in Sources */,
 				68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */,
 				68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */,
+				68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */,
 				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,

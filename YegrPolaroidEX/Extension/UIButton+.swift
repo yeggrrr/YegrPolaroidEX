@@ -15,4 +15,14 @@ extension UIButton {
         backgroundColor = bgColor
         layer.cornerRadius = 20
     }
+    
+    func setMbtiUI(title: String) {
+        setTitle(title, for: .normal)
+        setTitleColor(.incompleteColor, for: .normal)
+        titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        backgroundColor = .clear
+        layer.cornerRadius = 27.5
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.incompleteColor.cgColor
+    }
 }

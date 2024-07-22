@@ -13,13 +13,34 @@ final class ProfileSettingView: UIView, ViewRepresentable {
     private let profileBorderView = UIView()
     private let camerView = UIView()
     private let cameraImageView = UIImageView()
+    var profileImageView = UIImageView()
+    let profileTabGestureView = UIView()
+    
+    let mbtiLabel = UILabel()
+    
+    let mbtiStackView = UIStackView()
+    
+    let eiStackView = UIStackView()
+    let eButton = UIButton()
+    let iButton = UIButton()
+    
+    let snStackView = UIStackView()
+    let sButton = UIButton()
+    let nButton = UIButton()
+    
+    let tfStackView = UIStackView()
+    let tButton = UIButton()
+    let fButton = UIButton()
+    
+    let jpStackView = UIStackView()
+    let jButton = UIButton()
+    let pButton = UIButton()
+    
     let nicknameTextField = UITextField()
     private let dividerView = UIView()
     let noticeLabel = UILabel()
-    let completeButton = UIButton()
-    let profileTabGestureView = UIView()
     
-    var profileImageView = UIImageView()
+    let completeButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,10 +55,19 @@ final class ProfileSettingView: UIView, ViewRepresentable {
     }
     
     internal func addSubviews() {
-        addSubviews([profileView, camerView, profileTabGestureView, nicknameTextField, dividerView, noticeLabel, completeButton])
+        addSubviews([profileView, camerView, profileTabGestureView, nicknameTextField, dividerView, noticeLabel])
         profileView.addSubview(profileBorderView)
         profileBorderView.addSubview(profileImageView)
         camerView.addSubview(cameraImageView)
+        
+        addSubviews([mbtiLabel, mbtiStackView])
+        mbtiStackView.addArrangedSubviews([eiStackView, snStackView, tfStackView, jpStackView])
+        eiStackView.addArrangedSubviews([eButton, iButton])
+        snStackView.addArrangedSubviews([sButton, nButton])
+        tfStackView.addArrangedSubviews([tButton, fButton])
+        jpStackView.addArrangedSubviews([jButton, pButton])
+        
+        addSubview(completeButton)
     }
     
     internal func setConstraints() {
@@ -92,6 +122,21 @@ final class ProfileSettingView: UIView, ViewRepresentable {
             $0.height.equalTo(30)
         }
         
+        mbtiLabel.snp.makeConstraints {
+            $0.top.equalTo(noticeLabel.snp.bottom).offset(30)
+            $0.leading.equalTo(safeArea).offset(20)
+            $0.height.equalTo(20)
+            $0.width.lessThanOrEqualTo(50)
+        }
+        
+        mbtiStackView.snp.makeConstraints {
+            $0.top.equalTo(noticeLabel.snp.bottom).offset(30)
+            $0.leading.greaterThanOrEqualTo(mbtiLabel.snp.trailing).offset(10)
+            $0.trailing.equalTo(safeArea).offset(-20)
+            $0.height.equalTo(120)
+            $0.width.equalTo(250)
+        }
+        
         completeButton.snp.makeConstraints {
             $0.horizontalEdges.equalTo(safeArea).inset(20)
             $0.bottom.equalTo(safeArea).offset(-20)
@@ -129,6 +174,25 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         
         profileTabGestureView.backgroundColor = .clear
         profileTabGestureView.layer.cornerRadius = 65
+        
+        mbtiLabel.text = "MBTI"
+        mbtiLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
+        
+        mbtiStackView.setUI(SVAxis: .horizontal, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        eiStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        
+        snStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        tfStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        jpStackView.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        
+        eButton.setMbtiUI(title: "E")
+        iButton.setMbtiUI(title: "I")
+        sButton.setMbtiUI(title: "S")
+        nButton.setMbtiUI(title: "N")
+        tButton.setMbtiUI(title: "T")
+        fButton.setMbtiUI(title: "F")
+        jButton.setMbtiUI(title: "J")
+        pButton.setMbtiUI(title: "P")
         
         completeButton.setPointUI(title: "완료", bgColor: .incompleteColor)
     }
