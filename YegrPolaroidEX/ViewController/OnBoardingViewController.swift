@@ -8,14 +8,12 @@
 import UIKit
 import SnapKit
 
-class OnBoardingViewController: UIViewController, ViewRepresentable {
+final class OnBoardingViewController: UIViewController, ViewRepresentable {
     // MARK: UI
-    let logoLabel = UILabel()
-    let posterImageView = UIImageView()
-    let nameLabel = UILabel()
-    let startButton = UIButton()
-    
-    // MARK: Properties
+    private let logoLabel = UILabel()
+    private let posterImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let startButton = UIButton()
     
     // MARK: View Life Cycle
     override func viewDidLoad() {
@@ -24,13 +22,15 @@ class OnBoardingViewController: UIViewController, ViewRepresentable {
         addSubviews()
         setConstraints()
         configure()
+        configureAction()
     }
     
-    func addSubviews() {
+    // MARK: Functions
+    internal func addSubviews() {
         view.addSubviews([logoLabel, posterImageView, nameLabel, startButton])
     }
     
-    func setConstraints() {
+    internal func setConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
         logoLabel.snp.makeConstraints {
@@ -58,7 +58,7 @@ class OnBoardingViewController: UIViewController, ViewRepresentable {
         }
     }
     
-    func configure() {
+    internal func configure() {
         view.backgroundColor = .white
         
         logoLabel.text = "HELLO\nMY MEMORIES"
@@ -68,7 +68,7 @@ class OnBoardingViewController: UIViewController, ViewRepresentable {
             fontStyle: .systemFont(ofSize: 35, weight: .black),
             numOfLines: 2)
         
-        posterImageView.image = UIImage(named: "launchImage")
+        posterImageView.image = UIImage(named: "yegrLaunchImage")
         posterImageView.contentMode = .scaleAspectFill
         
         nameLabel.text = "김예진"
@@ -79,6 +79,16 @@ class OnBoardingViewController: UIViewController, ViewRepresentable {
             numOfLines: 1)
         
         startButton.setPointUI(title: "시작하기", bgColor: .customPoint)
+    }
+    
+    private func configureAction() {
+        startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
+    }
+    
+    // MARK: Actions
+    @objc func startButtonClicked() {
+        let vc = ProfileSettingViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
