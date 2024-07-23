@@ -38,6 +38,10 @@
 		68C0A7EB2C4E661C004B812F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 68C0A7B52C4E18FB004B812F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */; };
 		68C0A8262C4FE814004B812F /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8252C4FE814004B812F /* UIViewController+.swift */; };
+		68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8282C5005DA004B812F /* YegrPolaroidTabBarController.swift */; };
+		68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */; };
+		68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */; };
+		68C0A8322C50074E004B812F /* LikePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8312C50074E004B812F /* LikePhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +86,10 @@
 		68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		68C0A8252C4FE814004B812F /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		68C0A8282C5005DA004B812F /* YegrPolaroidTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YegrPolaroidTabBarController.swift; sourceTree = "<group>"; };
+		68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicViewController.swift; sourceTree = "<group>"; };
+		68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewController.swift; sourceTree = "<group>"; };
+		68C0A8312C50074E004B812F /* LikePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,10 @@
 				68C0A7FA2C4F6D03004B812F /* OnBoading */,
 				68C0A7FB2C4F6D0E004B812F /* ProfileSetting */,
 				68C0A7FC2C4F6D18004B812F /* SelectImage */,
+				68C0A82A2C50064A004B812F /* OurTopic */,
+				68C0A82B2C500662004B812F /* SearchPhoto */,
+				68C0A82C2C50069A004B812F /* LikePhoto */,
+				68C0A8272C500586004B812F /* TabBar */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -235,6 +247,38 @@
 				68C0A8252C4FE814004B812F /* UIViewController+.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		68C0A8272C500586004B812F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A8282C5005DA004B812F /* YegrPolaroidTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		68C0A82A2C50064A004B812F /* OurTopic */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */,
+			);
+			path = OurTopic;
+			sourceTree = "<group>";
+		};
+		68C0A82B2C500662004B812F /* SearchPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */,
+			);
+			path = SearchPhoto;
+			sourceTree = "<group>";
+		};
+		68C0A82C2C50069A004B812F /* LikePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A8312C50074E004B812F /* LikePhotoViewController.swift */,
+			);
+			path = LikePhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,7 +378,9 @@
 				68C0A8262C4FE814004B812F /* UIViewController+.swift in Sources */,
 				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
+				68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
+				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
 				68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */,
@@ -343,7 +389,9 @@
 				68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */,
 				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A7C62C4E2F9A004B812F /* View+.swift in Sources */,
+				68C0A8322C50074E004B812F /* LikePhotoViewController.swift in Sources */,
 				68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */,
+				68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */,
 				68C0A7C32C4E2EB8004B812F /* ViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
