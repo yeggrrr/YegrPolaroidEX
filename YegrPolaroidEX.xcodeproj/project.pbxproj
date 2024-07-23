@@ -120,29 +120,12 @@
 			children = (
 				68C0A7972C4E1791004B812F /* AppDelegate.swift */,
 				68C0A7992C4E1791004B812F /* SceneDelegate.swift */,
-				68C0A7A02C4E1792004B812F /* Assets.xcassets */,
-				68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */,
-				68C0A7D72C4E52DE004B812F /* UserDefaults */,
-				68C0A7DD2C4E5523004B812F /* Observable */,
-				68C0A7C92C4E3EBC004B812F /* Protocol */,
-				68C0A7C42C4E2F85004B812F /* Extension */,
-				68C0A7D22C4E4C76004B812F /* View */,
-				68C0A7DA2C4E54EE004B812F /* ViewModel */,
-				68C0A7BE2C4E2DAC004B812F /* ViewController */,
+				68C0A7F82C4F6C20004B812F /* Resources */,
+				68C0A7F92C4F6C46004B812F /* Sources */,
 				68C0A7A52C4E1792004B812F /* Info.plist */,
 				68C0A7BC2C4E1C34004B812F /* APIKey.swift */,
 			);
 			path = YegrPolaroidEX;
-			sourceTree = "<group>";
-		};
-		68C0A7BE2C4E2DAC004B812F /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A79B2C4E1791004B812F /* OnBoardingViewController.swift */,
-				68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */,
-				68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		68C0A7C42C4E2F85004B812F /* Extension */ = {
@@ -167,31 +150,12 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		68C0A7D22C4E4C76004B812F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
-				68C0A7E22C4E5DB4004B812F /* SelectImageView.swift */,
-				68C0A7E82C4E5F70004B812F /* Cell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		68C0A7D72C4E52DE004B812F /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
 				68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */,
 			);
 			path = UserDefaults;
-			sourceTree = "<group>";
-		};
-		68C0A7DA2C4E54EE004B812F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
-				68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		68C0A7DD2C4E5523004B812F /* Observable */ = {
@@ -202,7 +166,59 @@
 			path = Observable;
 			sourceTree = "<group>";
 		};
-		68C0A7E82C4E5F70004B812F /* Cell */ = {
+		68C0A7F82C4F6C20004B812F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7A02C4E1792004B812F /* Assets.xcassets */,
+				68C0A7A22C4E1792004B812F /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		68C0A7F92C4F6C46004B812F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7C42C4E2F85004B812F /* Extension */,
+				68C0A7C92C4E3EBC004B812F /* Protocol */,
+				68C0A7DD2C4E5523004B812F /* Observable */,
+				68C0A7D72C4E52DE004B812F /* UserDefaults */,
+				68C0A7FA2C4F6D03004B812F /* OnBoading */,
+				68C0A7FB2C4F6D0E004B812F /* ProfileSetting */,
+				68C0A7FC2C4F6D18004B812F /* SelectImage */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		68C0A7FA2C4F6D03004B812F /* OnBoading */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A79B2C4E1791004B812F /* OnBoardingViewController.swift */,
+			);
+			path = OnBoading;
+			sourceTree = "<group>";
+		};
+		68C0A7FB2C4F6D0E004B812F /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
+				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
+				68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */,
+			);
+			path = ProfileSetting;
+			sourceTree = "<group>";
+		};
+		68C0A7FC2C4F6D18004B812F /* SelectImage */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A7E42C4E5E7B004B812F /* SelectImageViewModel.swift */,
+				68C0A7E22C4E5DB4004B812F /* SelectImageView.swift */,
+				68C0A7E02C4E5BE8004B812F /* SelectImageViewController.swift */,
+				68C0A7FD2C4F6D51004B812F /* Cell */,
+			);
+			path = SelectImage;
+			sourceTree = "<group>";
+		};
+		68C0A7FD2C4F6D51004B812F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */,

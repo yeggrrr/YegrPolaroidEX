@@ -104,7 +104,7 @@ final class SelectImageView: UIView, ViewRepresentable {
         let sectionSpacing: CGFloat = 1
         let cellSpacing: CGFloat = 1
         let width = UIScreen.main.bounds.width - (sectionSpacing * 2) - (cellSpacing * 2) - 30
-        layout.itemSize = CGSize(width: width / 4, height: width / 4)
+        layout.itemSize = CGSize(width: width / 4, height: width / 4 )
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
