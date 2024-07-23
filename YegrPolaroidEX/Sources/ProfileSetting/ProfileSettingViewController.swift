@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: MBTI Button 기능 - View로 옮기기
+
 final class ProfileSettingViewController: UIViewController {
     // MARK: Enum
     enum ViewType {
@@ -101,8 +103,8 @@ final class ProfileSettingViewController: UIViewController {
             let udDecisionMaking = UserDefaultsManager.fetchDecisionMaking()
             let udNeedForStructure = UserDefaultsManager.fetchNeedForStructure()
             
+            /// 각각 저장된 MBTI String값에 따라서 대입
             if udSourceOfEnergy == "E" {
-                print(">>> fdskjfkh;")
                 sourceOfEnergy = (true, false)
                 profileSettingView.eButton.isSelected = true
             } else if udSourceOfEnergy == "I" {
@@ -157,13 +159,13 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     private func updateCompleteButton() {
-        let a = sourceOfEnergy.E || sourceOfEnergy.I
-        let b = processingOfInfo.N || processingOfInfo.S
-        let c = decisionMaking.T || decisionMaking.F
-        let d = needForStructure.J || needForStructure.P
-        let e = viewModel.nicknameErrorMessage == .noError
+        let eiState = sourceOfEnergy.E || sourceOfEnergy.I
+        let nsState = processingOfInfo.N || processingOfInfo.S
+        let tfState = decisionMaking.T || decisionMaking.F
+        let fpState = needForStructure.J || needForStructure.P
+        let nicknameState = viewModel.nicknameErrorMessage == .noError
         
-        if e && a && b && c && d {
+        if nicknameState && eiState && nsState && tfState && fpState {
             profileSettingView.completeButton.isEnabled = true
             profileSettingView.completeButton.backgroundColor = .customPoint
         } else {
@@ -179,13 +181,16 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     @objc func completeButtonClicked() {
+        /// 닉네임 저장
         guard let userName = profileSettingView.nicknameTextField.text else { return }
         UserDefaultsManager.save(value: userName, key: .name)
         
+        /// 이미지 저장
         guard let userImage = UserDefaultsManager.userTempProfileImageName else { return }
         UserDefaultsManager.save(value: userImage, key: .profileImage)
         UserDefaultsManager.userTempProfileImageName = nil
         
+        /// MBTI 저장
         if sourceOfEnergy.E {
             UserDefaultsManager.save(value: "E", key: .sourceOfEnergy)
         } else if sourceOfEnergy.I {
@@ -210,7 +215,6 @@ final class ProfileSettingViewController: UIViewController {
             UserDefaultsManager.save(value: "P", key: .needForStructure)
         }
         
-        print(">>> 모든 조건 OK! 화면 전환 고!")
         UserDefaultsManager.save(value: true, key: .isExistUser)
         screenTransition(YegrPolaroidTabBarController())
     }

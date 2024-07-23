@@ -57,12 +57,10 @@ class ProfileSettingViewModel {
         }
         
         if let lastError = errors.last {
-            print(">>> if: \(lastError)")
             outputValidColor.value = false
             nicknameErrorMessage = lastError
             outputValidationText.value = lastError.rawValue
         } else {
-            print(">>> else")
             outputValidColor.value = true
             nicknameErrorMessage = .noError
             outputValidationText.value = NicknameErrorMessage.noError.rawValue
