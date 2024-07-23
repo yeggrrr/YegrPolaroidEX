@@ -20,19 +20,25 @@ class ProfileSettingViewModel {
     
     // MARK: Properties
     var inputText = Observable("")
+    var inputValidationState: Observable<Void?> = Observable(nil)
+    
     var outputValidationText = Observable("")
     var outputValidColor = Observable(false)
+    var outputValidationState: Observable<Void?> = Observable(nil)
+    
     var nicknameErrorMessage: NicknameErrorMessage = .empty
     
     init() {
-        inputText.bind { _ in
-            self.validation()
+        inputText.bind { value in
+            self.validation(inputText: value)
+        }
+        
+        inputValidationState.bind { _ in
+            self.outputValidationState.value = ()
         }
     }
     
-    private func validation() {
-        let inputText = inputText.value
-        
+    private func validation(inputText: String) {
         var errors: [NicknameErrorMessage] = []
         
         if inputText.isEmpty {
@@ -51,12 +57,15 @@ class ProfileSettingViewModel {
         }
         
         if let lastError = errors.last {
+            print(">>> if: \(lastError)")
             outputValidColor.value = false
+            nicknameErrorMessage = lastError
             outputValidationText.value = lastError.rawValue
         } else {
+            print(">>> else")
             outputValidColor.value = true
-            outputValidationText.value = NicknameErrorMessage.noError.rawValue
             nicknameErrorMessage = .noError
+            outputValidationText.value = NicknameErrorMessage.noError.rawValue
         }
     }
 }

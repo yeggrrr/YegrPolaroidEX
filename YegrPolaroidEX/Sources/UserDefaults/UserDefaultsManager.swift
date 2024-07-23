@@ -12,6 +12,10 @@ struct UserDefaultsManager {
         case isExistUser
         case name
         case profileImage
+        case sourceOfEnergy // E, I
+        case processingOfInfo // S, N
+        case decisionMaking // T, F
+        case needForStructure // J, P
     }
     
     static var userTempProfileImageName: String?
@@ -30,5 +34,21 @@ struct UserDefaultsManager {
     
     static func fetchProfileImage() -> String {
         return UserDefaults.standard.string(forKey: UserDefaultsUserInfo.profileImage.rawValue) ?? "-"
+    }
+    
+    static func fetchSourceOfEnergy() -> String {
+        return UserDefaults.standard.string(forKey: UserDefaultsUserInfo.sourceOfEnergy.rawValue) ?? "-"
+    }
+    
+    static func fetchProcessingOfInfo() -> String {
+        return UserDefaults.standard.string(forKey: UserDefaultsUserInfo.processingOfInfo.rawValue) ?? "-"
+    }
+    
+    static func fetchDecisionMaking() -> String {
+        return UserDefaults.standard.string(forKey: UserDefaultsUserInfo.decisionMaking.rawValue) ?? "-"
+    }
+    
+    static func fetchNeedForStructure() -> String {
+        return UserDefaults.standard.string(forKey: UserDefaultsUserInfo.needForStructure.rawValue) ?? "-"
     }
 }

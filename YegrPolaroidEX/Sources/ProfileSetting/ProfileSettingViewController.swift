@@ -36,9 +36,10 @@ final class ProfileSettingViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        setInitialData()
         profileTabGesture()
         addButtonAction()
+        bindData()
+        setInitialData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +69,9 @@ final class ProfileSettingViewController: UIViewController {
             /// 프로필 설정화면에 갓 진입한 경우
             profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
         }
+        
+        // completeButton
+        profileSettingView.completeButton.isEnabled = false
     }
     
     private func bindData() {
@@ -78,6 +82,10 @@ final class ProfileSettingViewController: UIViewController {
         viewModel.outputValidColor.bind { value in
             self.profileSettingView.noticeLabel.textColor = value ? .systemBlue : .systemPink
         }
+        
+        viewModel.outputValidationState.bind { _ in
+            self.updateCompleteButton()
+        }
     }
     
     private func setInitialData() {
@@ -87,6 +95,46 @@ final class ProfileSettingViewController: UIViewController {
             }
         } else {
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()
+            
+            let udSourceOfEnergy = UserDefaultsManager.fetchSourceOfEnergy()
+            let udProcessingOfInfo = UserDefaultsManager.fetchProcessingOfInfo()
+            let udDecisionMaking = UserDefaultsManager.fetchDecisionMaking()
+            let udNeedForStructure = UserDefaultsManager.fetchNeedForStructure()
+            
+            if udSourceOfEnergy == "E" {
+                print(">>> fdskjfkh;")
+                sourceOfEnergy = (true, false)
+                profileSettingView.eButton.isSelected = true
+            } else if udSourceOfEnergy == "I" {
+                sourceOfEnergy = (false, true)
+                profileSettingView.iButton.isSelected = true
+            }
+            
+            if udProcessingOfInfo == "S" {
+                sourceOfEnergy = (true, false)
+                profileSettingView.sButton.isSelected = true
+            } else if udProcessingOfInfo == "N" {
+                sourceOfEnergy = (false, true)
+                profileSettingView.nButton.isSelected = true
+            }
+            
+            if udDecisionMaking == "T" {
+                sourceOfEnergy = (true, false)
+                profileSettingView.tButton.isSelected = true
+            } else if udDecisionMaking == "F" {
+                sourceOfEnergy = (false, true)
+                profileSettingView.fButton.isSelected = true
+            }
+            
+            if udNeedForStructure == "J" {
+                sourceOfEnergy = (true, false)
+                profileSettingView.jButton.isSelected = true
+            } else if udNeedForStructure == "P" {
+                sourceOfEnergy = (false, true)
+                profileSettingView.pButton.isSelected = true
+            }
+            
+            profileSettingView.updateButtonColor()
         }
     }
     
@@ -105,6 +153,23 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.fButton.addTarget(self, action: #selector(fButtonClicked), for: .touchUpInside)
         profileSettingView.jButton.addTarget(self, action: #selector(jButtonClicked), for: .touchUpInside)
         profileSettingView.pButton.addTarget(self, action: #selector(pButtonClicked), for: .touchUpInside)
+        profileSettingView.completeButton.addTarget(self, action: #selector(completeButtonClicked), for: .touchUpInside)
+    }
+    
+    private func updateCompleteButton() {
+        let a = sourceOfEnergy.E || sourceOfEnergy.I
+        let b = processingOfInfo.N || processingOfInfo.S
+        let c = decisionMaking.T || decisionMaking.F
+        let d = needForStructure.J || needForStructure.P
+        let e = viewModel.nicknameErrorMessage == .noError
+        
+        if e && a && b && c && d {
+            profileSettingView.completeButton.isEnabled = true
+            profileSettingView.completeButton.backgroundColor = .customPoint
+        } else {
+            profileSettingView.completeButton.isEnabled = false
+            profileSettingView.completeButton.backgroundColor = .incompleteColor
+        }
     }
     
     // MARK: Actions
@@ -113,11 +178,50 @@ final class ProfileSettingViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc func completeButtonClicked() {
+        guard let userName = profileSettingView.nicknameTextField.text else { return }
+        UserDefaultsManager.save(value: userName, key: .name)
+        
+        guard let userImage = UserDefaultsManager.userTempProfileImageName else { return }
+        UserDefaultsManager.save(value: userImage, key: .profileImage)
+        UserDefaultsManager.userTempProfileImageName = nil
+        
+        if sourceOfEnergy.E {
+            UserDefaultsManager.save(value: "E", key: .sourceOfEnergy)
+        } else if sourceOfEnergy.I {
+            UserDefaultsManager.save(value: "I", key: .sourceOfEnergy)
+        }
+        
+        if processingOfInfo.N {
+            UserDefaultsManager.save(value: "N", key: .processingOfInfo)
+        } else if processingOfInfo.S {
+            UserDefaultsManager.save(value: "S", key: .processingOfInfo)
+        }
+        
+        if decisionMaking.T {
+            UserDefaultsManager.save(value: "T", key: .decisionMaking)
+        } else if decisionMaking.F {
+            UserDefaultsManager.save(value: "F", key: .decisionMaking)
+        }
+        
+        if needForStructure.J {
+            UserDefaultsManager.save(value: "J", key: .needForStructure)
+        } else if needForStructure.P {
+            UserDefaultsManager.save(value: "P", key: .needForStructure)
+        }
+        
+        print(">>> 모든 조건 OK! 화면 전환 고!")
+        UserDefaultsManager.save(value: true, key: .isExistUser)
+        screenTransition(YegrPolaroidTabBarController())
+    }
+    
     @objc func eButtonClicked(_ sender: UIButton) {
         sourceOfEnergy = (!sourceOfEnergy.E, false)
         sender.isSelected = sourceOfEnergy.E
         profileSettingView.iButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func iButtonClicked(_ sender: UIButton) {
@@ -125,6 +229,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = sourceOfEnergy.I
         profileSettingView.eButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func sButtonClicked(_ sender: UIButton) {
@@ -132,6 +238,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = processingOfInfo.S
         profileSettingView.nButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func nButtonClicked(_ sender: UIButton) {
@@ -139,6 +247,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = processingOfInfo.N
         profileSettingView.sButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func tButtonClicked(_ sender: UIButton) {
@@ -146,6 +256,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = decisionMaking.T
         profileSettingView.fButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func fButtonClicked(_ sender: UIButton) {
@@ -153,6 +265,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = decisionMaking.F
         profileSettingView.tButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func jButtonClicked(_ sender: UIButton) {
@@ -160,6 +274,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = needForStructure.J
         profileSettingView.pButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
     
     @objc func pButtonClicked(_ sender: UIButton) {
@@ -167,6 +283,8 @@ final class ProfileSettingViewController: UIViewController {
         sender.isSelected = needForStructure.P
         profileSettingView.jButton.isSelected = false
         profileSettingView.updateButtonColor()
+        
+        self.viewModel.inputValidationState.value = ()
     }
 }
 
@@ -175,6 +293,6 @@ extension ProfileSettingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
         viewModel.inputText.value = text
-        bindData()
+        self.viewModel.inputValidationState.value = ()
     }
 }
