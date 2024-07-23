@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum UserDefaultsUserInfo: String {
-    case isExistUser
-    case name
-    case profileImage
-}
-
-struct UserDefaultsManager {    
+struct UserDefaultsManager {
+    enum UserDefaultsUserInfo: String {
+        case isExistUser
+        case name
+        case profileImage
+    }
+    
     static var userTempProfileImageName: String?
     
     static func fetchisExistUser() -> Bool {
