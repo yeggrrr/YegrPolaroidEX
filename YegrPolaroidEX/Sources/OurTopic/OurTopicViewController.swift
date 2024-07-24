@@ -20,6 +20,7 @@ final class OurTopicViewController: UIViewController {
     let ourTopicView = OurTopicView()
     
     // MARK: Properties
+    let viewModel = OurTopicViewModel()
     private let sectionList: [SectionType] = [.goldenHour, .business, .interior]
     
     // MARK: View Life Cycle
@@ -30,8 +31,22 @@ final class OurTopicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindData()
         configureUI()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    func bindData() {
+        viewModel.inputViewDidLoadTrigger.value = ()
+        viewModel.inputGoldenHourData.bind { _ in
+            self.ourTopicView.collectionView.reloadData()
+        }
     }
     
     func configureUI() {
@@ -67,14 +82,16 @@ final class OurTopicViewController: UIViewController {
         ourTopicView.collectionView.register(GoldenHourCell.self, forCellWithReuseIdentifier: GoldenHourCell.id)
         ourTopicView.collectionView.register(BusinessCell.self, forCellWithReuseIdentifier: BusinessCell.id)
         ourTopicView.collectionView.register(InteriorCell.self, forCellWithReuseIdentifier: InteriorCell.id)
+        ourTopicView.collectionView.register(OurTopicHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: OurTopicHeaderView.id)
+        ourTopicView.collectionView.showsVerticalScrollIndicator = false
     }
     
     @objc func settingButtonClicked() {
-        print(#function)
         let vc = ProfileSettingViewController()
         vc.viewType = .update
         vc.isSaveButtonEnabled = true
         vc.saveButtonTintColor = .black
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -85,9 +102,23 @@ extension OurTopicViewController: UICollectionViewDataSource {
         return sectionList.count
     }
     
-    // func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    //     <#code#>
-    // }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OurTopicHeaderView.id, for: indexPath) as? OurTopicHeaderView else { return UICollectionReusableView() }
+            switch sectionList[indexPath.section] {
+            case .goldenHour:
+                headerView.titleLabel.text = "골든 아워"
+            case .business:
+                headerView.titleLabel.text = "비즈니스 및 업무"
+            case .interior:
+                headerView.titleLabel.text = "건축 및 인테리어"
+            }
+            return headerView
+        default:
+            return UICollectionReusableView()
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch sectionList[section] {
@@ -100,6 +131,8 @@ extension OurTopicViewController: UICollectionViewDataSource {
         switch sectionList[indexPath.section] {
         case .goldenHour:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoldenHourCell.id, for: indexPath) as? GoldenHourCell else { return UICollectionViewCell() }
+            cell.goldenHourData = viewModel.inputGoldenHourData.value
+            cell.goldenHourCollectionView.reloadData()
             return cell
         case .business:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BusinessCell.id, for: indexPath) as? BusinessCell else { return UICollectionViewCell() }
@@ -118,7 +151,7 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
         
         switch sectionList[section] {
         case .goldenHour, .business, .interior:
-            return CGSize(width: width, height: 40)
+            return CGSize(width: width, height: 50)
         }
     }
     
@@ -126,7 +159,7 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
         switch sectionList[indexPath.section] {
         case .goldenHour, .business, .interior:
             let width = collectionView.frame.width
-            let size = CGSize(width: width, height: 220)
+            let size = CGSize(width: width, height: 230)
             return size
         }
     }
