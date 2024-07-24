@@ -34,7 +34,7 @@ final class OurTopicView: UIView, ViewRepresentable {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(safeArea)
             $0.horizontalEdges.equalTo(safeArea).inset(10)
-            $0.height.equalTo(50)
+            $0.height.equalTo(60)
         }
         
         collectionView.snp.makeConstraints {
@@ -46,8 +46,6 @@ final class OurTopicView: UIView, ViewRepresentable {
     func configureUI() {
         // titleLabel
         titleLabel.text = "OUR TOPIC"
-        titleLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 30, weight: .bold), numOfLines: 1)
-        
-        collectionView.backgroundColor = .systemGray
+        titleLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 32, weight: .bold), numOfLines: 1)
     }
 }

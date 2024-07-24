@@ -7,13 +7,16 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class GoldenHourCell: UICollectionViewCell {
-    let GoldenHourCollectionView: UICollectionView = {
+    let goldenHourCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
+    
+    var goldenHourData: [TopicData] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,28 +33,31 @@ class GoldenHourCell: UICollectionViewCell {
         contentView.backgroundColor = .white
         
         // collectioView
-        contentView.addSubview(GoldenHourCollectionView)
-        GoldenHourCollectionView.snp.makeConstraints {
+        contentView.addSubview(goldenHourCollectionView)
+        goldenHourCollectionView.snp.makeConstraints {
             $0.verticalEdges.equalTo(contentView.safeAreaLayoutGuide)
             $0.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(10)
         }
         
-        GoldenHourCollectionView.delegate = self
-        GoldenHourCollectionView.dataSource = self
-        GoldenHourCollectionView.register(GoldenHourInnerCell.self, forCellWithReuseIdentifier: GoldenHourInnerCell.id)
-        GoldenHourCollectionView.backgroundColor = .systemCyan
-        GoldenHourCollectionView.showsHorizontalScrollIndicator = false
+        goldenHourCollectionView.delegate = self
+        goldenHourCollectionView.dataSource = self
+        goldenHourCollectionView.register(GoldenHourInnerCell.self, forCellWithReuseIdentifier: GoldenHourInnerCell.id)
+        goldenHourCollectionView.showsHorizontalScrollIndicator = false
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension GoldenHourCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // 임시
+        return goldenHourData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoldenHourInnerCell.id, for: indexPath) as? GoldenHourInnerCell else { return UICollectionViewCell() }
+        let imageUrl = goldenHourData[indexPath.item].urls.small
+        if let image = URL(string: imageUrl) {
+            cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])
+        }
         return cell
     }
 }

@@ -59,7 +59,7 @@ final class ProfileSettingViewController: UIViewController {
         view.backgroundColor = .white
         
         // tabBar
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
         
         // navigation
         navigationItem.title = "PROFILE SETTING"
@@ -109,7 +109,6 @@ final class ProfileSettingViewController: UIViewController {
                 UserDefaultsManager.userTempProfileImageName = randomImageName
             }
         } else {
-            self.tabBarController?.tabBar.isHidden = true
             profileSettingView.completeButton.isHidden = true
             
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()
@@ -208,6 +207,7 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     @objc func completeButtonClicked() {
+        print(#function)
         /// 닉네임 저장
         guard let userName = profileSettingView.nicknameTextField.text else { return }
         UserDefaultsManager.save(value: userName, key: .name)

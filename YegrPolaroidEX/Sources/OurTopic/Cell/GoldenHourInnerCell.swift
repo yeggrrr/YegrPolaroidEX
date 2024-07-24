@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class GoldenHourInnerCell: UICollectionViewCell, ViewRepresentable {
+    let posterImage = UIImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,15 +23,19 @@ final class GoldenHourInnerCell: UICollectionViewCell, ViewRepresentable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureUI() {
-        contentView.backgroundColor = .systemBrown
-    }
-    
     func addSubviews() {
-        print("")
+        contentView.addSubview(posterImage)
     }
     
     func setConstraints() {
-        print("")
+        posterImage.snp.makeConstraints {
+            $0.edges.equalTo(contentView.safeAreaLayoutGuide)
+        }
+    }
+    
+    func configureUI() {
+        posterImage.layer.cornerRadius = 20
+        posterImage.contentMode = .scaleAspectFill
+        posterImage.clipsToBounds = true
     }
 }
