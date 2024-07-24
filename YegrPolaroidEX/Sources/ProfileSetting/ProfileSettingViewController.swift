@@ -39,7 +39,7 @@ final class ProfileSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
+        configureUI()
         profileTabGesture()
         addButtonAction()
         bindData()
@@ -49,14 +49,17 @@ final class ProfileSettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configure()
+        configureUI()
         DismissKeyboard()
     }
     
     // MARK: Functions
-    private func configure() {
+    private func configureUI() {
         // view
         view.backgroundColor = .white
+        
+        // tabBar
+        self.tabBarController?.tabBar.isHidden = false
         
         // navigation
         navigationItem.title = "PROFILE SETTING"
@@ -106,7 +109,7 @@ final class ProfileSettingViewController: UIViewController {
                 UserDefaultsManager.userTempProfileImageName = randomImageName
             }
         } else {
-            self.tabBarController?.tabBar.isHidden = true // 함수 이동
+            self.tabBarController?.tabBar.isHidden = true
             profileSettingView.completeButton.isHidden = true
             
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()

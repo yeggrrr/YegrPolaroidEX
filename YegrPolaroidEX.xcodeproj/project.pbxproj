@@ -42,6 +42,13 @@
 		68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */; };
 		68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */; };
 		68C0A8322C50074E004B812F /* LikePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8312C50074E004B812F /* LikePhotoViewController.swift */; };
+		68C0A85B2C50F945004B812F /* OurTopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A85A2C50F945004B812F /* OurTopicView.swift */; };
+		68C0A85E2C51003B004B812F /* GoldenHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A85D2C51003B004B812F /* GoldenHourCell.swift */; };
+		68C0A8602C510050004B812F /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A85F2C510050004B812F /* BusinessCell.swift */; };
+		68C0A8622C510081004B812F /* InteriorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8612C510081004B812F /* InteriorCell.swift */; };
+		68C0A8642C5105E5004B812F /* GoldenHourInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */; };
+		68C0A8662C51067F004B812F /* BusinessInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8652C51067F004B812F /* BusinessInnerCell.swift */; };
+		68C0A8682C510697004B812F /* InteriorInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8672C510697004B812F /* InteriorInnerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +97,13 @@
 		68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicViewController.swift; sourceTree = "<group>"; };
 		68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewController.swift; sourceTree = "<group>"; };
 		68C0A8312C50074E004B812F /* LikePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoViewController.swift; sourceTree = "<group>"; };
+		68C0A85A2C50F945004B812F /* OurTopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicView.swift; sourceTree = "<group>"; };
+		68C0A85D2C51003B004B812F /* GoldenHourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenHourCell.swift; sourceTree = "<group>"; };
+		68C0A85F2C510050004B812F /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
+		68C0A8612C510081004B812F /* InteriorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorCell.swift; sourceTree = "<group>"; };
+		68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenHourInnerCell.swift; sourceTree = "<group>"; };
+		68C0A8652C51067F004B812F /* BusinessInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInnerCell.swift; sourceTree = "<group>"; };
+		68C0A8672C510697004B812F /* InteriorInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorInnerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,7 +274,9 @@
 		68C0A82A2C50064A004B812F /* OurTopic */ = {
 			isa = PBXGroup;
 			children = (
+				68C0A85A2C50F945004B812F /* OurTopicView.swift */,
 				68C0A82D2C5006C2004B812F /* OurTopicViewController.swift */,
+				68C0A85C2C50FB84004B812F /* Cell */,
 			);
 			path = OurTopic;
 			sourceTree = "<group>";
@@ -279,6 +295,19 @@
 				68C0A8312C50074E004B812F /* LikePhotoViewController.swift */,
 			);
 			path = LikePhoto;
+			sourceTree = "<group>";
+		};
+		68C0A85C2C50FB84004B812F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				68C0A85D2C51003B004B812F /* GoldenHourCell.swift */,
+				68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */,
+				68C0A85F2C510050004B812F /* BusinessCell.swift */,
+				68C0A8652C51067F004B812F /* BusinessInnerCell.swift */,
+				68C0A8612C510081004B812F /* InteriorCell.swift */,
+				68C0A8672C510697004B812F /* InteriorInnerCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C0A8602C510050004B812F /* BusinessCell.swift in Sources */,
+				68C0A8622C510081004B812F /* InteriorCell.swift in Sources */,
 				68C0A7CD2C4E4357004B812F /* UILabel+.swift in Sources */,
 				68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */,
 				68C0A7E32C4E5DB4004B812F /* SelectImageView.swift in Sources */,
@@ -374,14 +405,17 @@
 				68C0A79C2C4E1791004B812F /* OnBoardingViewController.swift in Sources */,
 				68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */,
 				68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */,
+				68C0A8642C5105E5004B812F /* GoldenHourInnerCell.swift in Sources */,
 				68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */,
 				68C0A8262C4FE814004B812F /* UIViewController+.swift in Sources */,
 				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
 				68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */,
+				68C0A85B2C50F945004B812F /* OurTopicView.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
 				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
+				68C0A8682C510697004B812F /* InteriorInnerCell.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
 				68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */,
 				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
@@ -389,9 +423,11 @@
 				68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */,
 				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A7C62C4E2F9A004B812F /* View+.swift in Sources */,
+				68C0A8662C51067F004B812F /* BusinessInnerCell.swift in Sources */,
 				68C0A8322C50074E004B812F /* LikePhotoViewController.swift in Sources */,
 				68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */,
 				68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */,
+				68C0A85E2C51003B004B812F /* GoldenHourCell.swift in Sources */,
 				68C0A7C32C4E2EB8004B812F /* ViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
