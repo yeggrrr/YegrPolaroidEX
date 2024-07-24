@@ -23,6 +23,8 @@ final class ProfileSettingViewController: UIViewController {
     // MARK: Properties
     private let profileImageNameList = Array(0...11).map{ "profile_\($0)" }
     var viewType: ViewType = .new
+    var isSaveButtonEnabled: Bool = false
+    var saveButtonTintColor: UIColor = .clear
     
     var sourceOfEnergy: (E: Bool, I: Bool) = (false, false)
     var processingOfInfo: (S: Bool, N: Bool) = (false, false)
@@ -61,6 +63,11 @@ final class ProfileSettingViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .customPoint
         
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        navigationItem.rightBarButtonItem = saveButton
+        saveButton.isEnabled = isSaveButtonEnabled
+        saveButton.tintColor = saveButtonTintColor
+        
         // textField
         profileSettingView.nicknameTextField.delegate = self
         profileSettingView.nicknameTextField.becomeFirstResponder()
@@ -93,10 +100,15 @@ final class ProfileSettingViewController: UIViewController {
     
     private func setInitialData() {
         if viewType == .new {
+            profileSettingView.deleteAccountButton.isHidden = true
+            
             if let randomImageName = profileImageNameList.randomElement() {
                 UserDefaultsManager.userTempProfileImageName = randomImageName
             }
         } else {
+            self.tabBarController?.tabBar.isHidden = true // 함수 이동
+            profileSettingView.completeButton.isHidden = true
+            
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()
             
             let udSourceOfEnergy = UserDefaultsManager.fetchSourceOfEnergy()
@@ -157,6 +169,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.jButton.addTarget(self, action: #selector(jButtonClicked), for: .touchUpInside)
         profileSettingView.pButton.addTarget(self, action: #selector(pButtonClicked), for: .touchUpInside)
         profileSettingView.completeButton.addTarget(self, action: #selector(completeButtonClicked), for: .touchUpInside)
+        profileSettingView.deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonClicked), for: .touchUpInside)
     }
     
     private func updateCompleteButton() {
@@ -228,6 +241,20 @@ final class ProfileSettingViewController: UIViewController {
         
         UserDefaultsManager.save(value: true, key: .isExistUser)
         screenTransition(YegrPolaroidTabBarController())
+    }
+    
+    @objc func saveButtonClicked() {
+        print(#function)
+    }
+    
+    @objc func deleteAccountButtonClicked() {
+        showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?") { _ in
+            for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                UserDefaults.standard.removeObject(forKey: key.description)
+            }
+            
+            self.screenTransition(OnBoardingViewController())
+        }
     }
     
     @objc func eButtonClicked(_ sender: UIButton) {

@@ -41,6 +41,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
     let noticeLabel = UILabel()
     
     let completeButton = UIButton()
+    let deleteAccountButton = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,7 +68,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         tfStackView.addArrangedSubviews([tButton, fButton])
         jpStackView.addArrangedSubviews([jButton, pButton])
         
-        addSubview(completeButton)
+        addSubviews([completeButton, deleteAccountButton])
     }
     
     internal func setConstraints() {
@@ -142,6 +143,11 @@ final class ProfileSettingView: UIView, ViewRepresentable {
             $0.bottom.equalTo(safeArea).offset(-20)
             $0.height.equalTo(50)
         }
+        
+        deleteAccountButton.snp.makeConstraints {
+            $0.centerX.equalTo(safeArea.snp.centerX)
+            $0.bottom.equalTo(safeArea.snp.bottom).offset(-30)
+        }
     }
     
     internal func configureUI() {
@@ -194,6 +200,8 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         updateButtonColor()
         
         completeButton.setPointUI(title: "완료", bgColor: .incompleteColor)
+        deleteAccountButton.setTitle("회원탈퇴", for: .normal)
+        deleteAccountButton.setTitleColor(.systemPurple, for: .normal)
     }
     
     func updateButtonColor() {
