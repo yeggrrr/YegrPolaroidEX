@@ -20,16 +20,16 @@ final class YegrPolaroidTabBarController: UITabBarController {
         
         let ourTopicVC = OurTopicViewController()
         let ourTopicNav = UINavigationController(rootViewController: ourTopicVC)
-        ourTopicNav.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "chart.line.uptrend.xyaxis"), tag: 0)
+        ourTopicNav.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "tap_trend_inactive"), selectedImage: UIImage(named: "tab_trend"))
         
         let searchPhotoVC = SearchPhotoViewController()
         let searchPhotoNav = UINavigationController(rootViewController: searchPhotoVC)
-        searchPhotoNav.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        ourTopicNav.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "tab_search_inactive"), selectedImage: UIImage(named: "tab_search"))
         
         
         let likePhotoVC = LikePhotoViewController()
         let likePhotoNav = UINavigationController(rootViewController: likePhotoVC)
-        likePhotoNav.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 2)
+        ourTopicNav.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "tab_like_inactive"), selectedImage: UIImage(named: "tab_like"))
         
         setViewControllers([ourTopicNav, searchPhotoNav, likePhotoNav], animated: true)
     }

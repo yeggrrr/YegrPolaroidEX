@@ -42,6 +42,7 @@ final class ProfileSettingViewController: UIViewController {
         addButtonAction()
         bindData()
         setInitialData()
+        // dismissKeyboardWhenTappedView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +175,12 @@ final class ProfileSettingViewController: UIViewController {
         }
     }
     
+    /// Return 클릭 시 keyboard dismiss
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     // MARK: Actions
     @objc func profileImageTapped() {
         let vc = SelectImageViewController()
@@ -298,5 +305,10 @@ extension ProfileSettingViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         viewModel.inputText.value = text
         self.viewModel.inputValidationState.value = ()
+    }
+    
+    /// 화면 터치 시, keyboard dismiss
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
