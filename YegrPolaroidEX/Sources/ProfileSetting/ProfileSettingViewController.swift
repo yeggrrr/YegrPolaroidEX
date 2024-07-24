@@ -42,13 +42,13 @@ final class ProfileSettingViewController: UIViewController {
         addButtonAction()
         bindData()
         setInitialData()
-        // dismissKeyboardWhenTappedView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configure()
+        DismissKeyboard()
     }
     
     // MARK: Functions
@@ -175,6 +175,10 @@ final class ProfileSettingViewController: UIViewController {
         }
     }
     
+    func DismissKeyboard(){
+        profileSettingView.nicknameTextField.resignFirstResponder()
+    }
+    
     /// Return 클릭 시 keyboard dismiss
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -233,6 +237,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func iButtonClicked(_ sender: UIButton) {
@@ -242,6 +247,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func sButtonClicked(_ sender: UIButton) {
@@ -251,6 +257,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func nButtonClicked(_ sender: UIButton) {
@@ -260,6 +267,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func tButtonClicked(_ sender: UIButton) {
@@ -269,6 +277,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func fButtonClicked(_ sender: UIButton) {
@@ -278,6 +287,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func jButtonClicked(_ sender: UIButton) {
@@ -287,6 +297,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
     
     @objc func pButtonClicked(_ sender: UIButton) {
@@ -296,6 +307,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.updateButtonColor()
         
         self.viewModel.inputValidationState.value = ()
+        DismissKeyboard()
     }
 }
 
