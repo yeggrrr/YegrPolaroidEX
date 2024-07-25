@@ -161,24 +161,12 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
         return CGSize(width: width, height: 50)
-        
-        // switch sectionList[section] {
-        // case .goldenHour, .business, .interior:
-        //     return CGSize(width: width, height: 50)
-        // }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         let size = CGSize(width: width, height: 230)
         return size
-        
-        // switch sectionList[indexPath.section] {
-        // case .goldenHour, .business, .interior:
-        //     let width = collectionView.frame.width
-        //     let size = CGSize(width: width, height: 230)
-        //     return size
-        // }
     }
 }
 
