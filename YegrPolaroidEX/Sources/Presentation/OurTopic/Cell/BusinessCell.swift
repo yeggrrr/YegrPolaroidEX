@@ -18,6 +18,8 @@ class BusinessCell: UICollectionViewCell {
     
     var businessData: [TopicData] = []
     
+    weak var delegate: PushDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -73,4 +75,8 @@ extension BusinessCell: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: UICollectionViewDelegate
-extension BusinessCell: UICollectionViewDelegate { }
+extension BusinessCell: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.pushDetailView()
+    }
+}

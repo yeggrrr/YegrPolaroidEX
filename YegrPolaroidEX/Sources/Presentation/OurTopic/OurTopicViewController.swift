@@ -45,6 +45,7 @@ final class OurTopicViewController: UIViewController {
     func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.inputGoldenHourData.bind { _ in
+            print(self.viewModel.inputGoldenHourData.value)
             self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 0))
         }
         
@@ -141,16 +142,19 @@ extension OurTopicViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoldenHourCell.id, for: indexPath) as? GoldenHourCell else { return UICollectionViewCell() }
             cell.goldenHourData = viewModel.inputGoldenHourData.value
             cell.goldenHourCollectionView.reloadData()
+            cell.delegate = self
             return cell
         case .business:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BusinessCell.id, for: indexPath) as? BusinessCell else { return UICollectionViewCell() }
             cell.businessData = viewModel.inputBusinessData.value
             cell.businessCollectionView.reloadData()
+            cell.delegate = self
             return cell
         case .interior:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InteriorCell.id, for: indexPath) as? InteriorCell else { return UICollectionViewCell() }
             cell.interiorData = viewModel.inputInteriorData.value
             cell.interiorCollectionView.reloadData()
+            cell.delegate = self
             return cell
         }
     }
@@ -170,4 +174,11 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension OurTopicViewController: PushDelegate {
+    func pushDetailView() {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
+}
+
+// MARK: UICollectionViewDelegate
 extension OurTopicViewController: UICollectionViewDelegate { }

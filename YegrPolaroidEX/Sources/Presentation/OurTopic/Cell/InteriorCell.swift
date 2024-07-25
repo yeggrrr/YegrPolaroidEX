@@ -17,6 +17,8 @@ class InteriorCell: UICollectionViewCell {
     
     var interiorData: [TopicData] = []
     
+    weak var delegate: PushDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -72,4 +74,8 @@ extension InteriorCell: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: UICollectionViewDelegate
-extension InteriorCell: UICollectionViewDelegate { }
+extension InteriorCell: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.pushDetailView()
+    }
+}

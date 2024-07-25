@@ -52,6 +52,7 @@
 		68C0A8732C513FCB004B812F /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8722C513FCB004B812F /* APICall.swift */; };
 		68C0A8752C5140F5004B812F /* TopicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8742C5140F5004B812F /* TopicModel.swift */; };
 		68C0A8772C515FE0004B812F /* OurTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8762C515FE0004B812F /* OurTopicViewModel.swift */; };
+		68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8962C5235CB004B812F /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +111,7 @@
 		68C0A8722C513FCB004B812F /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		68C0A8742C5140F5004B812F /* TopicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicModel.swift; sourceTree = "<group>"; };
 		68C0A8762C515FE0004B812F /* OurTopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicViewModel.swift; sourceTree = "<group>"; };
+		68C0A8962C5235CB004B812F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +358,7 @@
 		68C0A8942C5234FE004B812F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				68C0A8962C5235CB004B812F /* DetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
 				68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */,
 				68C0A85B2C50F945004B812F /* OurTopicView.swift in Sources */,
+				68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
 				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,

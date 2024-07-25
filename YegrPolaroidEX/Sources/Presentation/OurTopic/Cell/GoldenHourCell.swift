@@ -18,6 +18,8 @@ class GoldenHourCell: UICollectionViewCell {
     
     var goldenHourData: [TopicData] = []
     
+    weak var delegate: PushDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -73,4 +75,12 @@ extension GoldenHourCell: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: UICollectionViewDelegate
-extension GoldenHourCell: UICollectionViewDelegate { }
+extension GoldenHourCell: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.pushDetailView()
+    }
+}
+
+protocol PushDelegate: AnyObject {
+    func pushDetailView()
+}
