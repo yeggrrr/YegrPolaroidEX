@@ -7,7 +7,7 @@
 
 import UIKit
 
-// TODO: MBTI Button 기능 - View로 옮기기
+// TODO: MBTI Button 기능 - View로 옮기기 / 불필요한 switch문 정리
 
 final class ProfileSettingViewController: UIViewController {
     // MARK: Enum

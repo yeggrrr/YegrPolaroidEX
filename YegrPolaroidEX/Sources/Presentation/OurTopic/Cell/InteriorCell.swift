@@ -15,6 +15,8 @@ class InteriorCell: UICollectionViewCell {
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
     
+    var interiorData: [TopicData] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,7 +41,6 @@ class InteriorCell: UICollectionViewCell {
         interiorCollectionView.delegate = self
         interiorCollectionView.dataSource = self
         interiorCollectionView.register(TopicInnerCell.self, forCellWithReuseIdentifier: TopicInnerCell.id)
-        interiorCollectionView.backgroundColor = .systemCyan
         interiorCollectionView.showsHorizontalScrollIndicator = false
     }
 }
@@ -47,11 +48,15 @@ class InteriorCell: UICollectionViewCell {
 // MARK: UICollectionViewDataSource
 extension InteriorCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // 임시
+        return interiorData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
+        let imageUrl = interiorData[indexPath.item].urls.small
+        if let image = URL(string: imageUrl) {
+            cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])
+        }
         return cell
     }
 }

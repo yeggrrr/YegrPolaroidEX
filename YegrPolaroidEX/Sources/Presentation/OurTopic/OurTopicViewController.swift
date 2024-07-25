@@ -51,6 +51,10 @@ final class OurTopicViewController: UIViewController {
         viewModel.inputBusinessData.bind { _ in
             self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 1))
         }
+        
+        viewModel.inputInteriorData.bind { _ in
+            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 2))
+        }
     }
     
     func configureUI() {
@@ -145,6 +149,8 @@ extension OurTopicViewController: UICollectionViewDataSource {
             return cell
         case .interior:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InteriorCell.id, for: indexPath) as? InteriorCell else { return UICollectionViewCell() }
+            cell.interiorData = viewModel.inputInteriorData.value
+            cell.interiorCollectionView.reloadData()
             return cell
         }
     }
@@ -154,19 +160,25 @@ extension OurTopicViewController: UICollectionViewDataSource {
 extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        switch sectionList[section] {
-        case .goldenHour, .business, .interior:
-            return CGSize(width: width, height: 50)
-        }
+        return CGSize(width: width, height: 50)
+        
+        // switch sectionList[section] {
+        // case .goldenHour, .business, .interior:
+        //     return CGSize(width: width, height: 50)
+        // }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch sectionList[indexPath.section] {
-        case .goldenHour, .business, .interior:
-            let width = collectionView.frame.width
-            let size = CGSize(width: width, height: 230)
-            return size
-        }
+        let width = collectionView.frame.width
+        let size = CGSize(width: width, height: 230)
+        return size
+        
+        // switch sectionList[indexPath.section] {
+        // case .goldenHour, .business, .interior:
+        //     let width = collectionView.frame.width
+        //     let size = CGSize(width: width, height: 230)
+        //     return size
+        // }
     }
 }
 
