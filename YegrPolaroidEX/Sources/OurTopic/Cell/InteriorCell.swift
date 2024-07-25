@@ -38,7 +38,7 @@ class InteriorCell: UICollectionViewCell {
         
         interiorCollectionView.delegate = self
         interiorCollectionView.dataSource = self
-        interiorCollectionView.register(InteriorInnerCell.self, forCellWithReuseIdentifier: InteriorInnerCell.id)
+        interiorCollectionView.register(TopicInnerCell.self, forCellWithReuseIdentifier: TopicInnerCell.id)
         interiorCollectionView.backgroundColor = .systemCyan
         interiorCollectionView.showsHorizontalScrollIndicator = false
     }
@@ -51,7 +51,7 @@ extension InteriorCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InteriorInnerCell.id, for: indexPath) as? InteriorInnerCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
         return cell
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GoldenHourInnerCell.swift
+//  TopicInnerCell.swift
 //  YegrPolaroidEX
 //
 //  Created by YJ on 7/24/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class GoldenHourInnerCell: UICollectionViewCell, ViewRepresentable {
+final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
     let posterImage = UIImageView()
     
     override init(frame: CGRect) {

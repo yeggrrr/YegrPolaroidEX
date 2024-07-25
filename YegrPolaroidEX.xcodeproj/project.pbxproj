@@ -46,9 +46,7 @@
 		68C0A85E2C51003B004B812F /* GoldenHourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A85D2C51003B004B812F /* GoldenHourCell.swift */; };
 		68C0A8602C510050004B812F /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A85F2C510050004B812F /* BusinessCell.swift */; };
 		68C0A8622C510081004B812F /* InteriorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8612C510081004B812F /* InteriorCell.swift */; };
-		68C0A8642C5105E5004B812F /* GoldenHourInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */; };
-		68C0A8662C51067F004B812F /* BusinessInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8652C51067F004B812F /* BusinessInnerCell.swift */; };
-		68C0A8682C510697004B812F /* InteriorInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8672C510697004B812F /* InteriorInnerCell.swift */; };
+		68C0A8642C5105E5004B812F /* TopicInnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8632C5105E5004B812F /* TopicInnerCell.swift */; };
 		68C0A86B2C512923004B812F /* OurTopicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A86A2C512923004B812F /* OurTopicHeaderView.swift */; };
 		68C0A8712C5132EF004B812F /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8702C5132EF004B812F /* APIRequest.swift */; };
 		68C0A8732C513FCB004B812F /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8722C513FCB004B812F /* APICall.swift */; };
@@ -106,9 +104,7 @@
 		68C0A85D2C51003B004B812F /* GoldenHourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenHourCell.swift; sourceTree = "<group>"; };
 		68C0A85F2C510050004B812F /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		68C0A8612C510081004B812F /* InteriorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorCell.swift; sourceTree = "<group>"; };
-		68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenHourInnerCell.swift; sourceTree = "<group>"; };
-		68C0A8652C51067F004B812F /* BusinessInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessInnerCell.swift; sourceTree = "<group>"; };
-		68C0A8672C510697004B812F /* InteriorInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteriorInnerCell.swift; sourceTree = "<group>"; };
+		68C0A8632C5105E5004B812F /* TopicInnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicInnerCell.swift; sourceTree = "<group>"; };
 		68C0A86A2C512923004B812F /* OurTopicHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicHeaderView.swift; sourceTree = "<group>"; };
 		68C0A8702C5132EF004B812F /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		68C0A8722C513FCB004B812F /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
@@ -313,11 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				68C0A85D2C51003B004B812F /* GoldenHourCell.swift */,
-				68C0A8632C5105E5004B812F /* GoldenHourInnerCell.swift */,
 				68C0A85F2C510050004B812F /* BusinessCell.swift */,
-				68C0A8652C51067F004B812F /* BusinessInnerCell.swift */,
 				68C0A8612C510081004B812F /* InteriorCell.swift */,
-				68C0A8672C510697004B812F /* InteriorInnerCell.swift */,
+				68C0A8632C5105E5004B812F /* TopicInnerCell.swift */,
 				68C0A8692C5128FE004B812F /* HeaderView */,
 			);
 			path = Cell;
@@ -462,7 +456,7 @@
 				68C0A7D42C4E4C88004B812F /* ProfileSettingView.swift in Sources */,
 				68C0A8712C5132EF004B812F /* APIRequest.swift in Sources */,
 				68C0A7D62C4E4E2C004B812F /* UITextField+.swift in Sources */,
-				68C0A8642C5105E5004B812F /* GoldenHourInnerCell.swift in Sources */,
+				68C0A8642C5105E5004B812F /* TopicInnerCell.swift in Sources */,
 				68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */,
 				68C0A8262C4FE814004B812F /* UIViewController+.swift in Sources */,
 				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
@@ -472,7 +466,6 @@
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
 				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
-				68C0A8682C510697004B812F /* InteriorInnerCell.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
 				68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */,
 				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
@@ -482,7 +475,6 @@
 				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A86B2C512923004B812F /* OurTopicHeaderView.swift in Sources */,
 				68C0A7C62C4E2F9A004B812F /* View+.swift in Sources */,
-				68C0A8662C51067F004B812F /* BusinessInnerCell.swift in Sources */,
 				68C0A8322C50074E004B812F /* LikePhotoViewController.swift in Sources */,
 				68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */,
 				68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */,
