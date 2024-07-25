@@ -182,7 +182,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         profileTabGestureView.layer.cornerRadius = 65
         
         mbtiLabel.text = "MBTI"
-        mbtiLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
+        mbtiLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
         
         mbtiStackView.setUI(SVAxis: .horizontal, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
         [eiStackView, snStackView, tfStackView, jpStackView].forEach { stv in

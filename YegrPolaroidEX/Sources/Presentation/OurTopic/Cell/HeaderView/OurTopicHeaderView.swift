@@ -35,6 +35,6 @@ final class OurTopicHeaderView: UICollectionReusableView {
             $0.horizontalEdges.equalTo(containerView.snp.horizontalEdges).inset(10)
         }
         
-        titleLabel.setUI(txtColor: .label, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
+        titleLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
     }
 }

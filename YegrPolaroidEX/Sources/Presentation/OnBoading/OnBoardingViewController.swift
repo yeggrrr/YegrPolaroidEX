@@ -75,7 +75,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
         
         nameLabel.text = "김예진"
         nameLabel.setUI(
-            txtColor: .label,
+            txtColor: .black,
             txtAlignment: .center,
             fontStyle: .systemFont(ofSize: 20, weight: .heavy),
             numOfLines: 1)
