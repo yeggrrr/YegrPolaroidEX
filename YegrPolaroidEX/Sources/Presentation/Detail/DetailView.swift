@@ -148,6 +148,7 @@ class DetailView: UIView, ViewRepresentable {
         [sizeTitleLabel, viewsTitleLabel, downloadTitleLabel].forEach { lb in
             lb.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 14, weight: .bold), numOfLines: 1)
         }
+        
         [sizeInfoLabel, viewsInfoLabel, downloadInfoLabel].forEach { lb in
             lb.setUI(txtColor: .darkGray, txtAlignment: .right, fontStyle: .systemFont(ofSize: 14, weight: .semibold), numOfLines: 1)
         }
@@ -164,6 +165,5 @@ class DetailView: UIView, ViewRepresentable {
         sizeInfoLabel.text = "3098 x 3872"
         viewsInfoLabel.text = "1,548,623"
         downloadInfoLabel.text = "388,996"
-
     }
 }

@@ -54,6 +54,7 @@
 		68C0A8772C515FE0004B812F /* OurTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8762C515FE0004B812F /* OurTopicViewModel.swift */; };
 		68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8962C5235CB004B812F /* DetailViewController.swift */; };
 		68C0A8992C5249FA004B812F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8982C5249FA004B812F /* DetailView.swift */; };
+		68C0A89B2C52CA3F004B812F /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -114,6 +115,7 @@
 		68C0A8762C515FE0004B812F /* OurTopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurTopicViewModel.swift; sourceTree = "<group>"; };
 		68C0A8962C5235CB004B812F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		68C0A8982C5249FA004B812F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +167,14 @@
 		68C0A7C42C4E2F85004B812F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				68C0A7C92C4E3EBC004B812F /* Protocol */,
-				68C0A8242C4FE7B6004B812F /* UI */,
+				68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */,
+				68C0A7C52C4E2F9A004B812F /* View+.swift */,
+				68C0A7C72C4E3E93004B812F /* UIButton+.swift */,
+				68C0A7CA2C4E4294004B812F /* UIColor+.swift */,
+				68C0A7CC2C4E4357004B812F /* UILabel+.swift */,
+				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
+				68C0A8252C4FE814004B812F /* UIViewController+.swift */,
+				68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				68C0A86C2C513282004B812F /* Network */,
+				68C0A7C92C4E3EBC004B812F /* Protocol */,
 				68C0A7C42C4E2F85004B812F /* Extension */,
 				68C0A7DD2C4E5523004B812F /* Observable */,
 				68C0A7D72C4E52DE004B812F /* UserDefaults */,
@@ -252,20 +261,6 @@
 				68C0A7E92C4E5FB8004B812F /* SelectImageCollectionViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		68C0A8242C4FE7B6004B812F /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A7ED2C4E9FDA004B812F /* UIStackView+.swift */,
-				68C0A7C52C4E2F9A004B812F /* View+.swift */,
-				68C0A7C72C4E3E93004B812F /* UIButton+.swift */,
-				68C0A7CA2C4E4294004B812F /* UIColor+.swift */,
-				68C0A7CC2C4E4357004B812F /* UILabel+.swift */,
-				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
-				68C0A8252C4FE814004B812F /* UIViewController+.swift */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		68C0A8272C500586004B812F /* TabBar */ = {
@@ -482,6 +477,7 @@
 				68C0A7EE2C4E9FDA004B812F /* UIStackView+.swift in Sources */,
 				68C0A8262C4FE814004B812F /* UIViewController+.swift in Sources */,
 				68C0A7D92C4E52EE004B812F /* UserDefaultsManager.swift in Sources */,
+				68C0A89B2C52CA3F004B812F /* DateFormatter+.swift in Sources */,
 				68C0A7CB2C4E4294004B812F /* UIColor+.swift in Sources */,
 				68C0A82E2C5006C2004B812F /* OurTopicViewController.swift in Sources */,
 				68C0A85B2C50F945004B812F /* OurTopicView.swift in Sources */,
