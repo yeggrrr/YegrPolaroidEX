@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class BusinessCell: UICollectionViewCell {
     let businessCollectionView: UICollectionView = {
@@ -14,6 +15,8 @@ class BusinessCell: UICollectionViewCell {
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
+    
+    var businessData: [TopicData] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +41,7 @@ class BusinessCell: UICollectionViewCell {
         
         businessCollectionView.delegate = self
         businessCollectionView.dataSource = self
-        businessCollectionView.register(BusinessInnerCell.self, forCellWithReuseIdentifier: BusinessInnerCell.id)
-        businessCollectionView.backgroundColor = .systemCyan
+        businessCollectionView.register(TopicInnerCell.self, forCellWithReuseIdentifier: TopicInnerCell.id)
         businessCollectionView.showsHorizontalScrollIndicator = false
     }
 }
@@ -47,11 +49,15 @@ class BusinessCell: UICollectionViewCell {
 // MARK: UICollectionViewDataSource
 extension BusinessCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // 임시
+        return businessData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BusinessInnerCell.id, for: indexPath) as? BusinessInnerCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
+        let imageUrl = businessData[indexPath.item].urls.small
+        if let image = URL(string: imageUrl) {
+            cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])
+        }
         return cell
     }
 }

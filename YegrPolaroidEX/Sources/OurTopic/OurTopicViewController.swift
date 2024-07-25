@@ -45,7 +45,11 @@ final class OurTopicViewController: UIViewController {
     func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         viewModel.inputGoldenHourData.bind { _ in
-            self.ourTopicView.collectionView.reloadData()
+            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 0))
+        }
+        
+        viewModel.inputBusinessData.bind { _ in
+            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 1))
         }
     }
     
@@ -136,6 +140,8 @@ extension OurTopicViewController: UICollectionViewDataSource {
             return cell
         case .business:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BusinessCell.id, for: indexPath) as? BusinessCell else { return UICollectionViewCell() }
+            cell.businessData = viewModel.inputBusinessData.value
+            cell.businessCollectionView.reloadData()
             return cell
         case .interior:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InteriorCell.id, for: indexPath) as? InteriorCell else { return UICollectionViewCell() }
@@ -148,7 +154,6 @@ extension OurTopicViewController: UICollectionViewDataSource {
 extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
-        
         switch sectionList[section] {
         case .goldenHour, .business, .interior:
             return CGSize(width: width, height: 50)

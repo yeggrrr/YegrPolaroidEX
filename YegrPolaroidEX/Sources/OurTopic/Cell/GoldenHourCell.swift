@@ -41,7 +41,7 @@ class GoldenHourCell: UICollectionViewCell {
         
         goldenHourCollectionView.delegate = self
         goldenHourCollectionView.dataSource = self
-        goldenHourCollectionView.register(GoldenHourInnerCell.self, forCellWithReuseIdentifier: GoldenHourInnerCell.id)
+        goldenHourCollectionView.register(TopicInnerCell.self, forCellWithReuseIdentifier: TopicInnerCell.id)
         goldenHourCollectionView.showsHorizontalScrollIndicator = false
     }
 }
@@ -53,7 +53,7 @@ extension GoldenHourCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoldenHourInnerCell.id, for: indexPath) as? GoldenHourInnerCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
         let imageUrl = goldenHourData[indexPath.item].urls.small
         if let image = URL(string: imageUrl) {
             cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])

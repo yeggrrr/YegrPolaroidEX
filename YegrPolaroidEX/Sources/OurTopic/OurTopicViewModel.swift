@@ -11,8 +11,7 @@ import Alamofire
 final class OurTopicViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     var inputGoldenHourData: Observable<[TopicData]> = Observable([])
-    
-    var outputGoldenHourData: Observable<[TopicData]> = Observable([])
+    var inputBusinessData: Observable<[TopicData]> = Observable([])
     
     init() {
         transform()
@@ -20,13 +19,22 @@ final class OurTopicViewModel {
     
     private func transform() {
         inputViewDidLoadTrigger.bind { _ in
-            self.callRequest(id: TopicID.goldHour.rawValue)
+            self.goldenCallRequest(id: TopicID.goldHour.rawValue)
+            self.businessCallRequest(id: TopicID.business.rawValue)
         }
     }
     
-    func callRequest(id: String) {
+    func goldenCallRequest(id: String) {
         APICall.shared.callRequest(api: .topic(id: id), model: [TopicData].self) { result in
             self.inputGoldenHourData.value = result
+        } errorHandler: { error in
+            print("Failed!! \(error)")
+        }
+    }
+    
+    func businessCallRequest(id: String) {
+        APICall.shared.callRequest(api: .topic(id: id), model: [TopicData].self) { result in
+            self.inputBusinessData.value = result
         } errorHandler: { error in
             print("Failed!! \(error)")
         }
