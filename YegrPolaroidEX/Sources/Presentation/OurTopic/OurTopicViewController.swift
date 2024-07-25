@@ -69,15 +69,15 @@ final class OurTopicViewController: UIViewController {
         // rightBarButtonItem
         let selectedImage = UserDefaultsManager.fetchProfileImage()
         
-        let menuBtn = UIButton(type: .custom)
-        menuBtn.setImage(UIImage(named: selectedImage), for: .normal)
-        menuBtn.layer.borderColor = UIColor.customPoint.cgColor
-        menuBtn.layer.borderWidth = 2
-        menuBtn.layer.cornerRadius = 20
-        menuBtn.clipsToBounds = true
-        menuBtn.addTarget(self, action: #selector(settingButtonClicked), for: .touchUpInside)
+        let profileBtn = UIButton(type: .custom)
+        profileBtn.setImage(UIImage(named: selectedImage), for: .normal)
+        profileBtn.layer.borderColor = UIColor.customPoint.cgColor
+        profileBtn.layer.borderWidth = 2
+        profileBtn.layer.cornerRadius = 20
+        profileBtn.clipsToBounds = true
+        profileBtn.addTarget(self, action: #selector(settingButtonClicked), for: .touchUpInside)
 
-        let menuBarItem = UIBarButtonItem(customView: menuBtn)
+        let menuBarItem = UIBarButtonItem(customView: profileBtn)
         let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 40)
         let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 40)
         currWidth?.isActive = true

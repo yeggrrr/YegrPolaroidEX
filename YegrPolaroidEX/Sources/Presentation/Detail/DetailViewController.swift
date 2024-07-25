@@ -7,10 +7,25 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
+    // MARK: UI
+    let detailView = DetailView()
+    
+    // MARK: Properties
+    
+    // MARK: View Life Cycle
+    override func loadView() {
+        view = detailView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        configureUI()
+    }
+    
+    func configureUI() {
+        // tabBar
+        tabBarController?.tabBar.isHidden = true
     }
 }
