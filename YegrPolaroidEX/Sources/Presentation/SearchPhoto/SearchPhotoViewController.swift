@@ -13,6 +13,7 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Properties
     let viewModel = SearchViewModel()
+    var page = 1
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -40,7 +41,6 @@ final class SearchPhotoViewController: UIViewController {
         
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
-            self.searchPhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
         
         viewModel.isDataCountZero.bind { state in
@@ -69,6 +69,7 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.collectionView.dataSource = self
         searchPhotoView.collectionView.register(SearchPhotoCollectionViewCell.self, forCellWithReuseIdentifier: SearchPhotoCollectionViewCell.id)
         searchPhotoView.collectionView.showsVerticalScrollIndicator = false
+        searchPhotoView.collectionView.prefetchDataSource = self
     }
     
     func configureAction() {
@@ -91,6 +92,8 @@ final class SearchPhotoViewController: UIViewController {
             sender.backgroundColor = .white
             viewModel.inputCurrentSortType.value = .relevant
         }
+        
+        self.searchPhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     @objc func dismissButtonClicked() {
@@ -101,13 +104,12 @@ final class SearchPhotoViewController: UIViewController {
 // MARK: UICollectionViewDataSource
 extension SearchPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let searhList = viewModel.inputSearchData.value?.results else { return 0 }
-        return searhList.count
+        return viewModel.inputSearchData.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCollectionViewCell.id, for: indexPath) as? SearchPhotoCollectionViewCell else { return UICollectionViewCell() }
-        guard let item = viewModel.inputSearchData.value?.results[indexPath.item] else { return cell }
+        let item = viewModel.inputSearchData.value[indexPath.item]
         cell.configureCell(item: item)
         return cell
     }
@@ -121,7 +123,7 @@ extension SearchPhotoViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = viewModel.inputSearchText.value else { return }
-        viewModel.seachAPIRequest(query: text, page: 1, orderBy: viewModel.inputCurrentSortType.value)
+        viewModel.seachAPIRequest(query: text, page: page, orderBy: viewModel.inputCurrentSortType.value)
         dismissKeyboard()
     }
     
@@ -143,3 +145,25 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+// MARK: UICollectionViewDataSourcePrefetching
+extension SearchPhotoViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard let total = viewModel.inputTotalCount.value else { return }
+        guard let text = viewModel.inputSearchText.value else { return }
+        let searchData = viewModel.inputSearchData.value
+        
+        for indexPath in indexPaths {
+            if total - searchData.count != 0 && searchData.count - 10 == indexPath.item {
+                page += 1
+                APICall.shared.callRequest(api: .search(query: text, page: page, orderBy: viewModel.inputCurrentSortType.value), model: SearchModel.self) { result in
+                    self.viewModel.inputSearchData.value.append(contentsOf: result.results)
+                } errorHandler: { error in
+                    print("실패!! - \(error)")
+                }
+            }
+        }
+    }
+}
+

@@ -18,8 +18,8 @@ class APICall {
             case .success(let value):
                 completion(value)
             case .failure(let error):
+                print("response.response?.statusCode: \(response.response?.statusCode)")
                 errorHandler(error.localizedDescription)
-                print("error: \(error)")
             }
         }
     }

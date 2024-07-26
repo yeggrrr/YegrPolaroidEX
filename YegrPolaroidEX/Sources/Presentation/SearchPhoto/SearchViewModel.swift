@@ -13,9 +13,10 @@ final class SearchViewModel {
     var viewDidLoadTrigger: Observable<Void?> = Observable(nil)
     
     // input
-    var inputSearchData: Observable<SearchModel?> = Observable(nil)
+    var inputSearchData: Observable<[SearchModel.Results]> = Observable([])
     var inputSearchText: Observable<String?> = Observable("")
     var inputCurrentSortType: Observable<OrderBy> = Observable(.relevant)
+    var inputTotalCount: Observable<Int?> = Observable(nil)
     
     var isDataCountZero: Observable<Bool> = Observable(false)
     
@@ -35,10 +36,12 @@ final class SearchViewModel {
         APICall.shared.callRequest(api: .search(query: query, page: page, orderBy: orderBy), model: SearchModel.self) { result in
             if result.results.count < 1 {
                 self.isDataCountZero.value = true
-                self.inputSearchData.value = result
+                self.inputSearchData.value = result.results
+                self.inputTotalCount.value = result.total
             } else {
                 self.isDataCountZero.value = false
-                self.inputSearchData.value = result
+                self.inputSearchData.value = result.results
+                self.inputTotalCount.value = result.total
             }
         } errorHandler: { error in
             print("Error 발생!!", error)
