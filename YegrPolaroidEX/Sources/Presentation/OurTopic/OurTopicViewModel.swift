@@ -34,7 +34,7 @@ final class OurTopicViewModel {
         }
         
         inputGolendHourId.bind { id in
-            APICall.shared.callRequest(api: .Statistics(imageID: id), model: StatisticsData.self) { result in
+            APICall.shared.callRequest(api: .statistics(imageID: id), model: StatisticsData.self) { result in
                 self.outputGoldenHourData.value = result
             } errorHandler: { error in
                 print("APICall Failed!! \(error)")
@@ -88,7 +88,7 @@ final class OurTopicViewModel {
     
     func statisticCallRequest(imageID: String) {
         // statistic
-        APICall.shared.callRequest(api: .Statistics(imageID: imageID), model: StatisticsData.self) { result in
+        APICall.shared.callRequest(api: .statistics(imageID: imageID), model: StatisticsData.self) { result in
             self.inputStatisticData.value = result
         } errorHandler: { error in
             print("APICall Failed!! \(error)")

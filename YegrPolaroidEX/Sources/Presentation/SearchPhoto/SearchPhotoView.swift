@@ -58,11 +58,11 @@ class SearchPhotoView: UIView, ViewRepresentable {
     func configureUI() {
         // view
         backgroundColor = .white
-        collectionView.backgroundColor = .systemGray
         
         var config = UIButton.Configuration.plain()
         config.title = "최신순"
         config.image = UIImage(named: "sort")
+        config.imagePadding = 5
         latestButton.configuration = config
         latestButton.layer.borderWidth = 1
         latestButton.layer.borderColor = UIColor.lightGray.cgColor

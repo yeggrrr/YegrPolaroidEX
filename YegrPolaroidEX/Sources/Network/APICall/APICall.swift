@@ -13,7 +13,7 @@ class APICall {
     private init() { }
     
     func callRequest<T:Decodable>(api: APIRequest, model: T.Type, completion: @escaping (T) -> Void, errorHandler: @escaping (String) -> Void) {
-        AF.request(api.endpoint, method: .get).responseDecodable(of: T.self) { response in
+        AF.request(api.endpoint, method: api.method, parameters: api.params).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let value):
                 completion(value)

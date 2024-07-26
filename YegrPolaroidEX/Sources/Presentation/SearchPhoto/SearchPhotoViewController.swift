@@ -11,6 +11,9 @@ final class SearchPhotoViewController: UIViewController {
     // MARK: UI
     let searchPhotoView = SearchPhotoView()
     
+    // MARK: Properties
+    let viewModel = SearchViewModel()
+    
     // MARK: View Life Cycle
     override func loadView() {
         view = searchPhotoView
@@ -19,14 +22,32 @@ final class SearchPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindData()
         configureUI()
         configureCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: Functions
+    func bindData() {
+        viewModel.inputViewDidLoadTrigger.value = ()
+        
+        viewModel.inputSearchData.bind { searchData in
+            self.searchPhotoView.collectionView.reloadData()
+        }
+    }
+    
     func configureUI() {
         // navigation
         navigationItem.title = "SEARCH PHOTO"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = .customPoint
+        
         navigationController?.navigationBar.layer.masksToBounds = false
         navigationController?.navigationBar.layer.shadowColor = UIColor.customPoint.cgColor
         navigationController?.navigationBar.layer.shadowOpacity = 0.8
@@ -54,11 +75,14 @@ final class SearchPhotoViewController: UIViewController {
 // MARK: UICollectionViewDataSource
 extension SearchPhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        guard let searhList = viewModel.inputSearchData.value?.results else { return 0 }
+        return searhList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCollectionViewCell.id, for: indexPath) as? SearchPhotoCollectionViewCell else { return UICollectionViewCell() }
+        guard let item = viewModel.inputSearchData.value?.results[indexPath.item] else { return cell }
+        cell.configureCell(item: item)
         return cell
     }
 }
@@ -73,4 +97,9 @@ extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: UICollectionViewDelegate
-extension SearchPhotoViewController: UICollectionViewDelegate { }
+extension SearchPhotoViewController: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}

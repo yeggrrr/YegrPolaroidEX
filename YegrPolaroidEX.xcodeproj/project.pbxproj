@@ -59,6 +59,8 @@
 		68FA4D062C5382D900C32BE4 /* DetailUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D052C5382D900C32BE4 /* DetailUIModel.swift */; };
 		68FA4D082C539DAE00C32BE4 /* SearchPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D072C539DAE00C32BE4 /* SearchPhotoView.swift */; };
 		68FA4D0C2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0B2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift */; };
+		68FA4D0E2C53B20B00C32BE4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */; };
+		68FA4D102C53DEC500C32BE4 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0F2C53DEC500C32BE4 /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +126,8 @@
 		68FA4D052C5382D900C32BE4 /* DetailUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUIModel.swift; sourceTree = "<group>"; };
 		68FA4D072C539DAE00C32BE4 /* SearchPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoView.swift; sourceTree = "<group>"; };
 		68FA4D0B2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		68FA4D0F2C53DEC500C32BE4 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +297,7 @@
 		68C0A82B2C500662004B812F /* SearchPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */,
 				68FA4D072C539DAE00C32BE4 /* SearchPhotoView.swift */,
 				68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */,
 				68FA4D092C53A06300C32BE4 /* Cell */,
@@ -343,6 +348,7 @@
 			children = (
 				68C0A8742C5140F5004B812F /* TopicModel.swift */,
 				68C0A89C2C5343AE004B812F /* StatisticsModel.swift */,
+				68FA4D0F2C53DEC500C32BE4 /* SearchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				68C0A8602C510050004B812F /* BusinessCell.swift in Sources */,
 				68C0A8622C510081004B812F /* InteriorCell.swift in Sources */,
 				68C0A7CD2C4E4357004B812F /* UILabel+.swift in Sources */,
+				68FA4D102C53DEC500C32BE4 /* SearchModel.swift in Sources */,
 				68C0A8772C515FE0004B812F /* OurTopicViewModel.swift in Sources */,
 				68C0A7DF2C4E5556004B812F /* Observable.swift in Sources */,
 				68C0A7E32C4E5DB4004B812F /* SelectImageView.swift in Sources */,
@@ -512,6 +519,7 @@
 				68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
 				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
+				68FA4D0E2C53B20B00C32BE4 /* SearchViewModel.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
 				68C0A7982C4E1791004B812F /* AppDelegate.swift in Sources */,
 				68C0A7EA2C4E5FB8004B812F /* SelectImageCollectionViewCell.swift in Sources */,

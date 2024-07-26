@@ -31,6 +31,7 @@ final class DetailViewController: UIViewController {
     
     func bindData() {
         guard let viewModel = ourTopicViewModel else { return }
+        
         viewModel.inputStatisticData.bind { value in
             self.detailUIModel?.viewsInfo = value?.views.total
             self.detailUIModel?.downloadInfo = value?.downloads.total
