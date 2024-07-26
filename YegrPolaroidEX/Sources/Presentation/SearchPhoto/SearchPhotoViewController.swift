@@ -40,6 +40,7 @@ final class SearchPhotoViewController: UIViewController {
         
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
+            self.searchPhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
         
         viewModel.isDataCountZero.bind { state in
@@ -142,4 +143,3 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
