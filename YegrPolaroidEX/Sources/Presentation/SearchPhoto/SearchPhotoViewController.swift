@@ -25,6 +25,7 @@ final class SearchPhotoViewController: UIViewController {
         bindData()
         configureUI()
         configureCollectionView()
+        configureAction()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +36,7 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Functions
     func bindData() {
-        viewModel.inputViewDidLoadTrigger.value = ()
+        viewModel.viewDidLoadTrigger.value = ()
         
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
@@ -69,11 +70,28 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.collectionView.showsVerticalScrollIndicator = false
     }
     
+    func configureAction() {
+        searchPhotoView.latestButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
+    }
+    
     private func dismissKeyboard() {
         searchPhotoView.searchBar.resignFirstResponder()
     }
     
     // MARK: Actions
+    @objc func sortButtonClicked(_ sender: UIButton) {
+        print(#function)
+        sender.isSelected.toggle()
+        
+        if sender.isSelected {
+            sender.backgroundColor = .customPoint
+            viewModel.inputCurrentSortType.value = .latest
+        } else {
+            sender.backgroundColor = .white
+            viewModel.inputCurrentSortType.value = .relevant
+        }
+    }
+    
     @objc func dismissButtonClicked() {
         dismiss(animated: true)
     }
@@ -102,7 +120,7 @@ extension SearchPhotoViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = viewModel.inputSearchText.value else { return }
-        viewModel.seachAPIRequest(query: text, page: 1, orderBy: .latest)
+        viewModel.seachAPIRequest(query: text, page: 1, orderBy: viewModel.inputCurrentSortType.value)
         dismissKeyboard()
     }
     
@@ -124,3 +142,4 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+

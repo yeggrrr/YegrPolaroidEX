@@ -9,14 +9,25 @@ import UIKit
 import Alamofire
 
 final class SearchViewModel {
-    var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
+    // Trigger
+    var viewDidLoadTrigger: Observable<Void?> = Observable(nil)
+    
+    // input
     var inputSearchData: Observable<SearchModel?> = Observable(nil)
     var inputSearchText: Observable<String?> = Observable("")
+    var inputCurrentSortType: Observable<OrderBy> = Observable(.relevant)
+    
     var isDataCountZero: Observable<Bool> = Observable(false)
     
+    
     init() {
-        inputViewDidLoadTrigger.bind { _ in
+        viewDidLoadTrigger.bind { _ in
             print("SearchView 뜸!!")
+        }
+        
+        inputCurrentSortType.bind { sortType in
+            guard let text = self.inputSearchText.value else { return }
+            self.seachAPIRequest(query: text, page: 1, orderBy: self.inputCurrentSortType.value)
         }
     }
     
