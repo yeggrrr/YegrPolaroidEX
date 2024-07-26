@@ -55,6 +55,7 @@
 		68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8962C5235CB004B812F /* DetailViewController.swift */; };
 		68C0A8992C5249FA004B812F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A8982C5249FA004B812F /* DetailView.swift */; };
 		68C0A89B2C52CA3F004B812F /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */; };
+		68C0A89D2C5343AE004B812F /* StatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C0A89C2C5343AE004B812F /* StatisticsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +117,7 @@
 		68C0A8962C5235CB004B812F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		68C0A8982C5249FA004B812F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		68C0A89C2C5343AE004B812F /* StatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				68C0A8742C5140F5004B812F /* TopicModel.swift */,
+				68C0A89C2C5343AE004B812F /* StatisticsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				68C0A7BD2C4E1C34004B812F /* APIKey.swift in Sources */,
 				68C0A79A2C4E1791004B812F /* SceneDelegate.swift in Sources */,
 				68C0A7E12C4E5BE8004B812F /* SelectImageViewController.swift in Sources */,
+				68C0A89D2C5343AE004B812F /* StatisticsModel.swift in Sources */,
 				68C0A8732C513FCB004B812F /* APICall.swift in Sources */,
 				68C0A7D12C4E4AD5004B812F /* ProfileSettingViewController.swift in Sources */,
 				68C0A86B2C512923004B812F /* OurTopicHeaderView.swift in Sources */,
