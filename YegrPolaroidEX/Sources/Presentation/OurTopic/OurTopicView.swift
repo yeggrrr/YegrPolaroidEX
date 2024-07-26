@@ -44,7 +44,6 @@ final class OurTopicView: UIView, ViewRepresentable {
     }
     
     func configureUI() {
-        // titleLabel
         titleLabel.text = "OUR TOPIC"
         titleLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 32, weight: .bold), numOfLines: 1)
     }

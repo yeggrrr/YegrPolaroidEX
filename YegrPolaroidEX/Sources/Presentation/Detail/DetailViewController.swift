@@ -13,8 +13,8 @@ final class DetailViewController: UIViewController {
     let detailView = DetailView()
     
     // MARK: Properties
-    var detailData: TopicData?
-    var statisticData: StatisticsData?
+    var detailUIModel: DetailUIModel?
+    var ourTopicViewModel: OurTopicViewModel?
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -24,7 +24,18 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindData()
         configureUI()
+        statisticAPICall()
+    }
+    
+    func bindData() {
+        guard let viewModel = ourTopicViewModel else { return }
+        viewModel.inputStatisticData.bind { value in
+            self.detailUIModel?.viewsInfo = value?.views.total
+            self.detailUIModel?.downloadInfo = value?.downloads.total
+            self.configureUI()
+        }
     }
     
     func configureUI() {
@@ -32,27 +43,23 @@ final class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         // data
-        guard let detailData = detailData else { 
-            print("detailData 안넘어옴")
-            return }
-        let createDate = DateFormatter.dateToContainLetter(dateString: detailData.createdAt)
-        let imageURL = URL(string: detailData.urls.raw)
-        let profileURL = URL(string: detailData.user.profileImage.medium)
+        guard let model = detailUIModel else { return }
         
+        let imageURL = URL(string: model.posterImage)
+        let profileURL = URL(string: model.profileImage)
         detailView.posterImage.kf.setImage(with: imageURL)
         detailView.profileImage.kf.setImage(with: profileURL)
-        detailView.userNameLabel.text = detailData.user.name
-        detailView.createdDateLabel.text = "\(createDate) 게시됨"
-        detailView.sizeInfoLabel.text = "\(detailData.width) x \(detailData.height)"
         
-        if let statisticData = statisticData {
-            print("statisticData 넘어옴")
-            detailView.viewsInfoLabel.text = "\(statisticData.views.total.formatted())"
-        }
+        detailView.userNameLabel.text = model.userName
+        detailView.createdDateLabel.text = model.createdDate
+        detailView.sizeInfoLabel.text = model.sizeInfo
         
-        /*
-         viewsInfoLabel.text = "1,548,623" -> formatter 사용하기
-         downloadInfoLabel.text = "388,996"
-         */
+        detailView.viewsInfoLabel.text = model.viewsInfo?.formatted()
+        detailView.downloadInfoLabel.text = model.downloadInfo?.formatted()
+    }
+    
+    func statisticAPICall() {
+        guard let model = detailUIModel else { return }
+        ourTopicViewModel?.statisticCallRequest(imageID: model.imageID)
     }
 }

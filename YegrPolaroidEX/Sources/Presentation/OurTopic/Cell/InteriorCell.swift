@@ -78,6 +78,6 @@ extension InteriorCell: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension InteriorCell: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.pushDetailView()
+        delegate?.pushDetailView(sectionType: .interior, index: indexPath.item)
     }
 }

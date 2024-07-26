@@ -79,6 +79,6 @@ extension BusinessCell: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension BusinessCell: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.pushDetailView()
+        delegate?.pushDetailView(sectionType: .business, index: indexPath.item)
     }
 }

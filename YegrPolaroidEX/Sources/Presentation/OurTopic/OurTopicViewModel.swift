@@ -9,19 +9,20 @@ import Foundation
 import Alamofire
 
 final class OurTopicViewModel {
+    // Trigger
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
     var inputCallRequestCompleteTrigger: Observable<Void?> = Observable(nil)
     
+    // input
     var inputGoldenHourData: Observable<[TopicData]> = Observable([])
     var inputBusinessData: Observable<[TopicData]> = Observable([])
     var inputInteriorData: Observable<[TopicData]> = Observable([])
     var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
-    
     var inputGoldenHourDetailData: Observable<TopicData?> = Observable(nil)
     var inputGolendHourId: Observable<String> = Observable("")
     
+    // output
     var outputGoldenHourData: Observable<StatisticsData?> = Observable(nil)
-    
     
     init() {
         transform()
@@ -86,6 +87,7 @@ final class OurTopicViewModel {
     }
     
     func statisticCallRequest(imageID: String) {
+        // statistic
         APICall.shared.callRequest(api: .Statistics(imageID: imageID), model: StatisticsData.self) { result in
             self.inputStatisticData.value = result
         } errorHandler: { error in

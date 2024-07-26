@@ -81,13 +81,14 @@ extension GoldenHourCell: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension GoldenHourCell: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        itemIndexDelegate?.itemIndex(index: indexPath.item)
-        pushDelegate?.pushDetailView()
+        let index = indexPath.item
+        itemIndexDelegate?.itemIndex(index: index)
+        pushDelegate?.pushDetailView(sectionType: .goldenHour, index: index)
     }
 }
 
 protocol PushDelegate: AnyObject {
-    func pushDetailView()
+    func pushDetailView(sectionType: OurTopicViewController.SectionType, index: Int)
 }
 
 protocol itemIndexDelegate: AnyObject {

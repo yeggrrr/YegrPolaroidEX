@@ -10,7 +10,7 @@ import SnapKit
 
 final class OurTopicViewController: UIViewController {
     // MARK: Enum
-    private enum SectionType {
+    enum SectionType {
         case goldenHour
         case business
         case interior
@@ -45,16 +45,8 @@ final class OurTopicViewController: UIViewController {
     func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         
-        viewModel.inputCallRequestCompleteTrigger.bind { _ in
+        viewModel.inputCallRequestCompleteTrigger.bind { value in
             self.ourTopicView.collectionView.reloadData()
-        }
-        
-        viewModel.inputGoldenHourDetailData.bind { _ in
-            print(">>> inputGoldenHourDetailData 도착!")
-        }
-        
-        viewModel.outputGoldenHourData.bind { value in
-            print(">>> outputGoldenHourData 도착!", value)
         }
     }
     
@@ -179,11 +171,29 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
 extension OurTopicViewController: UICollectionViewDelegate { }
 
 extension OurTopicViewController: PushDelegate {
-    func pushDetailView() {
+    func pushDetailView(sectionType: SectionType, index: Int) {
         let vc = DetailViewController()
-        vc.detailData = viewModel.inputGoldenHourDetailData.value
-        vc.statisticData = viewModel.outputGoldenHourData.value
-        print(">>>> \(viewModel.outputGoldenHourData.value)")
+        vc.ourTopicViewModel = viewModel
+        
+        let item = switch sectionType {
+        case .goldenHour:
+            viewModel.inputGoldenHourData.value[index]
+        case .business:
+            viewModel.inputBusinessData.value[index]
+        case .interior:
+            viewModel.inputInteriorData.value[index]
+        }
+        let createdDateText = "\(DateFormatter.dateToContainLetter(dateString: item.createdAt)) 게시됨"
+        vc.detailUIModel = DetailUIModel(
+            imageID: item.id,
+            profileImage: item.user.profileImage.medium,
+            userName: item.user.name,
+            createdDate: createdDateText,
+            posterImage: item.urls.small,
+            sizeInfo: "\(item.width) x \(item.height)",
+            viewsInfo: nil,
+            downloadInfo: nil)
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
