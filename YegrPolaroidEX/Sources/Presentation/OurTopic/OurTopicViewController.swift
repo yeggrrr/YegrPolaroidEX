@@ -44,17 +44,9 @@ final class OurTopicViewController: UIViewController {
     
     func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
-        viewModel.inputGoldenHourData.bind { _ in
-            print(self.viewModel.inputGoldenHourData.value)
-            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 0))
-        }
         
-        viewModel.inputBusinessData.bind { _ in
-            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 1))
-        }
-        
-        viewModel.inputInteriorData.bind { _ in
-            self.ourTopicView.collectionView.reloadSections(IndexSet(integer: 2))
+        viewModel.callRequestCompleteTrigger.bind { _ in
+            self.ourTopicView.collectionView.reloadData()
         }
     }
     
@@ -176,7 +168,8 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
 
 extension OurTopicViewController: PushDelegate {
     func pushDetailView() {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

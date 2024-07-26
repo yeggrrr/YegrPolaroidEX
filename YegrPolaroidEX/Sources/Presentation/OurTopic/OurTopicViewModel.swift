@@ -10,9 +10,11 @@ import Alamofire
 
 final class OurTopicViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
+    var callRequestCompleteTrigger: Observable<Void?> = Observable(nil)
     var inputGoldenHourData: Observable<[TopicData]> = Observable([])
     var inputBusinessData: Observable<[TopicData]> = Observable([])
     var inputInteriorData: Observable<[TopicData]> = Observable([])
+    var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
     
     init() {
         transform()
@@ -20,33 +22,59 @@ final class OurTopicViewModel {
     
     private func transform() {
         inputViewDidLoadTrigger.bind { _ in
-            self.goldenCallRequest(id: TopicID.goldHour.rawValue)
-            self.businessCallRequest(id: TopicID.business.rawValue)
-            self.interiorCallRequest(id: TopicID.interior.rawValue)
+            self.topicDataCallRequest()
         }
     }
     
-    func goldenCallRequest(id: String) {
-        APICall.shared.callRequest(api: .topic(id: id), model: [TopicData].self) { result in
-            self.inputGoldenHourData.value = result
-        } errorHandler: { error in
-            print("Failed!! \(error)")
+    func topicDataCallRequest() {
+        let group = DispatchGroup()
+        
+        group.enter()
+        DispatchQueue.global().async(group: group) {
+            // goldenHour
+            APICall.shared.callRequest(api: .topic(id: TopicID.goldHour.rawValue), model: [TopicData].self) { result in
+                self.inputGoldenHourData.value = result
+                group.leave()
+            } errorHandler: { error in
+                print("APICall Failed!! \(error)")
+                group.leave()
+            }
+        }
+        
+        group.enter()
+        DispatchQueue.global().async(group: group) { 
+            // business
+            APICall.shared.callRequest(api: .topic(id: TopicID.business.rawValue), model: [TopicData].self) { result in
+                self.inputBusinessData.value = result
+                group.leave()
+            } errorHandler: { error in
+                print("APICall Failed!! \(error)")
+                group.leave()
+            }
+        }
+        
+        group.enter()
+        DispatchQueue.global().async(group: group) {
+            // interior
+            APICall.shared.callRequest(api: .topic(id: TopicID.interior.rawValue), model: [TopicData].self) { result in
+                self.inputInteriorData.value = result
+                group.leave()
+            } errorHandler: { error in
+                print("APICall Failed!! \(error)")
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            self.callRequestCompleteTrigger.value = ()
         }
     }
     
-    func businessCallRequest(id: String) {
-        APICall.shared.callRequest(api: .topic(id: id), model: [TopicData].self) { result in
-            self.inputBusinessData.value = result
+    func statisticCallRequest(imageID: String) {
+        APICall.shared.callRequest(api: .Statistics(imageID: imageID), model: StatisticsData.self) { result in
+            self.inputStatisticData.value = result
         } errorHandler: { error in
-            print("Failed!! \(error)")
-        }
-    }
-    
-    func interiorCallRequest(id: String) {
-        APICall.shared.callRequest(api: .topic(id: id), model: [TopicData].self) { result in
-            self.inputInteriorData.value = result
-        } errorHandler: { error in
-            print("Faild!! \(error)")
+            print("APICall Failed!! \(error)")
         }
     }
 }
