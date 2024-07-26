@@ -40,6 +40,10 @@ final class SearchPhotoViewController: UIViewController {
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
         }
+        
+        viewModel.isDataCountZero.bind { state in
+            self.searchPhotoView.noticeLabel.isHidden = !state
+        }
     }
     
     func configureUI() {
@@ -54,14 +58,8 @@ final class SearchPhotoViewController: UIViewController {
         navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
         navigationController?.navigationBar.layer.shadowRadius = 2
         
-        // searchController
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "검색어를 입력해주세요"
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = .label
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationController?.isToolbarHidden = true
+        // searchBar
+        searchPhotoView.searchBar.delegate = self
     }
     
     func configureCollectionView() {
@@ -69,6 +67,15 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.collectionView.dataSource = self
         searchPhotoView.collectionView.register(SearchPhotoCollectionViewCell.self, forCellWithReuseIdentifier: SearchPhotoCollectionViewCell.id)
         searchPhotoView.collectionView.showsVerticalScrollIndicator = false
+    }
+    
+    private func dismissKeyboard() {
+        searchPhotoView.searchBar.resignFirstResponder()
+    }
+    
+    // MARK: Actions
+    @objc func dismissButtonClicked() {
+        dismiss(animated: true)
     }
 }
 
@@ -85,6 +92,20 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
         cell.configureCell(item: item)
         return cell
     }
+}
+
+// MARK: UISearchBarDelegate
+extension SearchPhotoViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.inputSearchText.value = searchBar.text
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = viewModel.inputSearchText.value else { return }
+        viewModel.seachAPIRequest(query: text, page: 1, orderBy: .latest)
+        dismissKeyboard()
+    }
+    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

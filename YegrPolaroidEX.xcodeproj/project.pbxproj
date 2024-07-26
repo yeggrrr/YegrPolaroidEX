@@ -61,6 +61,7 @@
 		68FA4D0C2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0B2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift */; };
 		68FA4D0E2C53B20B00C32BE4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */; };
 		68FA4D102C53DEC500C32BE4 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D0F2C53DEC500C32BE4 /* SearchModel.swift */; };
+		68FA4D132C53FFA900C32BE4 /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D122C53FFA900C32BE4 /* UISearchBar+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,6 +129,7 @@
 		68FA4D0B2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		68FA4D0F2C53DEC500C32BE4 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		68FA4D122C53FFA900C32BE4 /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				68C0A7D52C4E4E2C004B812F /* UITextField+.swift */,
 				68C0A8252C4FE814004B812F /* UIViewController+.swift */,
 				68C0A89A2C52CA3F004B812F /* DateFormatter+.swift */,
+				68FA4D122C53FFA900C32BE4 /* UISearchBar+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				68C0A7E52C4E5E7B004B812F /* SelectImageViewModel.swift in Sources */,
 				68C0A8302C500709004B812F /* SearchPhotoViewController.swift in Sources */,
 				68C0A8752C5140F5004B812F /* TopicModel.swift in Sources */,
+				68FA4D132C53FFA900C32BE4 /* UISearchBar+.swift in Sources */,
 				68FA4D062C5382D900C32BE4 /* DetailUIModel.swift in Sources */,
 				68FA4D0C2C53A0A400C32BE4 /* SearchPhotoCollectionViewCell.swift in Sources */,
 				68C0A8992C5249FA004B812F /* DetailView.swift in Sources */,

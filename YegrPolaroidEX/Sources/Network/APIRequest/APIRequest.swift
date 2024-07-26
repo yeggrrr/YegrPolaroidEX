@@ -21,7 +21,7 @@ enum OrderBy {
 
 enum APIRequest {
     case topic(id: String)
-    case search(query: String, page: Int)
+    case search(query: String, page: Int, orderBy: OrderBy)
     case statistics(imageID: String)
     
     var baseURL: String {
@@ -30,11 +30,11 @@ enum APIRequest {
     
     var endpoint: String {
         switch self {
-        case .topic(id: let id):
+        case .topic(let id):
             return baseURL + "topics/\(id)/photos?page=1&client_id=\(APIKey.AccessKey)"
-        case .search(query: let query, page: let page):
-            return baseURL + "search/photos?query=\(query)&page=1&per_page=\(page)&order_by=latest&color=yellow&client_id=\(APIKey.AccessKey)"
-        case .statistics(imageID: let imageID):
+        case .search(let query, let page, let orderBy):
+            return baseURL + "search/photos?query=\(query)&page=\(page)&per_page=20&order_by=\(orderBy)&client_id=\(APIKey.AccessKey)"
+        case .statistics(let imageID):
             return baseURL + "photos/\(imageID)/statistics?client_id=\(APIKey.AccessKey)"
         }
     }
@@ -43,7 +43,7 @@ enum APIRequest {
         switch self {
         case .topic(let id):
             return ["" : ""]
-        case .search(let query, let page):
+        case .search(let query, let page, let orderBy):
             return ["lang" : "ko"]
         case .statistics(let imageID):
             return ["" : ""]

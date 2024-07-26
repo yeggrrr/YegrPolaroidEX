@@ -9,9 +9,12 @@ import UIKit
 import SnapKit
 
 class SearchPhotoView: UIView, ViewRepresentable {
+    let searchBar = UISearchBar()
     let filterbuttonView = UIView()
     let latestButton = UIButton(type: .system)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+    
+    let noticeLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,14 +35,20 @@ class SearchPhotoView: UIView, ViewRepresentable {
     }
     
     func addSubviews() {
-        addSubviews([filterbuttonView, collectionView])
+        addSubviews([searchBar, filterbuttonView, collectionView, noticeLabel])
         filterbuttonView.addSubview(latestButton)
     }
     
     func setConstraints() {
         let safeArea = safeAreaLayoutGuide
-        filterbuttonView.snp.makeConstraints {
+        
+        searchBar.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeArea)
+        }
+        
+        filterbuttonView.snp.makeConstraints {
+            $0.top.equalTo(searchBar.snp.bottom)
+            $0.horizontalEdges.equalTo(safeArea)
             $0.height.equalTo(40)
         }
         
@@ -53,19 +62,32 @@ class SearchPhotoView: UIView, ViewRepresentable {
             $0.top.equalTo(filterbuttonView.snp.bottom)
             $0.horizontalEdges.bottom.equalTo(safeArea)
         }
+        
+        noticeLabel.snp.makeConstraints {
+            $0.center.equalTo(collectionView.snp.center)
+            $0.horizontalEdges.equalTo(collectionView.snp.horizontalEdges).inset(20)
+        }
     }
     
     func configureUI() {
         // view
         backgroundColor = .white
         
+        // searchBar
+        searchBar.setUI(placeholder: "검색어를 입력해주세요")
+        
+        // latestButton
         var config = UIButton.Configuration.plain()
         config.title = "최신순"
         config.image = UIImage(named: "sort")
+        config.baseForegroundColor = .systemPurple
         config.imagePadding = 5
         latestButton.configuration = config
         latestButton.layer.borderWidth = 1
         latestButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        // noticeLabel
+        noticeLabel.text = "검색 결과가 없습니다."
+        noticeLabel.setUI(txtColor: .black, txtAlignment: .center, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
     }
 }
-
