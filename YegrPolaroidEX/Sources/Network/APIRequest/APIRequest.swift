@@ -17,7 +17,7 @@ enum TopicID: String {
 enum APIRequest {
     case topic(id: String)
     case search(query: String)
-    
+    case Statistics(imageID: String)
     
     var baseURL: String {
         return "https://api.unsplash.com/"
@@ -29,6 +29,8 @@ enum APIRequest {
             return baseURL + "topics/\(id)/photos?page=1&client_id=\(APIKey.AccessKey)"
         case .search(query: let query):
             return baseURL + "search/photos?query=\(query)&page=1&per_page=20&order_by=latest&color=yellow&client_id=\(APIKey.AccessKey)"
+        case .Statistics(imageID: let imageID):
+            return baseURL + "photos/\(imageID)/statistics?client_id=\(APIKey.AccessKey)"
         }
     }
     

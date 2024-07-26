@@ -18,7 +18,8 @@ class GoldenHourCell: UICollectionViewCell {
     
     var goldenHourData: [TopicData] = []
     
-    weak var delegate: PushDelegate?
+    weak var pushDelegate: PushDelegate?
+    weak var itemIndexDelegate: itemIndexDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,10 +57,13 @@ extension GoldenHourCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
-        let imageUrl = goldenHourData[indexPath.item].urls.small
-        if let image = URL(string: imageUrl) {
+        let item = goldenHourData[indexPath.item]
+        if let image = URL(string: item.urls.small) {
             cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])
         }
+        
+        cell.countLabel.text = "\(item.likes)"
+
         return cell
     }
 }
@@ -77,10 +81,15 @@ extension GoldenHourCell: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension GoldenHourCell: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.pushDetailView()
+        itemIndexDelegate?.itemIndex(index: indexPath.item)
+        pushDelegate?.pushDetailView()
     }
 }
 
 protocol PushDelegate: AnyObject {
     func pushDetailView()
+}
+
+protocol itemIndexDelegate: AnyObject {
+    func itemIndex(index: Int)
 }

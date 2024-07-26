@@ -45,8 +45,16 @@ final class OurTopicViewController: UIViewController {
     func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         
-        viewModel.callRequestCompleteTrigger.bind { _ in
+        viewModel.inputCallRequestCompleteTrigger.bind { _ in
             self.ourTopicView.collectionView.reloadData()
+        }
+        
+        viewModel.inputGoldenHourDetailData.bind { _ in
+            print(">>> inputGoldenHourDetailData 도착!")
+        }
+        
+        viewModel.outputGoldenHourData.bind { value in
+            print(">>> outputGoldenHourData 도착!", value)
         }
     }
     
@@ -134,7 +142,8 @@ extension OurTopicViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoldenHourCell.id, for: indexPath) as? GoldenHourCell else { return UICollectionViewCell() }
             cell.goldenHourData = viewModel.inputGoldenHourData.value
             cell.goldenHourCollectionView.reloadData()
-            cell.delegate = self
+            cell.pushDelegate = self
+            cell.itemIndexDelegate = self
             return cell
         case .business:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BusinessCell.id, for: indexPath) as? BusinessCell else { return UICollectionViewCell() }
@@ -166,12 +175,22 @@ extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: UICollectionViewDelegate
+extension OurTopicViewController: UICollectionViewDelegate { }
+
 extension OurTopicViewController: PushDelegate {
     func pushDetailView() {
         let vc = DetailViewController()
+        vc.detailData = viewModel.inputGoldenHourDetailData.value
+        vc.statisticData = viewModel.outputGoldenHourData.value
+        print(">>>> \(viewModel.outputGoldenHourData.value)")
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-// MARK: UICollectionViewDelegate
-extension OurTopicViewController: UICollectionViewDelegate { }
+extension OurTopicViewController: itemIndexDelegate {
+    func itemIndex(index: Int) {
+        viewModel.inputGoldenHourDetailData.value = viewModel.inputGoldenHourData.value[index]
+        viewModel.inputGolendHourId.value = viewModel.inputGoldenHourData.value[index].id
+    }
+}

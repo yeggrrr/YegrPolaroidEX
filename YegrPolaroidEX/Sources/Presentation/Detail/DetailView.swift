@@ -14,13 +14,13 @@ class DetailView: UIView, ViewRepresentable {
     private let contentView = UIView()
     
     private let userInfoView = UIView()
-    let profileImageView = UIImageView()
+    let profileImage = UIImageView()
     private let userInfoStackView = UIStackView()
     let userNameLabel = UILabel()
     let createdDateLabel = UILabel()
     let likeButton = UIButton()
     
-    let posterImage = UIImageView()
+    var posterImage = UIImageView()
     
     private let infoLabel = UILabel()
     
@@ -45,7 +45,8 @@ class DetailView: UIView, ViewRepresentable {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        profileImage.layer.cornerRadius = profileImage.frame.width / 2
+        profileImage.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -53,7 +54,7 @@ class DetailView: UIView, ViewRepresentable {
     func addSubviews() {
         addSubviews([userInfoView, scrollView])
         scrollView.addSubview(contentView)
-        userInfoView.addSubviews([profileImageView, userInfoStackView, likeButton])
+        userInfoView.addSubviews([profileImage, userInfoStackView, likeButton])
         userInfoStackView.addArrangedSubviews([userNameLabel, createdDateLabel])
         
         contentView.addSubviews([posterImage, infoLabel, photoDetailView])
@@ -82,26 +83,26 @@ class DetailView: UIView, ViewRepresentable {
             $0.height.equalTo(65)
         }
         
-        profileImageView.snp.makeConstraints {
+        profileImage.snp.makeConstraints {
             $0.leading.verticalEdges.equalToSuperview().inset(15)
-            $0.width.equalTo(profileImageView.snp.height)
+            $0.width.equalTo(profileImage.snp.height)
         }
         
         userInfoStackView.snp.makeConstraints {
-            $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            $0.leading.equalTo(profileImage.snp.trailing).offset(10)
             $0.trailing.equalTo(likeButton.snp.leading).offset(-10)
             $0.verticalEdges.equalToSuperview().inset(15)
         }
         
         likeButton.snp.makeConstraints {
             $0.trailing.verticalEdges.equalToSuperview().inset(15)
-            $0.width.equalTo(profileImageView.snp.height)
+            $0.width.equalTo(profileImage.snp.height)
         }
         
         posterImage.snp.makeConstraints {
             $0.top.equalTo(userInfoView.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(300)
         }
         
         infoLabel.snp.makeConstraints {
@@ -140,6 +141,9 @@ class DetailView: UIView, ViewRepresentable {
         userNameLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 13, weight: .regular), numOfLines: 1)
         createdDateLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 11, weight: .bold), numOfLines: 1)
         
+        posterImage.contentMode = .scaleAspectFill
+        posterImage.clipsToBounds = true
+        
         infoLabel.text = "정보"
         infoLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 18, weight: .black), numOfLines: 1)
         
@@ -156,14 +160,5 @@ class DetailView: UIView, ViewRepresentable {
         sizeTitleLabel.text = "크기"
         viewsTitleLabel.text = "조회수"
         downloadTitleLabel.text = "다운로드"
-        
-        // 임시
-        profileImageView.backgroundColor = .darkGray
-        userNameLabel.text = "Brayden Prato"
-        createdDateLabel.text = "2024년 7월 3일 게시됨"
-        posterImage.backgroundColor = .systemGray
-        sizeInfoLabel.text = "3098 x 3872"
-        viewsInfoLabel.text = "1,548,623"
-        downloadInfoLabel.text = "388,996"
     }
 }

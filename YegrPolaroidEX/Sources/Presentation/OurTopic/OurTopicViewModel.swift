@@ -10,11 +10,18 @@ import Alamofire
 
 final class OurTopicViewModel {
     var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
-    var callRequestCompleteTrigger: Observable<Void?> = Observable(nil)
+    var inputCallRequestCompleteTrigger: Observable<Void?> = Observable(nil)
+    
     var inputGoldenHourData: Observable<[TopicData]> = Observable([])
     var inputBusinessData: Observable<[TopicData]> = Observable([])
     var inputInteriorData: Observable<[TopicData]> = Observable([])
     var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
+    
+    var inputGoldenHourDetailData: Observable<TopicData?> = Observable(nil)
+    var inputGolendHourId: Observable<String> = Observable("")
+    
+    var outputGoldenHourData: Observable<StatisticsData?> = Observable(nil)
+    
     
     init() {
         transform()
@@ -23,6 +30,14 @@ final class OurTopicViewModel {
     private func transform() {
         inputViewDidLoadTrigger.bind { _ in
             self.topicDataCallRequest()
+        }
+        
+        inputGolendHourId.bind { id in
+            APICall.shared.callRequest(api: .Statistics(imageID: id), model: StatisticsData.self) { result in
+                self.outputGoldenHourData.value = result
+            } errorHandler: { error in
+                print("APICall Failed!! \(error)")
+            }
         }
     }
     
@@ -66,7 +81,7 @@ final class OurTopicViewModel {
         }
         
         group.notify(queue: .main) {
-            self.callRequestCompleteTrigger.value = ()
+            self.inputCallRequestCompleteTrigger.value = ()
         }
     }
     

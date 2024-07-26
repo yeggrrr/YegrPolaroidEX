@@ -56,10 +56,12 @@ extension BusinessCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicInnerCell.id, for: indexPath) as? TopicInnerCell else { return UICollectionViewCell() }
-        let imageUrl = businessData[indexPath.item].urls.small
-        if let image = URL(string: imageUrl) {
+        let item = businessData[indexPath.item]
+        if let image = URL(string: item.urls.small) {
             cell.posterImage.kf.setImage(with: image, options: [.transition(.fade(1))])
         }
+        
+        cell.countLabel.text = "\(item.likes)"
         return cell
     }
 }
