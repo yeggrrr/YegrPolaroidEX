@@ -33,13 +33,14 @@ final class OurTopicView: UIView, ViewRepresentable {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(safeArea)
-            $0.horizontalEdges.equalTo(safeArea).inset(10)
+            $0.horizontalEdges.equalTo(safeArea.snp.horizontalEdges).inset(10)
             $0.height.equalTo(60)
         }
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
-            $0.bottom.horizontalEdges.equalTo(safeArea)
+            $0.horizontalEdges.equalTo(safeArea.snp.horizontalEdges)
+            $0.bottom.equalTo(safeArea)
         }
     }
     
