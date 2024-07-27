@@ -183,7 +183,9 @@ extension OurTopicViewController: PushDelegate {
         case .interior:
             viewModel.inputInteriorData.value[index]
         }
+        
         let createdDateText = "\(DateFormatter.dateToContainLetter(dateString: item.createdAt)) 게시됨"
+        
         vc.detailUIModel = DetailUIModel(
             imageID: item.id,
             profileImage: item.user.profileImage.medium,

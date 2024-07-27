@@ -141,7 +141,23 @@ extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension SearchPhotoViewController: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = viewModel.inputSearchData.value[indexPath.item]
+        viewModel.inputSelectedId.value = item.id
+        
         let vc = DetailViewController()
+        vc.searchViewModel = viewModel
+        
+        let createdDateText = "\(DateFormatter.dateToContainLetter(dateString: item.createdAt)) 게시됨"
+        vc.detailUIModel = DetailUIModel(
+            imageID: item.id,
+            profileImage: item.user.profileImage.medium,
+            userName: item.user.name,
+            createdDate: createdDateText,
+            posterImage: item.urls.small,
+            sizeInfo: "\(item.width) x \(item.height)",
+            viewsInfo: nil,
+            downloadInfo: nil)
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }

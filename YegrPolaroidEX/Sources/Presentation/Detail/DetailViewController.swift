@@ -15,6 +15,7 @@ final class DetailViewController: UIViewController {
     // MARK: Properties
     var detailUIModel: DetailUIModel?
     var ourTopicViewModel: OurTopicViewModel?
+    var searchViewModel: SearchViewModel?
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -25,17 +26,25 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         bindData()
-        configureUI()
         statisticAPICall()
+        configureUI()
     }
     
     func bindData() {
-        guard let viewModel = ourTopicViewModel else { return }
-        
-        viewModel.inputStatisticData.bind { value in
-            self.detailUIModel?.viewsInfo = value?.views.total
-            self.detailUIModel?.downloadInfo = value?.downloads.total
-            self.configureUI()
+        if let topicViewModel = ourTopicViewModel {
+            topicViewModel.inputStatisticData.bind { value in
+                guard let value = value else { return }
+                self.detailUIModel?.viewsInfo = value.views.total
+                self.detailUIModel?.downloadInfo = value.downloads.total
+                self.configureUI()
+            }
+        } else if let searchViewModel = searchViewModel {
+            searchViewModel.inputStatisticData.bind { value in
+                guard let value = value else { return }
+                self.detailUIModel?.viewsInfo = value.views.total
+                self.detailUIModel?.downloadInfo = value.downloads.total
+                self.configureUI()
+            }
         }
     }
     
@@ -61,6 +70,13 @@ final class DetailViewController: UIViewController {
     
     func statisticAPICall() {
         guard let model = detailUIModel else { return }
-        ourTopicViewModel?.statisticCallRequest(imageID: model.imageID)
+        
+        if let ourTopicViewModel {
+            ourTopicViewModel.statisticCallRequest(imageID: model.imageID)
+        }
+        
+        if let searchViewModel {
+            searchViewModel.statisticCallRequest(imageID: model.imageID)
+        }
     }
 }

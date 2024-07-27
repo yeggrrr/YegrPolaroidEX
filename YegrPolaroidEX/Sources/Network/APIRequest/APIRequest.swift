@@ -41,11 +41,11 @@ enum APIRequest {
     
     var params: Parameters {
         switch self {
-        case .topic(let id):
+        case .topic(_):
             return ["" : ""]
-        case .search(let query, let page, let orderBy):
+        case .search(_, _, _):
             return ["lang" : "ko"]
-        case .statistics(let imageID):
+        case .statistics(_):
             return ["" : ""]
         }
     }

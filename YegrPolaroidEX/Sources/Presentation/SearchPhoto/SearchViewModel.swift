@@ -17,6 +17,8 @@ final class SearchViewModel {
     var inputSearchText: Observable<String?> = Observable("")
     var inputCurrentSortType: Observable<OrderBy> = Observable(.relevant)
     var inputTotalCount: Observable<Int?> = Observable(nil)
+    var inputSelectedId: Observable<String> = Observable("")
+    var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
     
     var isDataCountZero: Observable<Bool> = Observable(false)
     
@@ -43,6 +45,15 @@ final class SearchViewModel {
                 self.inputSearchData.value = result.results
                 self.inputTotalCount.value = result.total
             }
+        } errorHandler: { error in
+            print("Error 발생!!", error)
+        }
+    }
+    
+    func statisticCallRequest(imageID: String) {
+        // statistic
+        APICall.shared.callRequest(api: .statistics(imageID: inputSelectedId.value), model: StatisticsData.self) { result in
+            self.inputStatisticData.value = result
         } errorHandler: { error in
             print("Error 발생!!", error)
         }
