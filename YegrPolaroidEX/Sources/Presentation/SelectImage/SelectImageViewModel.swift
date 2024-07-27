@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SelectImageViewModel {
+final class SelectImageViewModel {
     var inputImageName = Observable("")
     
     init() {
@@ -16,7 +16,7 @@ class SelectImageViewModel {
         }
     }
     
-    func selectedImage() {
+    private func selectedImage() {
         if !inputImageName.value.isEmpty {
             UserDefaultsManager.userTempProfileImageName = inputImageName.value
         }

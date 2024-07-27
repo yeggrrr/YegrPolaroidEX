@@ -9,11 +9,11 @@ import UIKit
 
 final class SearchPhotoViewController: UIViewController {
     // MARK: UI
-    let searchPhotoView = SearchPhotoView()
+    private let searchPhotoView = SearchPhotoView()
     
     // MARK: Properties
-    let viewModel = SearchViewModel()
-    var page = 1
+    private let viewModel = SearchViewModel()
+    private var page = 1
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -36,7 +36,7 @@ final class SearchPhotoViewController: UIViewController {
     }
     
     // MARK: Functions
-    func bindData() {
+    private func bindData() {
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
         }
@@ -46,7 +46,7 @@ final class SearchPhotoViewController: UIViewController {
         }
     }
     
-    func configureUI() {
+    private func configureUI() {
         // navigation
         navigationItem.title = "SEARCH PHOTO"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
@@ -62,7 +62,7 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.searchBar.delegate = self
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         searchPhotoView.collectionView.delegate = self
         searchPhotoView.collectionView.dataSource = self
         searchPhotoView.collectionView.register(SearchPhotoCollectionViewCell.self, forCellWithReuseIdentifier: SearchPhotoCollectionViewCell.id)
@@ -71,7 +71,7 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.collectionView.keyboardDismissMode = .onDrag
     }
     
-    func configureAction() {
+    private func configureAction() {
         searchPhotoView.latestButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
     }
     

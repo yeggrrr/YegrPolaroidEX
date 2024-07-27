@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DetailView: UIView, ViewRepresentable {
+final class DetailView: UIView, ViewRepresentable {
     // MARK: UI
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -90,13 +90,14 @@ class DetailView: UIView, ViewRepresentable {
         
         userInfoStackView.snp.makeConstraints {
             $0.leading.equalTo(profileImage.snp.trailing).offset(10)
-            $0.trailing.equalTo(likeButton.snp.leading).offset(-10)
+            $0.trailing.lessThanOrEqualTo(likeButton.snp.leading).offset(-10)
             $0.verticalEdges.equalToSuperview().inset(15)
         }
         
         likeButton.snp.makeConstraints {
-            $0.trailing.verticalEdges.equalToSuperview().inset(15)
-            $0.width.equalTo(profileImage.snp.height)
+            $0.trailing.equalTo(userInfoView.snp.trailing).inset(20)
+            $0.verticalEdges.equalTo(userInfoView.snp.verticalEdges).inset(15)
+            $0.width.equalTo(likeButton.snp.height)
         }
         
         posterImage.snp.makeConstraints {
@@ -129,33 +130,66 @@ class DetailView: UIView, ViewRepresentable {
             $0.leading.equalTo(detailTitleStackView.snp.trailing)
             $0.trailing.equalTo(photoDetailView.snp.trailing)
         }
-        
     }
     
     func configureUI() {
         backgroundColor = .white
         
-        likeButton.setImage(UIImage(named: "likeInactive"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.tintColor = .pointDarkColor
-        userInfoStackView.setUI(SVAxis: .vertical, SVSpacing: 0, SVAlignment: .fill, SVDistribution: .fillEqually)
         
-        userNameLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 13, weight: .regular), numOfLines: 1)
-        createdDateLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 11, weight: .bold), numOfLines: 1)
+        userInfoStackView.setUI(
+            SVAxis: .vertical,
+            SVSpacing: 0,
+            SVAlignment: .fill,
+            SVDistribution: .fillEqually)
+        
+        userNameLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .left,
+            fontStyle: .systemFont(ofSize: 13, weight: .regular),
+            numOfLines: 1)
+        createdDateLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .left,
+            fontStyle: .systemFont(ofSize: 11, weight: .bold),
+            numOfLines: 1)
         
         posterImage.contentMode = .scaleAspectFill
         posterImage.clipsToBounds = true
         
         infoLabel.text = "정보"
-        infoLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 18, weight: .black), numOfLines: 1)
+        infoLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .left,
+            fontStyle: .systemFont(ofSize: 18, weight: .black),
+            numOfLines: 1)
         
-        detailTitleStackView.setUI(SVAxis: .vertical, SVSpacing: 0, SVAlignment: .leading, SVDistribution: .fillEqually)
-        detailInfoStackView.setUI(SVAxis: .vertical, SVSpacing: 0, SVAlignment: .trailing, SVDistribution: .fillEqually)
+        detailTitleStackView.setUI(
+            SVAxis: .vertical,
+            SVSpacing: 0,
+            SVAlignment: .leading,
+            SVDistribution: .fillEqually)
+        detailInfoStackView.setUI(
+            SVAxis: .vertical,
+            SVSpacing: 0,
+            SVAlignment: .trailing,
+            SVDistribution: .fillEqually)
+        
         [sizeTitleLabel, viewsTitleLabel, downloadTitleLabel].forEach { lb in
-            lb.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 14, weight: .bold), numOfLines: 1)
+            lb.setUI(
+                txtColor: .black,
+                txtAlignment: .left,
+                fontStyle: .systemFont(ofSize: 14, weight: .bold),
+                numOfLines: 1)
         }
         
         [sizeInfoLabel, viewsInfoLabel, downloadInfoLabel].forEach { lb in
-            lb.setUI(txtColor: .darkGray, txtAlignment: .right, fontStyle: .systemFont(ofSize: 14, weight: .semibold), numOfLines: 1)
+            lb.setUI(
+                txtColor: .darkGray,
+                txtAlignment: .right,
+                fontStyle: .systemFont(ofSize: 14, weight: .semibold),
+                numOfLines: 1)
         }
         
         sizeTitleLabel.text = "크기"

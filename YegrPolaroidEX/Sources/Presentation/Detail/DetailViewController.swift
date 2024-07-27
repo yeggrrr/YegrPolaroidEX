@@ -10,7 +10,7 @@ import Kingfisher
 
 final class DetailViewController: UIViewController {
     // MARK: UI
-    let detailView = DetailView()
+    private let detailView = DetailView()
     
     // MARK: Properties
     var detailUIModel: DetailUIModel?
@@ -28,9 +28,11 @@ final class DetailViewController: UIViewController {
         bindData()
         statisticAPICall()
         configureUI()
+        configureAction()
     }
     
-    func bindData() {
+    // MARK: Functions
+    private func bindData() {
         if let topicViewModel = ourTopicViewModel {
             topicViewModel.inputStatisticData.bind { value in
                 guard let value = value else { return }
@@ -48,7 +50,7 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    func configureUI() {
+    private func configureUI() {
         // tabBar
         tabBarController?.tabBar.isHidden = true
         
@@ -68,7 +70,7 @@ final class DetailViewController: UIViewController {
         detailView.downloadInfoLabel.text = model.downloadInfo?.formatted()
     }
     
-    func statisticAPICall() {
+    private func statisticAPICall() {
         guard let model = detailUIModel else { return }
         
         if let ourTopicViewModel {
@@ -77,6 +79,21 @@ final class DetailViewController: UIViewController {
         
         if let searchViewModel {
             searchViewModel.statisticCallRequest(imageID: model.imageID)
+        }
+    }
+    
+    private func configureAction() {
+        detailView.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
+    }
+    
+    // MARK: Actions
+    @objc func likeButtonClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        if sender.isSelected {
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
 }

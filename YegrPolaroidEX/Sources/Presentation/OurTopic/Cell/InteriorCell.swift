@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InteriorCell: UICollectionViewCell {
+final class InteriorCell: UICollectionViewCell {
     let interiorCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -27,7 +27,7 @@ class InteriorCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    func configureUI() {
+    private func configureUI() {
         // contentView
         contentView.backgroundColor = .white
         

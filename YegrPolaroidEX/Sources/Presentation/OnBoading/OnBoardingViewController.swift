@@ -26,11 +26,11 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
     }
     
     // MARK: Functions
-    internal func addSubviews() {
+    func addSubviews() {
         view.addSubviews([logoLabel, posterImageView, nameLabel, startButton])
     }
     
-    internal func setConstraints() {
+    func setConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         
         logoLabel.snp.makeConstraints {
@@ -58,7 +58,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
         }
     }
     
-    internal func configureUI() {
+    func configureUI() {
         view.backgroundColor = .white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .customPoint

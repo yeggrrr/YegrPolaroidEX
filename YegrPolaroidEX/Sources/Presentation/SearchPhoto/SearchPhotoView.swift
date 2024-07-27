@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-class SearchPhotoView: UIView, ViewRepresentable {
+final class SearchPhotoView: UIView, ViewRepresentable {
     let searchBar = UISearchBar()
-    let filterbuttonView = UIView()
+    private let filterbuttonView = UIView()
     let latestButton = UIButton(type: .system)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
@@ -30,9 +30,7 @@ class SearchPhotoView: UIView, ViewRepresentable {
         latestButton.layer.cornerRadius = latestButton.frame.height / 2
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     func addSubviews() {
         addSubviews([searchBar, filterbuttonView, collectionView, noticeLabel])
@@ -88,6 +86,10 @@ class SearchPhotoView: UIView, ViewRepresentable {
         
         // noticeLabel
         noticeLabel.text = "검색 결과가 없습니다."
-        noticeLabel.setUI(txtColor: .black, txtAlignment: .center, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
+        noticeLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .center,
+            fontStyle: .systemFont(ofSize: 17, weight: .bold),
+            numOfLines: 1)
     }
 }

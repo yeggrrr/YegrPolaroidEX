@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class OurTopicView: UIView, ViewRepresentable {
-    let titleLabel = UILabel()
+    private let titleLabel = UILabel()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
     override init(frame: CGRect) {
@@ -46,6 +46,10 @@ final class OurTopicView: UIView, ViewRepresentable {
     
     func configureUI() {
         titleLabel.text = "OUR TOPIC"
-        titleLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 32, weight: .bold), numOfLines: 1)
+        titleLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .left,
+            fontStyle: .systemFont(ofSize: 32, weight: .bold),
+            numOfLines: 1)
     }
 }

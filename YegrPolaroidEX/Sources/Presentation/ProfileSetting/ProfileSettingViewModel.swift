@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ProfileSettingViewModel {
+final class ProfileSettingViewModel {
     // MARK: Enun
     enum NicknameErrorMessage: String {
         case empty = ""

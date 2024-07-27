@@ -55,7 +55,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func addSubviews() {
+    func addSubviews() {
         addSubviews([profileView, camerView, profileTabGestureView, nicknameTextField, dividerView, noticeLabel])
         profileView.addSubview(profileBorderView)
         profileBorderView.addSubview(profileImageView)
@@ -71,7 +71,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         addSubviews([completeButton, deleteAccountButton])
     }
     
-    internal func setConstraints() {
+    func setConstraints() {
         let safeArea = safeAreaLayoutGuide
         
         profileView.snp.makeConstraints {
@@ -150,7 +150,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         }
     }
     
-    internal func configureUI() {
+    func configureUI() {
         profileView.backgroundColor = .white
         
         profileBorderView.layer.borderWidth = 3
@@ -182,9 +182,18 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         profileTabGestureView.layer.cornerRadius = 65
         
         mbtiLabel.text = "MBTI"
-        mbtiLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 17, weight: .bold), numOfLines: 1)
+        mbtiLabel.setUI(
+            txtColor: .black,
+            txtAlignment: .left,
+            fontStyle: .systemFont(ofSize: 17, weight: .bold),
+            numOfLines: 1)
         
-        mbtiStackView.setUI(SVAxis: .horizontal, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
+        mbtiStackView.setUI(
+            SVAxis: .horizontal,
+            SVSpacing: 10,
+            SVAlignment: .fill,
+            SVDistribution: .fillEqually)
+        
         [eiStackView, snStackView, tfStackView, jpStackView].forEach { stv in
             stv.setUI(SVAxis: .vertical, SVSpacing: 10, SVAlignment: .fill, SVDistribution: .fillEqually)
         }

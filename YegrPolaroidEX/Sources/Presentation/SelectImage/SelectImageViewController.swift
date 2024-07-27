@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectImageViewController: UIViewController {
+final class SelectImageViewController: UIViewController {
     // MARK: UI
     private let selectImageView = SelectImageView()
     private let profileImageNameList = Array(0...11).map{ "profile_\($0)" }

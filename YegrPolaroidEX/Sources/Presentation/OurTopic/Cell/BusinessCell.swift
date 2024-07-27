@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class BusinessCell: UICollectionViewCell {
+final class BusinessCell: UICollectionViewCell {
     let businessCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -28,7 +28,7 @@ class BusinessCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    func configureUI() {
+    private func configureUI() {
         // contentView
         contentView.backgroundColor = .white
         

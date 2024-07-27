@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class GoldenHourCell: UICollectionViewCell {
+final class GoldenHourCell: UICollectionViewCell {
     let goldenHourCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -29,7 +29,7 @@ class GoldenHourCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    func configureUI() {
+    private func configureUI() {
         // contentView
         contentView.backgroundColor = .white
         

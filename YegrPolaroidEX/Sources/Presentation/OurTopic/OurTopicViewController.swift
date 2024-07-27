@@ -17,10 +17,10 @@ final class OurTopicViewController: UIViewController {
     }
     
     // MARK: UI
-    let ourTopicView = OurTopicView()
+    private let ourTopicView = OurTopicView()
     
     // MARK: Properties
-    let viewModel = OurTopicViewModel()
+    private let viewModel = OurTopicViewModel()
     private let sectionList: [SectionType] = [.goldenHour, .business, .interior]
     
     // MARK: View Life Cycle
@@ -42,7 +42,7 @@ final class OurTopicViewController: UIViewController {
         configureUI()
     }
     
-    func bindData() {
+    private func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         
         viewModel.inputCallRequestCompleteTrigger.bind { value in
@@ -50,7 +50,7 @@ final class OurTopicViewController: UIViewController {
         }
     }
     
-    func configureUI() {
+    private func configureUI() {
         // view
         view.backgroundColor = .white
         
@@ -76,7 +76,7 @@ final class OurTopicViewController: UIViewController {
         navigationItem.rightBarButtonItem = menuBarItem
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         ourTopicView.collectionView.delegate = self
         ourTopicView.collectionView.dataSource = self
         ourTopicView.collectionView.register(GoldenHourCell.self, forCellWithReuseIdentifier: GoldenHourCell.id)

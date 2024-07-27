@@ -36,14 +36,14 @@ final class SelectImageView: UIView, ViewRepresentable {
         profileBorderView.clipsToBounds = true
     }
     
-    internal func addSubviews() {
+    func addSubviews() {
         addSubviews([profileView, camerView, selectImageCollectionView])
         profileView.addSubview(profileBorderView)
         profileBorderView.addSubview(profileImageView)
         camerView.addSubview(cameraImageView)
     }
     
-    internal func setConstraints() {
+    func setConstraints() {
         let safeArea = safeAreaLayoutGuide
         profileView.snp.makeConstraints {
             $0.top.equalTo(safeArea)
@@ -79,7 +79,7 @@ final class SelectImageView: UIView, ViewRepresentable {
         }
     }
     
-    internal func configureUI() {
+    func configureUI() {
         profileView.backgroundColor = .white
         
         profileBorderView.layer.borderWidth = 3

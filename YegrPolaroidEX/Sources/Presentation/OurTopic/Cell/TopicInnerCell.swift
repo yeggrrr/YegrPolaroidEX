@@ -10,8 +10,8 @@ import SnapKit
 
 final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
     let posterImage = UIImageView()
-    let containerView = UIView()
-    let horizontalStackView = UIStackView()
+    private let containerView = UIView()
+    private let horizontalStackView = UIStackView()
     let starImage = UIImageView()
     let countLabel = UILabel()
     
@@ -72,11 +72,19 @@ final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
         posterImage.clipsToBounds = true
         
         containerView.backgroundColor = .darkGray
-        horizontalStackView.setUI(SVAxis: .horizontal, SVSpacing: 5, SVAlignment: .center, SVDistribution: .fill)
+        horizontalStackView.setUI(
+            SVAxis: .horizontal,
+            SVSpacing: 5,
+            SVAlignment: .center,
+            SVDistribution: .fill)
         
         starImage.image = UIImage(systemName: "star.fill")
         starImage.tintColor = .systemYellow
         
-        countLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 11, weight: .regular), numOfLines: 1)
+        countLabel.setUI(
+            txtColor: .white,
+            txtAlignment: .center,
+            fontStyle: .systemFont(ofSize: 11, weight: .regular),
+            numOfLines: 1)
     }
 }

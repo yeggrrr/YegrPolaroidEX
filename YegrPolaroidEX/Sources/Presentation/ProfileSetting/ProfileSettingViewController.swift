@@ -25,10 +25,10 @@ final class ProfileSettingViewController: UIViewController {
     var isSaveButtonEnabled: Bool = false
     var saveButtonTintColor: UIColor = .clear
     
-    var sourceOfEnergy: (E: Bool, I: Bool) = (false, false)
-    var processingOfInfo: (S: Bool, N: Bool) = (false, false)
-    var decisionMaking: (T: Bool, F: Bool) = (false, false)
-    var needForStructure: (J: Bool, P: Bool) = (false, false)
+    private var sourceOfEnergy: (E: Bool, I: Bool) = (false, false)
+    private var processingOfInfo: (S: Bool, N: Bool) = (false, false)
+    private var decisionMaking: (T: Bool, F: Bool) = (false, false)
+    private var needForStructure: (J: Bool, P: Bool) = (false, false)
     
     // MARK: View Life Cycle
     override func loadView() {
