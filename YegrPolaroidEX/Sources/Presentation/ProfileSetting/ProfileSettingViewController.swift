@@ -49,7 +49,6 @@ final class ProfileSettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureUI()
-        setInitialData()
         DismissKeyboard()
     }
     
@@ -88,7 +87,6 @@ final class ProfileSettingViewController: UIViewController {
         
         // completeButton & saveButton
         profileSettingView.completeButton.isEnabled = false
-        saveButton.isEnabled = false
     }
     
     private func bindData() {
@@ -235,6 +233,7 @@ final class ProfileSettingViewController: UIViewController {
     // MARK: Actions
     @objc func profileImageTapped() {
         let vc = SelectImageViewController()
+        isSaveButtonEnabled = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
