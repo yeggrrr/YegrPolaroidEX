@@ -65,7 +65,7 @@ final class SearchPhotoViewController: UIViewController {
     private func configureCollectionView() {
         searchPhotoView.collectionView.delegate = self
         searchPhotoView.collectionView.dataSource = self
-        searchPhotoView.collectionView.register(SearchPhotoCollectionViewCell.self, forCellWithReuseIdentifier: SearchPhotoCollectionViewCell.id)
+        searchPhotoView.collectionView.register(SearchPhotoCell.self, forCellWithReuseIdentifier: SearchPhotoCell.id)
         searchPhotoView.collectionView.showsVerticalScrollIndicator = false
         searchPhotoView.collectionView.prefetchDataSource = self
         searchPhotoView.collectionView.keyboardDismissMode = .onDrag
@@ -99,20 +99,6 @@ final class SearchPhotoViewController: UIViewController {
     }
 }
 
-// MARK: UICollectionViewDataSource
-extension SearchPhotoViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.inputSearchData.value.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCollectionViewCell.id, for: indexPath) as? SearchPhotoCollectionViewCell else { return UICollectionViewCell() }
-        let item = viewModel.inputSearchData.value[indexPath.item]
-        cell.configureCell(item: item)
-        return cell
-    }
-}
-
 // MARK: UISearchBarDelegate
 extension SearchPhotoViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -127,6 +113,20 @@ extension SearchPhotoViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
+    }
+}
+
+// MARK: UICollectionViewDataSource
+extension SearchPhotoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.inputSearchData.value.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCell.id, for: indexPath) as? SearchPhotoCell else { return UICollectionViewCell() }
+        let item = viewModel.inputSearchData.value[indexPath.item]
+        cell.configureCell(item: item)
+        return cell
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  SearchPhotoCollectionViewCell.swift
+//  SearchPhotoCell.swift
 //  YegrPolaroidEX
 //
 //  Created by YJ on 7/26/24.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class SearchPhotoCollectionViewCell: UICollectionViewCell, ViewRepresentable {
+final class SearchPhotoCell: UICollectionViewCell, ViewRepresentable {
     let posterImage = UIImageView()
     private let containerView = UIView()
     private let horizontalStackView = UIStackView()
