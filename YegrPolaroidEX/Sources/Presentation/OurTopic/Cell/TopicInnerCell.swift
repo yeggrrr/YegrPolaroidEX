@@ -29,9 +29,7 @@ final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
         setConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     func addSubviews() {
         contentView.addSubviews([posterImage, containerView])
@@ -80,8 +78,5 @@ final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
         starImage.tintColor = .systemYellow
         
         countLabel.setUI(txtColor: .white, txtAlignment: .center, fontStyle: .systemFont(ofSize: 11, weight: .regular), numOfLines: 1)
-        
-        // 임시
-        countLabel.text = "123"
     }
 }

@@ -10,10 +10,10 @@ import UIKit
 extension UISearchBar {
     func setUI(placeholder: String) {
         showsCancelButton = true
-        barTintColor = .systemPurple
+        barTintColor = .pointDarkColor
         searchBarStyle = .minimal
-        searchTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemPurple])
-        searchTextField.leftView?.tintColor = .systemPurple
+        searchTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.pointDarkColor])
+        searchTextField.leftView?.tintColor = .pointDarkColor
         searchTextField.textColor = .black
         keyboardType = .default
         keyboardAppearance = .light

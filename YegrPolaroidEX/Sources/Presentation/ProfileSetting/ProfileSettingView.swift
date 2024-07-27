@@ -201,7 +201,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         
         completeButton.setPointUI(title: "완료", bgColor: .incompleteColor)
         deleteAccountButton.setTitle("회원탈퇴", for: .normal)
-        deleteAccountButton.setTitleColor(.systemPurple, for: .normal)
+        deleteAccountButton.setTitleColor(.pointDarkColor, for: .normal)
     }
     
     func updateButtonColor() {

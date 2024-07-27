@@ -80,7 +80,7 @@ class SearchPhotoView: UIView, ViewRepresentable {
         var config = UIButton.Configuration.plain()
         config.title = "최신순"
         config.image = UIImage(named: "sort")
-        config.baseForegroundColor = .systemPurple
+        config.baseForegroundColor = .pointDarkColor
         config.imagePadding = 5
         latestButton.configuration = config
         latestButton.layer.borderWidth = 1

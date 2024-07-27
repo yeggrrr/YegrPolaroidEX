@@ -18,7 +18,7 @@ class DetailView: UIView, ViewRepresentable {
     private let userInfoStackView = UIStackView()
     let userNameLabel = UILabel()
     let createdDateLabel = UILabel()
-    let likeButton = UIButton()
+    let likeButton = UIButton(type: .system)
     
     var posterImage = UIImageView()
     
@@ -135,7 +135,8 @@ class DetailView: UIView, ViewRepresentable {
     func configureUI() {
         backgroundColor = .white
         
-        likeButton.setImage(UIImage(named: "like"), for: .normal)
+        likeButton.setImage(UIImage(named: "likeInactive"), for: .normal)
+        likeButton.tintColor = .pointDarkColor
         userInfoStackView.setUI(SVAxis: .vertical, SVSpacing: 0, SVAlignment: .fill, SVDistribution: .fillEqually)
         
         userNameLabel.setUI(txtColor: .black, txtAlignment: .left, fontStyle: .systemFont(ofSize: 13, weight: .regular), numOfLines: 1)
