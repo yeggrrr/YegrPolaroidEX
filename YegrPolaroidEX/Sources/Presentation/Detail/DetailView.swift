@@ -18,7 +18,7 @@ final class DetailView: UIView, ViewRepresentable {
     private let userInfoStackView = UIStackView()
     let userNameLabel = UILabel()
     let createdDateLabel = UILabel()
-    let likeButton = UIButton(type: .system)
+    let likeButton = UIButton()
     
     var posterImage = UIImageView()
     
@@ -95,9 +95,9 @@ final class DetailView: UIView, ViewRepresentable {
         }
         
         likeButton.snp.makeConstraints {
-            $0.trailing.equalTo(userInfoView.snp.trailing).inset(20)
-            $0.verticalEdges.equalTo(userInfoView.snp.verticalEdges).inset(15)
-            $0.width.equalTo(likeButton.snp.height)
+            $0.trailing.equalTo(userInfoView.snp.trailing).inset(10)
+            $0.verticalEdges.equalTo(userInfoView.snp.verticalEdges).inset(10)
+            $0.width.height.equalTo(50)
         }
         
         posterImage.snp.makeConstraints {
@@ -134,9 +134,12 @@ final class DetailView: UIView, ViewRepresentable {
     
     func configureUI() {
         backgroundColor = .white
-        
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        likeButton.tintColor = .pointDarkColor
+        likeButton.setImage(
+            UIImage(named: "likeInactive")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),
+            for: .normal)
+        likeButton.setImage(
+            UIImage(named: "like")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),
+            for: .selected)
         
         userInfoStackView.setUI(
             SVAxis: .vertical,

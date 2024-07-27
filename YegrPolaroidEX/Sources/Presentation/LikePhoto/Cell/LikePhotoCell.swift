@@ -39,7 +39,11 @@ class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
     }
     
     func configureUI() {
-        posterImage.backgroundColor = .systemGray
-        likeButton.setImage(UIImage(named: "likeCircle"), for: .normal)
+        likeButton.setImage(
+            UIImage(named: "likeCircleInactive")?.withTintColor(.white, renderingMode: .alwaysOriginal),
+            for: .normal)
+        likeButton.setImage(
+            UIImage(named: "likeCircle")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),
+            for: .selected)
     }
 }

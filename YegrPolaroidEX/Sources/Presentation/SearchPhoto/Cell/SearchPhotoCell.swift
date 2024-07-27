@@ -99,6 +99,12 @@ final class SearchPhotoCell: UICollectionViewCell, ViewRepresentable {
         let imageURL = URL(string: item.urls.small)
         posterImage.kf.setImage(with: imageURL)
         countLabel.text = item.likes.formatted()
-        likeButton.setImage(UIImage(named: "likeCircle"), for: .normal)
+        
+        likeButton.setImage(
+            UIImage(named: "likeCircleInactive")?.withTintColor(.white, renderingMode: .alwaysOriginal),
+            for: .normal)
+        likeButton.setImage(
+            UIImage(named: "likeCircle")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),
+            for: .selected)
     }
 }

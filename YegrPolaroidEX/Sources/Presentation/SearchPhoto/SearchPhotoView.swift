@@ -11,7 +11,7 @@ import SnapKit
 final class SearchPhotoView: UIView, ViewRepresentable {
     let searchBar = UISearchBar()
     private let filterbuttonView = UIView()
-    let latestButton = UIButton(type: .system)
+    let latestButton = UIButton()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
     let noticeLabel = UILabel()
@@ -83,6 +83,7 @@ final class SearchPhotoView: UIView, ViewRepresentable {
         latestButton.configuration = config
         latestButton.layer.borderWidth = 1
         latestButton.layer.borderColor = UIColor.lightGray.cgColor
+        latestButton.setBackgroundColor(color: .white, forState: .highlighted)
         
         // noticeLabel
         noticeLabel.text = "검색 결과가 없습니다."

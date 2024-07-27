@@ -54,7 +54,8 @@ final class LikePhotoView: UIView, ViewRepresentable {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(filterbuttonView.snp.bottom)
-            $0.horizontalEdges.bottom.equalTo(safeArea)
+            $0.horizontalEdges.equalTo(safeArea.snp.horizontalEdges)
+            $0.bottom.equalTo(safeArea)
         }
         
         noticeLabel.snp.makeConstraints {
@@ -86,6 +87,3 @@ final class LikePhotoView: UIView, ViewRepresentable {
             numOfLines: 1)
     }
 }
-
-
-
