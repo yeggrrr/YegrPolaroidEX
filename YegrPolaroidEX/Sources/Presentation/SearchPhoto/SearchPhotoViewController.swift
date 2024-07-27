@@ -37,8 +37,6 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Functions
     func bindData() {
-        viewModel.viewDidLoadTrigger.value = ()
-        
         viewModel.inputSearchData.bind { searchData in
             self.searchPhotoView.collectionView.reloadData()
         }
@@ -70,6 +68,7 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.collectionView.register(SearchPhotoCollectionViewCell.self, forCellWithReuseIdentifier: SearchPhotoCollectionViewCell.id)
         searchPhotoView.collectionView.showsVerticalScrollIndicator = false
         searchPhotoView.collectionView.prefetchDataSource = self
+        searchPhotoView.collectionView.keyboardDismissMode = .onDrag
     }
     
     func configureAction() {
@@ -126,6 +125,9 @@ extension SearchPhotoViewController: UISearchBarDelegate {
         dismissKeyboard()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

@@ -8,10 +8,7 @@
 import UIKit
 import Alamofire
 
-final class SearchViewModel {
-    // Trigger
-    var viewDidLoadTrigger: Observable<Void?> = Observable(nil)
-    
+final class SearchViewModel {    
     // input
     var inputSearchData: Observable<[SearchModel.Results]> = Observable([])
     var inputSearchText: Observable<String?> = Observable("")
@@ -24,10 +21,6 @@ final class SearchViewModel {
     
     
     init() {
-        viewDidLoadTrigger.bind { _ in
-            print("SearchView 뜸!!")
-        }
-        
         inputCurrentSortType.bind { sortType in
             guard let text = self.inputSearchText.value else { return }
             self.seachAPIRequest(query: text, page: 1, orderBy: self.inputCurrentSortType.value)
