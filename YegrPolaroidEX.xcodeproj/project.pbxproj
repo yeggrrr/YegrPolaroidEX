@@ -66,6 +66,7 @@
 		68FA4D1D2C553B4F00C32BE4 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D1C2C553B4F00C32BE4 /* PhotoRepository.swift */; };
 		68FA4D1F2C553BEF00C32BE4 /* PhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D1E2C553BEF00C32BE4 /* PhotoRealm.swift */; };
 		68FA4D222C55446000C32BE4 /* LikePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D212C55446000C32BE4 /* LikePhotoCell.swift */; };
+		68FA4D242C555A1900C32BE4 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA4D232C555A1900C32BE4 /* ImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +139,7 @@
 		68FA4D1C2C553B4F00C32BE4 /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		68FA4D1E2C553BEF00C32BE4 /* PhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealm.swift; sourceTree = "<group>"; };
 		68FA4D212C55446000C32BE4 /* LikePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoCell.swift; sourceTree = "<group>"; };
+		68FA4D232C555A1900C32BE4 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +439,7 @@
 			children = (
 				68FA4D1E2C553BEF00C32BE4 /* PhotoRealm.swift */,
 				68FA4D1C2C553B4F00C32BE4 /* PhotoRepository.swift */,
+				68FA4D232C555A1900C32BE4 /* ImageManager.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				68C0A85B2C50F945004B812F /* OurTopicView.swift in Sources */,
 				68C0A8972C5235CB004B812F /* DetailViewController.swift in Sources */,
 				68C0A7C82C4E3E93004B812F /* UIButton+.swift in Sources */,
+				68FA4D242C555A1900C32BE4 /* ImageManager.swift in Sources */,
 				68C0A8292C5005DA004B812F /* YegrPolaroidTabBarController.swift in Sources */,
 				68FA4D0E2C53B20B00C32BE4 /* SearchViewModel.swift in Sources */,
 				68C0A7DC2C4E5504004B812F /* ProfileSettingViewModel.swift in Sources */,
