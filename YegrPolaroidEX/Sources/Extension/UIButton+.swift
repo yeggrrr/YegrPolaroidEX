@@ -25,4 +25,12 @@ extension UIButton {
         layer.borderWidth = 1
         layer.borderColor = UIColor.incompleteColor.cgColor
     }
+    
+    func topProfileUI(imageName: String) {
+        setImage(UIImage(named: imageName), for: .normal)
+        layer.borderColor = UIColor.customPoint.cgColor
+        layer.borderWidth = 2
+        layer.cornerRadius = 20
+        clipsToBounds = true
+    }
 }

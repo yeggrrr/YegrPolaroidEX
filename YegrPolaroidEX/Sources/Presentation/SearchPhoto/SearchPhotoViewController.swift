@@ -82,14 +82,13 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Actions
     @objc func sortButtonClicked(_ sender: UIButton) {
-        print(#function)
         sender.isSelected.toggle()
         
         if sender.isSelected {
             sender.backgroundColor = .customPoint
             viewModel.inputCurrentSortType.value = .latest
         } else {
-            sender.backgroundColor = .white
+            sender.backgroundColor = .clear
             viewModel.inputCurrentSortType.value = .relevant
         }
         
@@ -161,7 +160,6 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
-
 
 // MARK: UICollectionViewDataSourcePrefetching
 extension SearchPhotoViewController: UICollectionViewDataSourcePrefetching {

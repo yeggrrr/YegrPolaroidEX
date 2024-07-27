@@ -39,7 +39,7 @@ final class OurTopicViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false
+        configureUI()
     }
     
     func bindData() {
@@ -54,6 +54,9 @@ final class OurTopicViewController: UIViewController {
         // view
         view.backgroundColor = .white
         
+        // tabBar
+        tabBarController?.tabBar.isHidden = false
+        
         // navigaion
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .customPoint
@@ -62,11 +65,7 @@ final class OurTopicViewController: UIViewController {
         let selectedImage = UserDefaultsManager.fetchProfileImage()
         
         let profileBtn = UIButton(type: .custom)
-        profileBtn.setImage(UIImage(named: selectedImage), for: .normal)
-        profileBtn.layer.borderColor = UIColor.customPoint.cgColor
-        profileBtn.layer.borderWidth = 2
-        profileBtn.layer.cornerRadius = 20
-        profileBtn.clipsToBounds = true
+        profileBtn.topProfileUI(imageName: selectedImage)
         profileBtn.addTarget(self, action: #selector(settingButtonClicked), for: .touchUpInside)
 
         let menuBarItem = UIBarButtonItem(customView: profileBtn)
@@ -90,7 +89,7 @@ final class OurTopicViewController: UIViewController {
     @objc func settingButtonClicked() {
         let vc = ProfileSettingViewController()
         vc.viewType = .update
-        vc.isSaveButtonEnabled = true
+        vc.isSaveButtonEnabled = false
         vc.saveButtonTintColor = .black
         
         navigationController?.pushViewController(vc, animated: true)

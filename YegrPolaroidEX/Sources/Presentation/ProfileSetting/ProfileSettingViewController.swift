@@ -7,8 +7,6 @@
 
 import UIKit
 
-// TODO: MBTI Button 기능 - View로 옮기기 / 불필요한 switch문 정리
-
 final class ProfileSettingViewController: UIViewController {
     // MARK: Enum
     enum ViewType {
@@ -19,6 +17,7 @@ final class ProfileSettingViewController: UIViewController {
     // MARK: UI
     let viewModel = ProfileSettingViewModel()
     let profileSettingView = ProfileSettingView()
+    let saveButton = UIButton(type: .system)
     
     // MARK: Properties
     private let profileImageNameList = Array(0...11).map{ "profile_\($0)" }
@@ -50,6 +49,7 @@ final class ProfileSettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureUI()
+        setInitialData()
         DismissKeyboard()
     }
     
@@ -66,8 +66,11 @@ final class ProfileSettingViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .customPoint
         
-        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
-        navigationItem.rightBarButtonItem = saveButton
+        saveButton.setTitle("저장", for: .normal)
+        saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
+        let saveBarButtonItem = UIBarButtonItem(customView: saveButton)
+        navigationItem.rightBarButtonItem = saveBarButtonItem
+        
         saveButton.isEnabled = isSaveButtonEnabled
         saveButton.tintColor = saveButtonTintColor
         
@@ -83,8 +86,9 @@ final class ProfileSettingViewController: UIViewController {
             profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
         }
         
-        // completeButton
+        // completeButton & saveButton
         profileSettingView.completeButton.isEnabled = false
+        saveButton.isEnabled = false
     }
     
     private func bindData() {
@@ -110,8 +114,8 @@ final class ProfileSettingViewController: UIViewController {
             }
         } else {
             profileSettingView.completeButton.isHidden = true
-            
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()
+            viewModel.inputText.value = UserDefaultsManager.fetchName()
             
             let udSourceOfEnergy = UserDefaultsManager.fetchSourceOfEnergy()
             let udProcessingOfInfo = UserDefaultsManager.fetchProcessingOfInfo()
@@ -128,26 +132,26 @@ final class ProfileSettingViewController: UIViewController {
             }
             
             if udProcessingOfInfo == "S" {
-                sourceOfEnergy = (true, false)
+                processingOfInfo = (true, false)
                 profileSettingView.sButton.isSelected = true
             } else if udProcessingOfInfo == "N" {
-                sourceOfEnergy = (false, true)
+                processingOfInfo = (false, true)
                 profileSettingView.nButton.isSelected = true
             }
             
             if udDecisionMaking == "T" {
-                sourceOfEnergy = (true, false)
+                decisionMaking = (true, false)
                 profileSettingView.tButton.isSelected = true
             } else if udDecisionMaking == "F" {
-                sourceOfEnergy = (false, true)
+                decisionMaking = (false, true)
                 profileSettingView.fButton.isSelected = true
             }
             
             if udNeedForStructure == "J" {
-                sourceOfEnergy = (true, false)
+                needForStructure = (true, false)
                 profileSettingView.jButton.isSelected = true
             } else if udNeedForStructure == "P" {
-                sourceOfEnergy = (false, true)
+                needForStructure = (false, true)
                 profileSettingView.pButton.isSelected = true
             }
             
@@ -182,42 +186,17 @@ final class ProfileSettingViewController: UIViewController {
         let nicknameState = viewModel.nicknameErrorMessage == .noError
         
         if nicknameState && eiState && nsState && tfState && fpState {
+            saveButton.isEnabled = true
             profileSettingView.completeButton.isEnabled = true
             profileSettingView.completeButton.backgroundColor = .customPoint
         } else {
+            saveButton.isEnabled = false
             profileSettingView.completeButton.isEnabled = false
             profileSettingView.completeButton.backgroundColor = .incompleteColor
         }
     }
     
-    func DismissKeyboard(){
-        profileSettingView.nicknameTextField.resignFirstResponder()
-    }
-    
-    /// Return 클릭 시 keyboard dismiss
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // MARK: Actions
-    @objc func profileImageTapped() {
-        let vc = SelectImageViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc func completeButtonClicked() {
-        print(#function)
-        /// 닉네임 저장
-        guard let userName = profileSettingView.nicknameTextField.text else { return }
-        UserDefaultsManager.save(value: userName, key: .name)
-        
-        /// 이미지 저장
-        guard let userImage = UserDefaultsManager.userTempProfileImageName else { return }
-        UserDefaultsManager.save(value: userImage, key: .profileImage)
-        UserDefaultsManager.userTempProfileImageName = nil
-        
-        /// MBTI 저장
+    private func saveMBTI() {
         if sourceOfEnergy.E {
             UserDefaultsManager.save(value: "E", key: .sourceOfEnergy)
         } else if sourceOfEnergy.I {
@@ -241,13 +220,55 @@ final class ProfileSettingViewController: UIViewController {
         } else if needForStructure.P {
             UserDefaultsManager.save(value: "P", key: .needForStructure)
         }
+    }
+    
+    func DismissKeyboard(){
+        profileSettingView.nicknameTextField.resignFirstResponder()
+    }
+    
+    /// Return 클릭 시 keyboard dismiss
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Actions
+    @objc func profileImageTapped() {
+        let vc = SelectImageViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func completeButtonClicked() {
+        /// 닉네임 저장
+        guard let userName = profileSettingView.nicknameTextField.text else { return }
+        UserDefaultsManager.save(value: userName, key: .name)
+        
+        /// 이미지 저장
+        guard let userImage = UserDefaultsManager.userTempProfileImageName else { return }
+        UserDefaultsManager.save(value: userImage, key: .profileImage)
+        UserDefaultsManager.userTempProfileImageName = nil
+        
+        /// MBTI 저장
+        saveMBTI()
         
         UserDefaultsManager.save(value: true, key: .isExistUser)
         screenTransition(YegrPolaroidTabBarController())
     }
     
     @objc func saveButtonClicked() {
-        print(#function)
+        if viewModel.nicknameErrorMessage == .noError {
+            if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
+                UserDefaultsManager.save(value: userTempProfileImageName, key: .profileImage)
+                UserDefaultsManager.userTempProfileImageName = nil
+            }
+            
+            if let userName = profileSettingView.nicknameTextField.text {
+                UserDefaultsManager.save(value: userName, key: .name)
+            }
+            
+            saveMBTI()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func deleteAccountButtonClicked() {
