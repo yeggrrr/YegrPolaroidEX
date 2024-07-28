@@ -151,6 +151,16 @@ final class DetailViewController: UIViewController {
             if let profileImage = detailView.profileImage.image {
                 saveImageToDocumentDirectory(directoryType: .profile, imageName: model.imageID, image: profileImage)
             }
+        } else {
+            let item = PhotoRepository.shared.fetch()[sender.tag]
+            let imageID = item.imageID
+            
+            // Realm 삭제
+            PhotoRepository.shared.delete(item: item)
+            
+            // FileManager 삭제
+            deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
+            deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
         }
     }
 }

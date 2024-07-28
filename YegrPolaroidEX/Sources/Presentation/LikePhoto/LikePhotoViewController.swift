@@ -59,9 +59,7 @@ final class LikePhotoViewController: UIViewController {
     }
     
     // MARK: Actions
-    @objc func likeButtonClicked(_ sender: UIButton) { // TODO: 삭제 기능 실패.. 에러 원인 찾기...
-        sender.isSelected.toggle()
-        
+    @objc func likeButtonClicked(_ sender: UIButton) {
         let item = PhotoRepository.shared.fetch()[sender.tag]
         let imageID = item.imageID
         
