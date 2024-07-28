@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import Toast
 
+// TODO: 해당 화면에서 뒤에서 부터 삭제 시, index 정보가 꼬인 것 같음. 다른 사진이 삭제됨
 final class LikePhotoViewController: UIViewController {
     // MARK: UI
     let likePhotoView = LikePhotoView()
     let cellSpacing: CGFloat = 5
+    
+    // MARK: Properties
+    let viewModel = LikePhotoViewModel()
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -22,19 +27,24 @@ final class LikePhotoViewController: UIViewController {
         
         configureUI()
         configureCollecionview()
+        configureAction()
+        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        likePhotoView.collectionView.reloadData()
-        tabBarController?.tabBar.isHidden = false
-        
-        let isListEmpty = PhotoRepository.shared.count == 0
-        likePhotoView.noticeLabel.isHidden = !isListEmpty
+        updateUI()
     }
     
     // MARK: Functions
+    func bindData() {
+        viewModel.outputLikeCountStateTrigger.bind { _ in
+            let isListEmpty = PhotoRepository.shared.count == 0
+            self.likePhotoView.noticeLabel.isHidden = !isListEmpty
+        }
+    }
+    
     func configureUI() {
         // view
         view.backgroundColor = .white
@@ -58,6 +68,18 @@ final class LikePhotoViewController: UIViewController {
         likePhotoView.collectionView.showsVerticalScrollIndicator = false
     }
     
+    func updateUI() {
+        tabBarController?.tabBar.isHidden = false
+        likePhotoView.collectionView.reloadData()
+        
+        let isListEmpty = PhotoRepository.shared.count == 0
+        likePhotoView.noticeLabel.isHidden = !isListEmpty
+    }
+    
+    func configureAction() {
+        likePhotoView.latestButton.addTarget(self, action: #selector(latestButtonClicked), for: .touchUpInside)
+    }
+    
     // MARK: Actions
     @objc func likeButtonClicked(_ sender: UIButton) {
         let item = PhotoRepository.shared.fetch()[sender.tag]
@@ -70,7 +92,13 @@ final class LikePhotoViewController: UIViewController {
         deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
         deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
         
+        showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
         likePhotoView.collectionView.reloadData()
+        viewModel.inputLikeCountStateTrigger.value = ()
+    }
+    
+    @objc func latestButtonClicked() {
+        print(#function)
     }
 }
 
