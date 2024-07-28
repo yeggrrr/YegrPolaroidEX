@@ -38,6 +38,7 @@ final class SearchPhotoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        searchPhotoView.collectionView.reloadData()
     }
     
     // MARK: Functions

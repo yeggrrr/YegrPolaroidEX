@@ -59,7 +59,6 @@ final class DetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("disapper!!")
         
         if liked == false {
             delete()
@@ -147,11 +146,9 @@ final class DetailViewController: UIViewController {
     // MARK: Actions
     @objc func likeButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        
         liked = sender.isSelected
         
         guard let model = detailUIModel else { return }
-        print(model)
     
         if sender.isSelected {
             guard let viewsInfo = model.viewsInfo, let downloadInfo = model.downloadInfo else { return }
@@ -191,11 +188,13 @@ final class DetailViewController: UIViewController {
                 let matchedItem = PhotoRepository.shared.fetch().first { photoRealm in
                     photoRealm.imageID == model.imageID
                 }
+                
                 if let matchedItem = matchedItem {
                     deleteImageFromDucumentDirectory(directoryType: .poster, imageName: model.imageID)
                     deleteImageFromDucumentDirectory(directoryType: .profile, imageName: model.imageID)
                     PhotoRepository.shared.delete(item: matchedItem)
                 }
+                showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
             case .likeTab:
                 showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
             }

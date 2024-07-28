@@ -9,12 +9,20 @@ import UIKit
 import Toast
 
 final class LikePhotoViewController: UIViewController {
+    // MARK: Enum
+    enum FilterType {
+        case latest // 최신순
+        case earliest // 오래된순
+    }
+    
     // MARK: UI
     let likePhotoView = LikePhotoView()
     let cellSpacing: CGFloat = 5
     
     // MARK: Properties
     let viewModel = LikePhotoViewModel()
+    var filterType: FilterType = .latest
+    var sortedList: [PhotoRealm] = []
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -28,6 +36,7 @@ final class LikePhotoViewController: UIViewController {
         configureCollecionview()
         configureAction()
         bindData()
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,11 +77,10 @@ final class LikePhotoViewController: UIViewController {
     }
     
     func updateUI() {
+        sortedList = decSort()
         tabBarController?.tabBar.isHidden = false
         likePhotoView.collectionView.reloadData()
-        
-        let isListEmpty = PhotoRepository.shared.count == 0
-        likePhotoView.noticeLabel.isHidden = !isListEmpty
+        likePhotoView.noticeLabel.isHidden = !sortedList.isEmpty
     }
     
     func configureAction() {
@@ -81,36 +89,57 @@ final class LikePhotoViewController: UIViewController {
     
     // MARK: Actions
     @objc func likeButtonClicked(_ sender: UIButton) {
-        let item = PhotoRepository.shared.fetch()[sender.tag]
-        let imageID = item.imageID
+        let item = sortedList[sender.tag]
         
-        // Realm 삭제
-        PhotoRepository.shared.delete(item: item)
+        let matchedItem = PhotoRepository.shared.fetch().first { photoRealm in
+            photoRealm.imageID == item.imageID
+        }
         
-        // FileManager 삭제
-        deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
-        deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
-        
-        showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
-        likePhotoView.collectionView.reloadData()
-        viewModel.inputLikeCountStateTrigger.value = ()
+        if let matchedItem = matchedItem {
+            // FileManager 삭제
+            deleteImageFromDucumentDirectory(directoryType: .poster, imageName: matchedItem.imageID)
+            deleteImageFromDucumentDirectory(directoryType: .profile, imageName: matchedItem.imageID)
+            
+            // Realm 삭제
+            PhotoRepository.shared.delete(item: item)
+            sortedList = PhotoRepository.shared.fetch()
+            showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
+            likePhotoView.collectionView.reloadData()
+            viewModel.inputLikeCountStateTrigger.value = ()
+        }
     }
     
-    // TODO: 좋아요 누른 시점 기준으로 최신순 기능 구현하기
-    @objc func latestButtonClicked() {
-        print(#function)
+    @objc func latestButtonClicked(_ sender: UIButton) {
+        switch filterType {
+        case .latest:
+            sortedList = ascSort()
+            filterType = .earliest
+        case .earliest:
+            sortedList = decSort()
+            filterType = .latest
+        }
+        
+        likePhotoView.collectionView.reloadData()
+    }
+    
+    func ascSort() -> [PhotoRealm] {
+        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate < $1.savedTheDate })
+    }
+    
+    func decSort() -> [PhotoRealm] {
+        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate > $1.savedTheDate })
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension LikePhotoViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoRepository.shared.count
+        return sortedList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LikePhotoCell.id, for: indexPath) as? LikePhotoCell else { return UICollectionViewCell() }
-        let item = PhotoRepository.shared.fetch()[indexPath.item]
+        let item = sortedList[indexPath.item]
         let fmImage = loadImageFromDocumentDirectory(directoryType: .poster, imageName: item.imageID)
         cell.posterImage.image = fmImage
         cell.likeButton.tag = indexPath.item
@@ -139,7 +168,7 @@ extension LikePhotoViewController: UICollectionViewDelegateFlowLayout {
 // MARK: UICollectionViewDelegate
 extension LikePhotoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = PhotoRepository.shared.fetch()[indexPath.item]
+        let item = sortedList[indexPath.item]
         let vc = DetailViewController()
         vc.viewType = .likeTab
         vc.realmLikeModel = item
