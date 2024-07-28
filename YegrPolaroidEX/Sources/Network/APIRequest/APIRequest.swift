@@ -39,17 +39,6 @@ enum APIRequest {
         }
     }
     
-    var params: Parameters {
-        switch self {
-        case .topic(_):
-            return ["" : ""]
-        case .search(_, _, _):
-            return ["lang" : "ko"]
-        case .statistics(_):
-            return ["" : ""]
-        }
-    }
-    
     var method: HTTPMethod {
         return .get
     }
