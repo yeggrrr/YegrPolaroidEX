@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SearchPhotoViewController: UIViewController {
     // MARK: UI
@@ -13,8 +14,11 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Properties
     private let viewModel = SearchViewModel()
+    var detailUIModel: DetailUIModel?
     let cellSpacing: CGFloat = 5
     private var page = 1
+    var index: Int?
+    var liked: Bool?
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -45,6 +49,10 @@ final class SearchPhotoViewController: UIViewController {
         viewModel.isDataCountZero.bind { state in
             self.searchPhotoView.noticeLabel.isHidden = !state
         }
+        
+        viewModel.inputStatisticData.bind { statisticData in
+            self.save(statisticItem: statisticData)
+        }
     }
     
     private func configureUI() {
@@ -61,6 +69,9 @@ final class SearchPhotoViewController: UIViewController {
         
         // searchBar
         searchPhotoView.searchBar.delegate = self
+        
+        // likeButton
+        // TODO: Realm에 저장되어있는 사진들 likeButton 상태 업데이트하기
     }
     
     private func configureCollectionView() {
@@ -74,6 +85,61 @@ final class SearchPhotoViewController: UIViewController {
     
     private func configureAction() {
         searchPhotoView.latestButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
+    }
+    
+    private func save(statisticItem: StatisticsData?){
+        guard let statisticItem = statisticItem else { return }
+        guard let index = index else { return }
+        let item = viewModel.inputSearchData.value[index]
+        
+        let itemAlreadySaved = PhotoRepository.shared.fetch().contains { photoRealm in
+            photoRealm.imageID == item.id
+        }
+        
+        guard !itemAlreadySaved else { return }
+        
+        let model = DetailUIModel(
+            imageID: item.id,
+            profileImage: item.user.profileImage.medium,
+            userName: item.user.name,
+            createdDate: item.createdAt,
+            posterImage: item.urls.small,
+            sizeInfo: "\(item.width) x \(item.height)",
+            viewsInfo: statisticItem.views.total,
+            downloadInfo: statisticItem.downloads.total,
+            savedTheDate: Date())
+        
+        guard let viewsInfo = model.viewsInfo, let downloadInfo = model.downloadInfo else { return }
+        
+        let realmItem = PhotoRealm(
+            imageID: model.imageID,
+            profileImage: model.profileImage,
+            userName: model.userName,
+            createdDate: model.createdDate,
+            posterImage: model.posterImage,
+            sizeInfo: model.sizeInfo,
+            viewsInfo: viewsInfo,
+            downloadInfo: downloadInfo,
+            savedTheDate: model.savedTheDate)
+        
+        // Realm 저장
+        PhotoRepository.shared.add(item: realmItem)
+        
+        // FileManager 저장
+        let indexItem = IndexPath(item: index, section: 0)
+        if let cell = searchPhotoView.collectionView.cellForItem(at: indexItem) as? SearchPhotoCell,
+           // posterImage
+           let image = cell.posterImage.image {
+            saveImageToDocumentDirectory(directoryType: .poster, imageName: model.imageID, image: image)
+            // profileImage
+            fetchImage(from: model.profileImage) { image in
+                if let image = image {
+                    self.saveImageToDocumentDirectory(directoryType: .profile, imageName: model.imageID, image: image)
+                }
+            }
+        }
+        
+        showToast(message: "좋아요 목록에 추가되었습니다! :)")
     }
     
     private func dismissKeyboard() {
@@ -97,10 +163,27 @@ final class SearchPhotoViewController: UIViewController {
     
     @objc func likeButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-    }
-    
-    @objc func dismissButtonClicked() {
-        dismiss(animated: true)
+        
+        liked = sender.isSelected
+        
+        let item = viewModel.inputSearchData.value[sender.tag]
+        
+        if sender.isSelected {
+            index = sender.tag
+            viewModel.statisticCallRequest(imageID: item.id)
+        } else {
+            // 좋아요 목록(realm)에서 삭제
+            let matchItem = PhotoRepository.shared.fetch().first {
+                $0.imageID == item.id
+            }
+            
+            if let matchItem = matchItem {
+                PhotoRepository.shared.delete(item: matchItem)
+                deleteImageFromDucumentDirectory(directoryType: .poster, imageName: item.id)
+                deleteImageFromDucumentDirectory(directoryType: .profile, imageName: item.id)
+                showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
+            }
+        }
     }
 }
 
@@ -132,6 +215,7 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
         let item = viewModel.inputSearchData.value[indexPath.item]
         cell.configureCell(item: item)
         cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
+        cell.likeButton.tag = indexPath.item
         return cell
     }
 }
@@ -157,7 +241,6 @@ extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
 extension SearchPhotoViewController: UICollectionViewDelegate { 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = viewModel.inputSearchData.value[indexPath.item]
-        viewModel.inputSelectedId.value = item.id
         
         let vc = DetailViewController()
         vc.searchViewModel = viewModel
@@ -171,8 +254,8 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
             posterImage: item.urls.small,
             sizeInfo: "\(item.width) x \(item.height)",
             viewsInfo: nil,
-            downloadInfo: nil)
-        
+            downloadInfo: nil,
+            savedTheDate: Date())
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -196,4 +279,3 @@ extension SearchPhotoViewController: UICollectionViewDataSourcePrefetching {
         }
     }
 }
-

@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIViewController {
+    // 화면 전환
     func screenTransition(_ vc: UIViewController) {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         guard let sceneDelegate = scene.delegate as? SceneDelegate else { return }
@@ -29,6 +30,7 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
+    // 커스텀 toastAlert
     func showToast(message : String) {
         let toastLabel = UILabel(
             frame: CGRect(x: self.view.frame.size.width / 2 - 160,
@@ -50,5 +52,29 @@ extension UIViewController {
         }, completion: { isCompleted in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    // UIImage를 비동기로 가져오기
+    func fetchImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion(nil)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error fetching image: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let data = data, let image = UIImage(data: data) else {
+                print("No data or failed to convert data to UIImage")
+                completion(nil)
+                return
+            }
+            completion(image)
+        }.resume()
     }
 }
