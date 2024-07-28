@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Toast
 
 final class DetailViewController: UIViewController {
     // MARK: Enum
@@ -161,6 +162,8 @@ final class DetailViewController: UIViewController {
             if let profileImage = detailView.profileImage.image {
                 saveImageToDocumentDirectory(directoryType: .profile, imageName: model.imageID, image: profileImage)
             }
+            
+            showToast(message: "좋아요 목록에 추가되었습니다! :)")
         } else {
             let item = PhotoRepository.shared.fetch()[sender.tag]
             let imageID = item.imageID
@@ -171,6 +174,8 @@ final class DetailViewController: UIViewController {
             // FileManager 삭제
             deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
             deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
+            
+            showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
         }
     }
 }
