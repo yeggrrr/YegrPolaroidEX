@@ -52,6 +52,14 @@ final class ProfileSettingViewController: UIViewController {
         DismissKeyboard()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if viewType == .update {
+            UserDefaultsManager.userTempProfileImageName = nil
+        }
+    }
+    
     // MARK: Functions
     private func configureUI() {
         // view
@@ -80,7 +88,6 @@ final class ProfileSettingViewController: UIViewController {
         if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
             /// 이미지 선택 화면을 진입한 적이 있는 경우
             profileSettingView.profileImageView.image = UIImage(named: userTempProfileImageName)
-            UserDefaultsManager.userTempProfileImageName = nil
         } else {
             /// 프로필 설정화면에 갓 진입한 경우
             profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
@@ -259,6 +266,7 @@ final class ProfileSettingViewController: UIViewController {
     @objc func saveButtonClicked() {
         if viewModel.nicknameErrorMessage == .noError {
             if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
+                print("저장됨!")
                 UserDefaultsManager.save(value: userTempProfileImageName, key: .profileImage)
                 UserDefaultsManager.userTempProfileImageName = nil
             }
