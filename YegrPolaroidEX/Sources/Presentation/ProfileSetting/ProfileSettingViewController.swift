@@ -80,6 +80,7 @@ final class ProfileSettingViewController: UIViewController {
         if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
             /// 이미지 선택 화면을 진입한 적이 있는 경우
             profileSettingView.profileImageView.image = UIImage(named: userTempProfileImageName)
+            UserDefaultsManager.userTempProfileImageName = nil
         } else {
             /// 프로필 설정화면에 갓 진입한 경우
             profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
@@ -113,6 +114,7 @@ final class ProfileSettingViewController: UIViewController {
         } else {
             profileSettingView.completeButton.isHidden = true
             profileSettingView.nicknameTextField.text = UserDefaultsManager.fetchName()
+            profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
             viewModel.inputText.value = UserDefaultsManager.fetchName()
             
             let udSourceOfEnergy = UserDefaultsManager.fetchSourceOfEnergy()
