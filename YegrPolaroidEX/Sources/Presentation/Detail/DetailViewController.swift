@@ -25,6 +25,9 @@ final class DetailViewController: UIViewController {
     var ourTopicViewModel: OurTopicViewModel?
     var searchViewModel: SearchViewModel?
     var realmLikeModel: PhotoRealm?
+    var index: Int?
+    var liked: Bool?
+    
     var viewType: ViewType = .topicTab
     
     // MARK: View Life Cycle
@@ -34,18 +37,31 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         PhotoRepository.shared.findFilePath() // TODO: 나중에 지우기
         configureUI()
         configureAction()
         
         switch viewType {
-        case .topicTab, .searchTab:
+        case .topicTab:
+            liked = false
             bindData()
             statisticAPICall()
-            break
+        case .searchTab:
+            liked = true
+            bindData()
+            statisticAPICall()
         case .likeTab:
+            liked = true
             likeTabSetupUI()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if liked == false {
+            delete()
         }
     }
     
@@ -131,6 +147,8 @@ final class DetailViewController: UIViewController {
     @objc func likeButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
         
+        liked = sender.isSelected
+        
         if sender.isSelected {
             guard let model = detailUIModel else { return }
             guard let viewsInfo = model.viewsInfo, let downloadInfo = model.downloadInfo else { return }
@@ -165,17 +183,20 @@ final class DetailViewController: UIViewController {
             
             showToast(message: "좋아요 목록에 추가되었습니다! :)")
         } else {
-            let item = PhotoRepository.shared.fetch()[sender.tag]
-            let imageID = item.imageID
-            
-            // Realm 삭제
-            PhotoRepository.shared.delete(item: item)
-            
-            // FileManager 삭제
-            deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
-            deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
-            
             showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
         }
+    }
+    
+    func delete() {
+        guard let index = index else { return }
+        let item = PhotoRepository.shared.fetch()[index]
+        let imageID = item.imageID
+        
+        // Realm 삭제
+        PhotoRepository.shared.delete(item: item)
+        
+        // FileManager 삭제
+        deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
+        deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 import Toast
 
-// TODO: 해당 화면에서 뒤에서 부터 삭제 시, index 정보가 꼬인 것 같음. 다른 사진이 삭제됨
 final class LikePhotoViewController: UIViewController {
     // MARK: UI
     let likePhotoView = LikePhotoView()
@@ -97,6 +96,7 @@ final class LikePhotoViewController: UIViewController {
         viewModel.inputLikeCountStateTrigger.value = ()
     }
     
+    // TODO: 좋아요 누른 시점 기준으로 최신순 기능 구현하기
     @objc func latestButtonClicked() {
         print(#function)
     }
@@ -113,6 +113,7 @@ extension LikePhotoViewController: UICollectionViewDataSource {
         let item = PhotoRepository.shared.fetch()[indexPath.item]
         let fmImage = loadImageFromDocumentDirectory(directoryType: .poster, imageName: item.imageID)
         cell.posterImage.image = fmImage
+        cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         return cell
     }
@@ -142,6 +143,7 @@ extension LikePhotoViewController: UICollectionViewDelegate {
         let vc = DetailViewController()
         vc.viewType = .likeTab
         vc.realmLikeModel = item
+        vc.index = indexPath.item
         navigationController?.pushViewController(vc, animated: true)
     }
 }
