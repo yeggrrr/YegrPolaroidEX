@@ -13,6 +13,7 @@ final class SearchPhotoViewController: UIViewController {
     
     // MARK: Properties
     private let viewModel = SearchViewModel()
+    let cellSpacing: CGFloat = 5
     private var page = 1
     
     // MARK: View Life Cycle
@@ -94,6 +95,10 @@ final class SearchPhotoViewController: UIViewController {
         self.searchPhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
+    @objc func likeButtonClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    
     @objc func dismissButtonClicked() {
         dismiss(animated: true)
     }
@@ -126,6 +131,7 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCell.id, for: indexPath) as? SearchPhotoCell else { return UICollectionViewCell() }
         let item = viewModel.inputSearchData.value[indexPath.item]
         cell.configureCell(item: item)
+        cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         return cell
     }
 }
@@ -133,9 +139,17 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width - 10
+        let width = collectionView.frame.width - cellSpacing
         let size = CGSize(width: width / 2, height: 250)
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
     }
 }
 

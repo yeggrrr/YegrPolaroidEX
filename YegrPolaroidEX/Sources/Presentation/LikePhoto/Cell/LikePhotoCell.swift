@@ -39,6 +39,8 @@ class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
     }
     
     func configureUI() {
+        likeButton.isSelected = true
+        
         likeButton.setImage(
             UIImage(named: "likeCircleInactive")?.withTintColor(.white, renderingMode: .alwaysOriginal),
             for: .normal)
