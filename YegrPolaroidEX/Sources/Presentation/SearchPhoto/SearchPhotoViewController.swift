@@ -98,11 +98,13 @@ final class SearchPhotoViewController: UIViewController {
         
         guard !itemAlreadySaved else { return }
         
+        let createdDateText = "\(DateFormatter.dateToContainLetter(dateString: item.createdAt)) 게시됨"
+        
         let model = DetailUIModel(
             imageID: item.id,
             profileImage: item.user.profileImage.medium,
             userName: item.user.name,
-            createdDate: item.createdAt,
+            createdDate: createdDateText,
             posterImage: item.urls.small,
             sizeInfo: "\(item.width) x \(item.height)",
             viewsInfo: statisticItem.views.total,

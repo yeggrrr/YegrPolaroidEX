@@ -59,6 +59,7 @@ final class DetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("disapper!!")
         
         if liked == false {
             delete()
@@ -149,8 +150,10 @@ final class DetailViewController: UIViewController {
         
         liked = sender.isSelected
         
+        guard let model = detailUIModel else { return }
+        print(model)
+    
         if sender.isSelected {
-            guard let model = detailUIModel else { return }
             guard let viewsInfo = model.viewsInfo, let downloadInfo = model.downloadInfo else { return }
             
             let itemAlreadySaved = PhotoRepository.shared.fetch().contains { photoRealm in
@@ -183,7 +186,19 @@ final class DetailViewController: UIViewController {
             
             showToast(message: "좋아요 목록에 추가되었습니다! :)")
         } else {
-            showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
+            switch viewType {
+            case .topicTab, .searchTab:
+                let matchedItem = PhotoRepository.shared.fetch().first { photoRealm in
+                    photoRealm.imageID == model.imageID
+                }
+                if let matchedItem = matchedItem {
+                    deleteImageFromDucumentDirectory(directoryType: .poster, imageName: model.imageID)
+                    deleteImageFromDucumentDirectory(directoryType: .profile, imageName: model.imageID)
+                    PhotoRepository.shared.delete(item: matchedItem)
+                }
+            case .likeTab:
+                showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
+            }
         }
     }
     
@@ -198,5 +213,6 @@ final class DetailViewController: UIViewController {
         // FileManager 삭제
         deleteImageFromDucumentDirectory(directoryType: .poster, imageName: imageID)
         deleteImageFromDucumentDirectory(directoryType: .profile, imageName: imageID)
+        showToast(message: "좋아요 목록에서 삭제되었습니다! :)")
     }
 }
