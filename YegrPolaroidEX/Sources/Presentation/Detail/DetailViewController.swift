@@ -140,7 +140,8 @@ final class DetailViewController: UIViewController {
                 posterImage: model.posterImage,
                 sizeInfo: model.sizeInfo,
                 viewsInfo: viewsInfo,
-                downloadInfo: downloadInfo)
+                downloadInfo: downloadInfo,
+                savedTheDate: Date())
             PhotoRepository.shared.add(item: item)
             
             // FileManager 저장

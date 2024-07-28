@@ -79,7 +79,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
         latestButton.layer.borderColor = UIColor.lightGray.cgColor
         
         // noticeLabel
-        noticeLabel.text = "저장된 사진이 없습니다." // TODO: 좋아요 갯수 0개일 경우만 보이도록 설정
+        noticeLabel.text = "저장된 사진이 없습니다."
         noticeLabel.setUI(
             txtColor: .black,
             txtAlignment: .center,

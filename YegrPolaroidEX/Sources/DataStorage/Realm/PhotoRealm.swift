@@ -6,6 +6,7 @@
 //
 
 
+import Foundation
 import RealmSwift
 
 class PhotoRealm: Object {
@@ -18,8 +19,9 @@ class PhotoRealm: Object {
     @Persisted var sizeInfo: String
     @Persisted var viewsInfo: Int
     @Persisted var downloadInfo: Int
+    @Persisted var savedTheDate: Date
     
-    convenience init(imageID: String, profileImage: String, userName: String, createdDate: String, posterImage: String, sizeInfo: String, viewsInfo: Int, downloadInfo: Int) {
+    convenience init(imageID: String, profileImage: String, userName: String, createdDate: String, posterImage: String, sizeInfo: String, viewsInfo: Int, downloadInfo: Int, savedTheDate: Date) {
         self.init()
         self.imageID = imageID
         self.profileImage = profileImage
@@ -29,5 +31,6 @@ class PhotoRealm: Object {
         self.sizeInfo = sizeInfo
         self.viewsInfo = viewsInfo
         self.downloadInfo = downloadInfo
+        self.savedTheDate = savedTheDate
     }
 }

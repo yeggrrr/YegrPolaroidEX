@@ -193,7 +193,8 @@ extension OurTopicViewController: PushDelegate {
             posterImage: item.urls.small,
             sizeInfo: "\(item.width) x \(item.height)",
             viewsInfo: nil,
-            downloadInfo: nil)
+            downloadInfo: nil,
+            savedTheDate: Date())
         
         navigationController?.pushViewController(vc, animated: true)
     }

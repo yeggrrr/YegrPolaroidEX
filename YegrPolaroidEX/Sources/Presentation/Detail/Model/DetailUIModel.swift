@@ -16,4 +16,5 @@ struct DetailUIModel {
     var sizeInfo: String
     var viewsInfo: Int?
     var downloadInfo: Int?
+    var savedTheDate: Date
 }
