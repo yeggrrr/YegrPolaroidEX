@@ -85,6 +85,15 @@ final class DetailViewController: UIViewController {
         
         detailView.viewsInfoLabel.text = model.viewsInfo?.formatted()
         detailView.downloadInfoLabel.text = model.downloadInfo?.formatted()
+        
+        // 좋아요 목록에 있는 경우 likeButton ->  isSelected
+        if  PhotoRepository.shared.fetch().contains(where: { photoRealm in
+            photoRealm.imageID == model.imageID
+        }) {
+            detailView.likeButton.isSelected = true
+        } else {
+            detailView.likeButton.isSelected = false
+        }
     }
     
     private func likeTabSetupUI() {
