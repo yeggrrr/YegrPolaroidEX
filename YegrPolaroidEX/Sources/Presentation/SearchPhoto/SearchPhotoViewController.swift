@@ -70,9 +70,6 @@ final class SearchPhotoViewController: UIViewController {
         
         // searchBar
         searchPhotoView.searchBar.delegate = self
-        
-        // likeButton
-        // TODO: Realm에 저장되어있는 사진들 likeButton 상태 업데이트하기
     }
     
     private func configureCollectionView() {
@@ -85,7 +82,7 @@ final class SearchPhotoViewController: UIViewController {
     }
     
     private func configureAction() {
-        searchPhotoView.latestButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
+        searchPhotoView.sortButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
     }
     
     private func save(statisticItem: StatisticsData?){
@@ -154,10 +151,8 @@ final class SearchPhotoViewController: UIViewController {
         sender.isSelected.toggle()
         
         if sender.isSelected {
-            sender.backgroundColor = .customPoint
             viewModel.inputCurrentSortType.value = .latest
         } else {
-            sender.backgroundColor = .clear
             viewModel.inputCurrentSortType.value = .relevant
         }
         

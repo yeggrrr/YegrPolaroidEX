@@ -10,7 +10,7 @@ import SnapKit
 
 final class LikePhotoView: UIView, ViewRepresentable {
     private let filterbuttonView = UIView()
-    let latestButton = UIButton(type: .system)
+    let sortButton = UIButton(type: .system)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
     let noticeLabel = UILabel()
@@ -26,7 +26,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        latestButton.layer.cornerRadius = latestButton.frame.height / 2
+        sortButton.layer.cornerRadius = sortButton.frame.height / 2
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +35,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
     
     func addSubviews() {
         addSubviews([filterbuttonView, collectionView, noticeLabel])
-        filterbuttonView.addSubview(latestButton)
+        filterbuttonView.addSubview(sortButton)
     }
     
     func setConstraints() {
@@ -46,7 +46,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
             $0.height.equalTo(40)
         }
         
-        latestButton.snp.makeConstraints {
+        sortButton.snp.makeConstraints {
             $0.top.equalTo(filterbuttonView.snp.top)
             $0.trailing.equalTo(filterbuttonView.snp.trailing).offset(-5)
             $0.bottom.equalTo(filterbuttonView.snp.bottom).offset(-5)
@@ -68,15 +68,38 @@ final class LikePhotoView: UIView, ViewRepresentable {
         // view
         backgroundColor = .white
         
-        // latestButton
-        var config = UIButton.Configuration.plain()
-        config.title = "최신순"
-        config.image = UIImage(named: "sort")
-        config.baseForegroundColor = .pointDarkColor
-        config.imagePadding = 5
-        latestButton.configuration = config
-        latestButton.layer.borderWidth = 1
-        latestButton.layer.borderColor = UIColor.lightGray.cgColor
+        // sortButton
+        let config = UIButton.Configuration.plain()
+        sortButton.configuration = config
+        sortButton.layer.borderWidth = 1
+        sortButton.layer.borderColor = UIColor.lightGray.cgColor
+        sortButton.setBackgroundColor(color: .white, forState: .normal)
+        sortButton.setBackgroundColor(color: .customPoint, forState: .selected)
+        sortButton.configurationUpdateHandler = { btn in
+            var container = AttributeContainer()
+            container.font = .systemFont(ofSize: 17, weight: .semibold)
+            
+            var configuration = btn.configuration
+            configuration?.image = UIImage(named: "sort")
+            configuration?.imagePadding = 5
+            configuration?.imagePlacement = .leading
+            configuration?.baseForegroundColor = .black
+            
+            switch btn.state {
+            case .selected:
+                container.foregroundColor = .black
+                configuration?.background.backgroundColor = .customPoint
+                configuration?.attributedTitle = AttributedString("최신순", attributes: container)
+            case .highlighted:
+                break
+            default:
+                container.foregroundColor = .black
+                configuration?.background.backgroundColor = .white
+                configuration?.attributedTitle = AttributedString("과거순", attributes: container)
+            }
+            
+            btn.configuration = configuration
+        }
         
         // noticeLabel
         noticeLabel.text = "저장된 사진이 없습니다."

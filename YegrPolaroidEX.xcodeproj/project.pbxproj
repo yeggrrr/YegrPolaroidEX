@@ -315,6 +315,7 @@
 				68FA4D0D2C53B20B00C32BE4 /* SearchViewModel.swift */,
 				68FA4D072C539DAE00C32BE4 /* SearchPhotoView.swift */,
 				68C0A82F2C500709004B812F /* SearchPhotoViewController.swift */,
+				68C0A8962C5235CB004B812F /* DetailViewController.swift */,
 				68FA4D092C53A06300C32BE4 /* Cell */,
 			);
 			path = SearchPhoto;
@@ -391,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				68C0A8982C5249FA004B812F /* DetailView.swift */,
-				68C0A8962C5235CB004B812F /* DetailViewController.swift */,
 				68FA4D042C5382BF00C32BE4 /* Model */,
 			);
 			path = Detail;

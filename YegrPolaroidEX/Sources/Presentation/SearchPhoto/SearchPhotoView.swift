@@ -11,7 +11,7 @@ import SnapKit
 final class SearchPhotoView: UIView, ViewRepresentable {
     let searchBar = UISearchBar()
     private let filterbuttonView = UIView()
-    let latestButton = UIButton()
+    let sortButton = UIButton()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
     let noticeLabel = UILabel()
@@ -27,14 +27,14 @@ final class SearchPhotoView: UIView, ViewRepresentable {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        latestButton.layer.cornerRadius = latestButton.frame.height / 2
+        sortButton.layer.cornerRadius = sortButton.frame.height / 2
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     func addSubviews() {
         addSubviews([searchBar, filterbuttonView, collectionView, noticeLabel])
-        filterbuttonView.addSubview(latestButton)
+        filterbuttonView.addSubview(sortButton)
     }
     
     func setConstraints() {
@@ -50,7 +50,7 @@ final class SearchPhotoView: UIView, ViewRepresentable {
             $0.height.equalTo(40)
         }
         
-        latestButton.snp.makeConstraints {
+        sortButton.snp.makeConstraints {
             $0.top.equalTo(filterbuttonView.snp.top)
             $0.trailing.equalTo(filterbuttonView.snp.trailing).offset(-5)
             $0.bottom.equalTo(filterbuttonView.snp.bottom).offset(-5)
@@ -74,16 +74,38 @@ final class SearchPhotoView: UIView, ViewRepresentable {
         // searchBar
         searchBar.setUI(placeholder: "검색어를 입력해주세요")
         
-        // latestButton
-        var config = UIButton.Configuration.plain()
-        config.title = "최신순"
-        config.image = UIImage(named: "sort")
-        config.baseForegroundColor = .pointDarkColor
-        config.imagePadding = 5
-        latestButton.configuration = config
-        latestButton.layer.borderWidth = 1
-        latestButton.layer.borderColor = UIColor.lightGray.cgColor
-        latestButton.setBackgroundColor(color: .white, forState: .highlighted)
+        // sortButton
+        let config = UIButton.Configuration.plain()
+        sortButton.configuration = config
+        sortButton.layer.borderWidth = 1
+        sortButton.layer.borderColor = UIColor.lightGray.cgColor
+        sortButton.setBackgroundColor(color: .white, forState: .normal)
+        sortButton.setBackgroundColor(color: .customPoint, forState: .selected)
+        sortButton.configurationUpdateHandler = { btn in
+            var container = AttributeContainer()
+            container.font = .systemFont(ofSize: 17, weight: .semibold)
+            
+            var configuration = btn.configuration
+            configuration?.image = UIImage(named: "sort")
+            configuration?.imagePadding = 5
+            configuration?.imagePlacement = .leading
+            configuration?.baseForegroundColor = .black
+            
+            switch btn.state {
+            case .selected:
+                container.foregroundColor = .black
+                configuration?.background.backgroundColor = .customPoint
+                configuration?.attributedTitle = AttributedString("최신순", attributes: container)
+            case .highlighted:
+                break
+            default:
+                container.foregroundColor = .black
+                configuration?.background.backgroundColor = .white
+                configuration?.attributedTitle = AttributedString("관련순", attributes: container)
+            }
+            
+            btn.configuration = configuration
+        }
         
         // noticeLabel
         noticeLabel.text = "검색 결과가 없습니다."
