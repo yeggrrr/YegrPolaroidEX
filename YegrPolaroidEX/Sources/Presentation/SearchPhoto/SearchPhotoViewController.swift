@@ -194,6 +194,7 @@ extension SearchPhotoViewController: UISearchBarDelegate {
         guard let text = viewModel.inputSearchText.value else { return }
         viewModel.seachAPIRequest(query: text, page: page, orderBy: viewModel.inputCurrentSortType.value)
         dismissKeyboard()
+        self.searchPhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

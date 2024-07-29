@@ -135,6 +135,7 @@ final class LikePhotoViewController: UIViewController {
             filterType = .latest
         }
         
+        self.likePhotoView.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         likePhotoView.collectionView.reloadData()
     }
 }
