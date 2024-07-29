@@ -2,7 +2,7 @@
 //  SelectImageView.swift
 //  YegrPolaroidEX
 //
-//  Created by YJ on 7/22/24.
+//  Created by YJ on 7/29/24.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ final class SelectImageView: UIView, ViewRepresentable {
     private let camerView = UIView()
     private let cameraImageView = UIImageView()
     
-    let selectImageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collecionViewLayout())
+    let selectImageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,18 +97,5 @@ final class SelectImageView: UIView, ViewRepresentable {
         
         selectImageCollectionView.backgroundColor = .white
         selectImageCollectionView.isScrollEnabled = false
-    }
-    
-    private static func collecionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        let sectionSpacing: CGFloat = 1
-        let cellSpacing: CGFloat = 1
-        let width = UIScreen.main.bounds.width - (sectionSpacing * 2) - (cellSpacing * 2) - 30
-        layout.itemSize = CGSize(width: width / 4, height: width / 4 )
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = cellSpacing
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)
-        return layout
     }
 }

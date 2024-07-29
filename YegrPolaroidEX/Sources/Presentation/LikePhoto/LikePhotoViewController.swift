@@ -77,14 +77,14 @@ final class LikePhotoViewController: UIViewController {
     }
     
     func updateUI() {
-        sortedList = decSort()
+        sortedList = ascSort()
         tabBarController?.tabBar.isHidden = false
         likePhotoView.collectionView.reloadData()
         likePhotoView.noticeLabel.isHidden = !sortedList.isEmpty
     }
     
     func configureAction() {
-        likePhotoView.latestButton.addTarget(self, action: #selector(latestButtonClicked), for: .touchUpInside)
+        likePhotoView.sortButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
     }
     
     // MARK: Actions
@@ -109,13 +109,15 @@ final class LikePhotoViewController: UIViewController {
         }
     }
     
-    @objc func latestButtonClicked(_ sender: UIButton) {
+    @objc func sortButtonClicked(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
         switch filterType {
         case .latest:
-            sortedList = ascSort()
+            sortedList = decSort()
             filterType = .earliest
         case .earliest:
-            sortedList = decSort()
+            sortedList = ascSort()
             filterType = .latest
         }
         

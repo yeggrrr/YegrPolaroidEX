@@ -14,6 +14,7 @@ final class SelectImageViewController: UIViewController {
     
     // MARK: Properties
     private let viewModel = SelectImageViewModel()
+    let cellSpacing: CGFloat = 0
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -77,5 +78,21 @@ extension SelectImageViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.inputImageName.value = profileImageNameList[indexPath.item]
         bindData()
+    }
+}
+
+extension SelectImageViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width
+        let size = CGSize(width: width / 4, height: width / 4)
+        return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
     }
 }
