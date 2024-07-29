@@ -10,17 +10,19 @@ import SnapKit
 import Kingfisher
 
 final class GoldenHourCell: UICollectionViewCell {
+    // MARK: UI
     let goldenHourCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
     
+    // MARK: Properties
     var goldenHourData: [TopicData] = []
-    
     weak var pushDelegate: PushDelegate?
     weak var itemIndexDelegate: itemIndexDelegate?
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,6 +31,7 @@ final class GoldenHourCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     private func configureUI() {
         // contentView
         contentView.backgroundColor = .white
@@ -66,6 +69,15 @@ extension GoldenHourCell: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
+extension GoldenHourCell: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        itemIndexDelegate?.itemIndex(index: index)
+        pushDelegate?.pushDetailView(sectionType: .goldenHour, index: index)
+    }
+}
+
 // MARK: UICollectionViewDelegateFlowLayout
 extension GoldenHourCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,15 +85,6 @@ extension GoldenHourCell: UICollectionViewDelegateFlowLayout {
         let height = collectionView.frame.height
         let size = CGSize(width: width, height: height)
         return size
-    }
-}
-
-// MARK: UICollectionViewDelegate
-extension GoldenHourCell: UICollectionViewDelegate { 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        itemIndexDelegate?.itemIndex(index: index)
-        pushDelegate?.pushDetailView(sectionType: .goldenHour, index: index)
     }
 }
 

@@ -87,6 +87,14 @@ final class LikePhotoViewController: UIViewController {
         likePhotoView.sortButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
     }
     
+    func ascSort() -> [PhotoRealm] {
+        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate < $1.savedTheDate })
+    }
+    
+    func decSort() -> [PhotoRealm] {
+        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate > $1.savedTheDate })
+    }
+    
     // MARK: Actions
     @objc func likeButtonClicked(_ sender: UIButton) {
         let item = sortedList[sender.tag]
@@ -123,14 +131,6 @@ final class LikePhotoViewController: UIViewController {
         
         likePhotoView.collectionView.reloadData()
     }
-    
-    func ascSort() -> [PhotoRealm] {
-        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate < $1.savedTheDate })
-    }
-    
-    func decSort() -> [PhotoRealm] {
-        PhotoRepository.shared.fetch().sorted(by: { $0.savedTheDate > $1.savedTheDate })
-    }
 }
 
 // MARK: UICollectionViewDataSource
@@ -150,6 +150,18 @@ extension LikePhotoViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
+extension LikePhotoViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = sortedList[indexPath.item]
+        let vc = DetailViewController()
+        vc.viewType = .likeTab
+        vc.realmLikeModel = item
+        vc.index = indexPath.item
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 // MARK: UICollectionViewDelegateFlowLayout
 extension LikePhotoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -164,17 +176,5 @@ extension LikePhotoViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return cellSpacing
-    }
-}
-
-// MARK: UICollectionViewDelegate
-extension LikePhotoViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = sortedList[indexPath.item]
-        let vc = DetailViewController()
-        vc.viewType = .likeTab
-        vc.realmLikeModel = item
-        vc.index = indexPath.item
-        navigationController?.pushViewController(vc, animated: true)
     }
 }

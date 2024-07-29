@@ -9,9 +9,11 @@ import UIKit
 import SnapKit
 
 final class OurTopicView: UIView, ViewRepresentable {
+    // MARK: UI
     private let titleLabel = UILabel()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -20,10 +22,9 @@ final class OurTopicView: UIView, ViewRepresentable {
         configureUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         addSubviews([titleLabel, collectionView])
     }

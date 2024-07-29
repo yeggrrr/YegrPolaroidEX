@@ -9,12 +9,14 @@ import UIKit
 import SnapKit
 
 final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
+    // MARK: UI
     let posterImage = UIImageView()
     private let containerView = UIView()
     private let horizontalStackView = UIStackView()
     let starImage = UIImageView()
     let countLabel = UILabel()
     
+    // MARK: View Life Cycle
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -31,6 +33,7 @@ final class TopicInnerCell: UICollectionViewCell, ViewRepresentable {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         contentView.addSubviews([posterImage, containerView])
         containerView.addSubview(horizontalStackView)

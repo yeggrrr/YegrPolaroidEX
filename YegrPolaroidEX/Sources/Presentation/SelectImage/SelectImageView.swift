@@ -9,14 +9,15 @@ import UIKit
 import SnapKit
 
 final class SelectImageView: UIView, ViewRepresentable {
+    // MARK: UI
     private let profileView = UIView()
     let profileImageView = UIImageView()
     private let profileBorderView = UIView()
     private let camerView = UIView()
     private let cameraImageView = UIImageView()
-    
     let selectImageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         

@@ -9,16 +9,18 @@ import UIKit
 import SnapKit
 
 final class InteriorCell: UICollectionViewCell {
+    // MARK: UI
     let interiorCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
     
+    // MARK: Properties
     var interiorData: [TopicData] = []
-    
     weak var delegate: PushDelegate?
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -27,6 +29,7 @@ final class InteriorCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     private func configureUI() {
         // contentView
         contentView.backgroundColor = .white
@@ -63,6 +66,13 @@ extension InteriorCell: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegate
+extension InteriorCell: UICollectionViewDelegate { 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.pushDetailView(sectionType: .interior, index: indexPath.item)
+    }
+}
+
 // MARK: UICollectionViewDelegateFlowLayout
 extension InteriorCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -70,12 +80,5 @@ extension InteriorCell: UICollectionViewDelegateFlowLayout {
         let height = collectionView.frame.height
         let size = CGSize(width: width, height: height)
         return size
-    }
-}
-
-// MARK: UICollectionViewDelegate
-extension InteriorCell: UICollectionViewDelegate { 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.pushDetailView(sectionType: .interior, index: indexPath.item)
     }
 }

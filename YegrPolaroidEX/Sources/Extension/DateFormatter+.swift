@@ -15,13 +15,6 @@ extension DateFormatter {
         return dateFormat
     }()
     
-    static let fullDateFormatter: DateFormatter = {
-        let dateformat = DateFormatter()
-        dateformat.locale = Locale(identifier: "ko_KR")
-        dateformat.dateFormat = "yyyyMMddHHmmss"
-        return dateformat
-    }()
-    
     static let stringToDateFormatter: ISO8601DateFormatter = {
         let dateFormat = ISO8601DateFormatter()
         return dateFormat
@@ -30,11 +23,6 @@ extension DateFormatter {
     static func dateToContainLetter(dateString: String) -> String {
         guard let date = DateFormatter.stringToDateFormatter.date(from: dateString) else { return "-" }
         return DateFormatter.containLettersDateFormatter.string(from: date)
-    }
-    
-    static func dateToFullDateNum(dateString: String) -> String {
-        guard let date = DateFormatter.stringToDateFormatter.date(from: dateString) else { return "-"}
-        return DateFormatter.fullDateFormatter.string(from: date)
     }
 }
 

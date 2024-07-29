@@ -9,9 +9,11 @@ import UIKit
 import SnapKit
 
 class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
+    // MARK: UI
     let posterImage = UIImageView()
     let likeButton = UIButton()
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -22,6 +24,7 @@ class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         contentView.addSubviews([posterImage, likeButton])
     }

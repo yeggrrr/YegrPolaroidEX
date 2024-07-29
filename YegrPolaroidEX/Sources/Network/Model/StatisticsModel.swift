@@ -8,15 +8,15 @@
 import Foundation
 
 struct StatisticsData: Decodable {
-    let id: String // 사진 ID
+    let id: String
     let downloads: Downloads
     let views: Views
     
     struct Downloads: Decodable {
-        let total: Int // 다운로드 수
+        let total: Int
     }
     
     struct Views: Decodable {
-        let total: Int // 조회수
+        let total: Int
     }
 }

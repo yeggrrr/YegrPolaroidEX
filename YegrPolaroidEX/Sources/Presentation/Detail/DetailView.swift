@@ -34,6 +34,7 @@ final class DetailView: UIView, ViewRepresentable {
     let viewsInfoLabel = UILabel()
     let downloadInfoLabel = UILabel()
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,6 +52,7 @@ final class DetailView: UIView, ViewRepresentable {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         addSubviews([userInfoView, scrollView])
         scrollView.addSubview(contentView)

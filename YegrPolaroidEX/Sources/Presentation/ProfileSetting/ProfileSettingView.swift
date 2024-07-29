@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class ProfileSettingView: UIView, ViewRepresentable {
+    // MARK: UI
     private let profileView = UIView()
     private let profileBorderView = UIView()
     private let camerView = UIView()
@@ -43,6 +44,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
     let completeButton = UIButton()
     let deleteAccountButton = UIButton(type: .system)
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,10 +53,9 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         configureUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         addSubviews([profileView, camerView, profileTabGestureView, nicknameTextField, dividerView, noticeLabel])
         profileView.addSubview(profileBorderView)

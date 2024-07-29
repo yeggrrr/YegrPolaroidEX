@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class APICall {
+final class APICall {
     static let shared = APICall()
     private init() { }
     

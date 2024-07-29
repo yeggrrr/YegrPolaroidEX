@@ -61,6 +61,20 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     // MARK: Functions
+    private func bindData() {
+        viewModel.outputValidationText.bind { value in
+            self.profileSettingView.noticeLabel.text = value
+        }
+        
+        viewModel.outputValidColor.bind { value in
+            self.profileSettingView.noticeLabel.textColor = value ? .systemBlue : .systemPink
+        }
+        
+        viewModel.outputValidationState.bind { _ in
+            self.updateCompleteButton()
+        }
+    }
+    
     private func configureUI() {
         // view
         view.backgroundColor = .white
@@ -95,20 +109,6 @@ final class ProfileSettingViewController: UIViewController {
         
         // completeButton & saveButton
         profileSettingView.completeButton.isEnabled = false
-    }
-    
-    private func bindData() {
-        viewModel.outputValidationText.bind { value in
-            self.profileSettingView.noticeLabel.text = value
-        }
-        
-        viewModel.outputValidColor.bind { value in
-            self.profileSettingView.noticeLabel.textColor = value ? .systemBlue : .systemPink
-        }
-        
-        viewModel.outputValidationState.bind { _ in
-            self.updateCompleteButton()
-        }
     }
     
     private func setInitialData() {

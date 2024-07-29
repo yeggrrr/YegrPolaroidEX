@@ -9,7 +9,7 @@
 import Foundation
 
 final class ProfileSettingViewModel {
-    // MARK: Enun
+    // MARK: Enum
     enum NicknameErrorMessage: String {
         case empty = ""
         case wrongLength = "2글자 이상 10글자 미만으로 설정해주세요"
@@ -28,6 +28,7 @@ final class ProfileSettingViewModel {
     
     var nicknameErrorMessage: NicknameErrorMessage = .empty
     
+    // MARK: Init
     init() {
         inputText.bind { value in
             self.validation(inputText: value)
@@ -38,6 +39,7 @@ final class ProfileSettingViewModel {
         }
     }
     
+    // MARK: Functions
     private func validation(inputText: String) {
         var errors: [NicknameErrorMessage] = []
         

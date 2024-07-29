@@ -8,10 +8,10 @@
 import Foundation
 
 struct TopicData: Decodable {
-    let id: String // 사진 ID
-    let createdAt: String // 사진 게시일
-    let width: Int // 해상도
-    let height: Int // 해상도
+    let id: String
+    let createdAt: String
+    let width: Int
+    let height: Int
     let color: String
     let urls: Urls
     let likes: Int
@@ -29,12 +29,12 @@ struct TopicData: Decodable {
     }
     
     struct Urls: Decodable {
-        let raw: String // 원본 이미지
-        let small: String // 작은 이미지
+        let raw: String
+        let small: String
     }
     
     struct User: Decodable {
-        let name: String // 사진 작가
+        let name: String
         let profileImage: ProfileImage
         
         enum CodingKeys: String, CodingKey {
@@ -43,7 +43,7 @@ struct TopicData: Decodable {
         }
         
         struct ProfileImage: Decodable {
-            let medium: String // 사진 작가 프로필 이미지
+            let medium: String
         }
     }
 }

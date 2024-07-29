@@ -30,7 +30,7 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
-    // 커스텀 toastAlert
+    // Custom ToastAlert
     func showToast(message : String) {
         let toastLabel = UILabel(
             frame: CGRect(x: self.view.frame.size.width / 2 - 160,
@@ -54,7 +54,7 @@ extension UIViewController {
         })
     }
     
-    // UIImage를 비동기로 가져오기
+    // UIImage 비동기로 가져오기
     func fetchImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let url = URL(string: urlString) else {
             print("Invalid URL")

@@ -10,16 +10,18 @@ import SnapKit
 import Kingfisher
 
 final class BusinessCell: UICollectionViewCell {
+    // MARK: UI
     let businessCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
     
+    // MARK: Properties
     var businessData: [TopicData] = []
-    
     weak var delegate: PushDelegate?
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,6 +30,7 @@ final class BusinessCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     private func configureUI() {
         // contentView
         contentView.backgroundColor = .white

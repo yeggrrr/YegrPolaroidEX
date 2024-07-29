@@ -10,11 +10,11 @@ import UIKit
 final class SelectImageViewController: UIViewController {
     // MARK: UI
     private let selectImageView = SelectImageView()
-    private let profileImageNameList = Array(0...11).map{ "profile_\($0)" }
+    private let cellSpacing: CGFloat = 0
     
     // MARK: Properties
+    private let profileImageNameList = Array(0...11).map{ "profile_\($0)" }
     private let viewModel = SelectImageViewModel()
-    let cellSpacing: CGFloat = 0
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -81,6 +81,7 @@ extension SelectImageViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension SelectImageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width

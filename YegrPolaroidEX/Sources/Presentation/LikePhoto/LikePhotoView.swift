@@ -9,12 +9,13 @@ import UIKit
 import SnapKit
 
 final class LikePhotoView: UIView, ViewRepresentable {
+    // MARK: UI
     private let filterbuttonView = UIView()
     let sortButton = UIButton(type: .system)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-    
     let noticeLabel = UILabel()
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,10 +30,9 @@ final class LikePhotoView: UIView, ViewRepresentable {
         sortButton.layer.cornerRadius = sortButton.frame.height / 2
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         addSubviews([filterbuttonView, collectionView, noticeLabel])
         filterbuttonView.addSubview(sortButton)

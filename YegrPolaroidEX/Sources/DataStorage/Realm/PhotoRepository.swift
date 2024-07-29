@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class PhotoRepository: PhotoRepositoryType {
+final class PhotoRepository: PhotoRepositoryType {
     static let shared = PhotoRepository()
     
     private let realm = try! Realm()

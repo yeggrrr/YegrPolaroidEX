@@ -9,13 +9,14 @@ import UIKit
 import SnapKit
 
 final class SearchPhotoView: UIView, ViewRepresentable {
+    // MARK: UI
     let searchBar = UISearchBar()
     private let filterbuttonView = UIView()
     let sortButton = UIButton()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-    
     let noticeLabel = UILabel()
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,6 +33,7 @@ final class SearchPhotoView: UIView, ViewRepresentable {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     func addSubviews() {
         addSubviews([searchBar, filterbuttonView, collectionView, noticeLabel])
         filterbuttonView.addSubview(sortButton)

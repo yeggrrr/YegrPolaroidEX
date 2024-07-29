@@ -9,19 +9,20 @@ import UIKit
 import SnapKit
 
 final class OurTopicHeaderView: UICollectionReusableView {
+    // MARK: UI
     private let containerView = UIView()
     let titleLabel = UILabel()
     
+    // MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setUpHeaderView()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
+    // MARK: Functions
     private func setUpHeaderView() {
         addSubview(containerView)
         containerView.addSubview(titleLabel)

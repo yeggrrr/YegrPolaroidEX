@@ -42,6 +42,7 @@ final class OurTopicViewController: UIViewController {
         configureUI()
     }
     
+    // MARK: Functions
     private func bindData() {
         viewModel.inputViewDidLoadTrigger.value = ()
         
@@ -86,6 +87,7 @@ final class OurTopicViewController: UIViewController {
         ourTopicView.collectionView.showsVerticalScrollIndicator = false
     }
     
+    // MARK: Actions
     @objc func settingButtonClicked() {
         let vc = ProfileSettingViewController()
         vc.viewType = .update
@@ -152,20 +154,6 @@ extension OurTopicViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
-extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width: CGFloat = collectionView.frame.width
-        return CGSize(width: width, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width
-        let size = CGSize(width: width, height: 230)
-        return size
-    }
-}
-
 // MARK: UICollectionViewDelegate
 extension OurTopicViewController: UICollectionViewDelegate { }
 
@@ -200,6 +188,21 @@ extension OurTopicViewController: PushDelegate {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
+extension OurTopicViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        return CGSize(width: width, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width
+        let size = CGSize(width: width, height: 230)
+        return size
+    }
+}
+
+// MARK: itemIndexDelegate
 extension OurTopicViewController: itemIndexDelegate {
     func itemIndex(index: Int) {
         viewModel.inputGoldenHourDetailData.value = viewModel.inputGoldenHourData.value[index]
