@@ -38,7 +38,6 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PhotoRepository.shared.findFilePath() // TODO: 나중에 지우기
         configureUI()
         configureAction()
         

@@ -217,14 +217,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		68C0A7D72C4E52DE004B812F /* UserDefaults */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */,
-			);
-			path = UserDefaults;
-			sourceTree = "<group>";
-		};
 		68C0A7DD2C4E5523004B812F /* Observable */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,7 +350,6 @@
 			children = (
 				68C0A86D2C513290004B812F /* Model */,
 				68C0A86F2C51329F004B812F /* APIRequest */,
-				68C0A86E2C513298004B812F /* APICall */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -373,18 +364,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		68C0A86E2C513298004B812F /* APICall */ = {
-			isa = PBXGroup;
-			children = (
-				68C0A8722C513FCB004B812F /* APICall.swift */,
-			);
-			path = APICall;
-			sourceTree = "<group>";
-		};
 		68C0A86F2C51329F004B812F /* APIRequest */ = {
 			isa = PBXGroup;
 			children = (
 				68C0A8702C5132EF004B812F /* APIRequest.swift */,
+				68C0A8722C513FCB004B812F /* APICall.swift */,
 			);
 			path = APIRequest;
 			sourceTree = "<group>";
@@ -402,6 +386,7 @@
 		68C0A8952C523551004B812F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				681043932C57AE3300FE354C /* ButtonStyle.swift */,
 				68C0A7FA2C4F6D03004B812F /* OnBoading */,
 				68C0A7FB2C4F6D0E004B812F /* ProfileSetting */,
 				68C0A7FC2C4F6D18004B812F /* SelectImage */,
@@ -410,7 +395,6 @@
 				68C0A82C2C50069A004B812F /* LikePhoto */,
 				68C0A8942C5234FE004B812F /* Detail */,
 				68C0A8272C500586004B812F /* TabBar */,
-				681043932C57AE3300FE354C /* ButtonStyle.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -434,8 +418,9 @@
 		68FA4D182C553A1700C32BE4 /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
+				68FA4D232C555A1900C32BE4 /* ImageManager.swift */,
+				68C0A7D82C4E52EE004B812F /* UserDefaultsManager.swift */,
 				68FA4D192C553A3900C32BE4 /* Realm */,
-				68C0A7D72C4E52DE004B812F /* UserDefaults */,
 			);
 			path = DataStorage;
 			sourceTree = "<group>";
@@ -445,7 +430,6 @@
 			children = (
 				68FA4D1E2C553BEF00C32BE4 /* PhotoRealm.swift */,
 				68FA4D1C2C553B4F00C32BE4 /* PhotoRepository.swift */,
-				68FA4D232C555A1900C32BE4 /* ImageManager.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
