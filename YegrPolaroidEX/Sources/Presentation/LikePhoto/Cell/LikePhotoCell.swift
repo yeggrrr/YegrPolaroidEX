@@ -22,6 +22,12 @@ class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
         configureUI()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        likeButton.layer.cornerRadius = likeButton.frame.width / 2
+    }
+    
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     // MARK: Functions
@@ -44,8 +50,9 @@ class LikePhotoCell: UICollectionViewCell, ViewRepresentable {
     func configureUI() {
         likeButton.isSelected = true
         
+        likeButton.backgroundColor = .white
         likeButton.setImage(
-            UIImage(named: "likeCircleInactive")?.withTintColor(.white, renderingMode: .alwaysOriginal),
+            UIImage(named: "likeCircleInactive")?.withTintColor(.incompleteColor, renderingMode: .alwaysOriginal),
             for: .normal)
         likeButton.setImage(
             UIImage(named: "likeCircle")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),

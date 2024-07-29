@@ -78,6 +78,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
         sortButton.configurationUpdateHandler = { btn in
             var container = AttributeContainer()
             container.font = .systemFont(ofSize: 17, weight: .semibold)
+            container.foregroundColor = .black
             
             var configuration = btn.configuration
             configuration?.image = UIImage(named: "sort")
@@ -85,18 +86,17 @@ final class LikePhotoView: UIView, ViewRepresentable {
             configuration?.imagePlacement = .leading
             configuration?.baseForegroundColor = .black
             
-            switch btn.state {
+            let buttonStyle = switch btn.state {
             case .selected:
-                container.foregroundColor = .black
-                configuration?.background.backgroundColor = .customPoint
-                configuration?.attributedTitle = AttributedString("최신순", attributes: container)
-            case .highlighted:
-                break
+                ButtonStyle(text: "최신순", color: .customPoint)
+            case .normal:
+                ButtonStyle(text: "과거순", color: .white)
             default:
-                container.foregroundColor = .black
-                configuration?.background.backgroundColor = .white
-                configuration?.attributedTitle = AttributedString("과거순", attributes: container)
+                ButtonStyle(text: "과거순", color: .white)
             }
+            
+            configuration?.background.backgroundColor = buttonStyle.color
+            configuration?.attributedTitle = AttributedString(buttonStyle.text, attributes: container)
             
             btn.configuration = configuration
         }

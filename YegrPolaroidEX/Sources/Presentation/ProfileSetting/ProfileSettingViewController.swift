@@ -266,7 +266,6 @@ final class ProfileSettingViewController: UIViewController {
     @objc func saveButtonClicked() {
         if viewModel.nicknameErrorMessage == .noError {
             if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
-                print("저장됨!")
                 UserDefaultsManager.save(value: userTempProfileImageName, key: .profileImage)
                 UserDefaultsManager.userTempProfileImageName = nil
             }

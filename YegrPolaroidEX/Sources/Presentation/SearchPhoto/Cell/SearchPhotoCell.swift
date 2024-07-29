@@ -31,6 +31,7 @@ final class SearchPhotoCell: UICollectionViewCell, ViewRepresentable {
         super.draw(rect)
         
         containerView.layer.cornerRadius = containerView.frame.height / 2
+        likeButton.layer.cornerRadius = likeButton.frame.height / 2
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -102,9 +103,9 @@ final class SearchPhotoCell: UICollectionViewCell, ViewRepresentable {
         let imageURL = URL(string: item.urls.small)
         posterImage.kf.setImage(with: imageURL)
         countLabel.text = item.likes.formatted()
-        
+        likeButton.backgroundColor = .white
         likeButton.setImage(
-            UIImage(named: "likeCircleInactive")?.withTintColor(.white, renderingMode: .alwaysOriginal),
+            UIImage(named: "likeCircleInactive")?.withTintColor(.incompleteColor, renderingMode: .alwaysOriginal),
             for: .normal)
         likeButton.setImage(
             UIImage(named: "likeCircle")?.withTintColor(.pointDarkColor, renderingMode: .alwaysOriginal),

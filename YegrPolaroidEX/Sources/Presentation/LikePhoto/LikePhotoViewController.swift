@@ -77,8 +77,14 @@ final class LikePhotoViewController: UIViewController {
     }
     
     func updateUI() {
-        sortedList = ascSort()
         tabBarController?.tabBar.isHidden = false
+        
+        if likePhotoView.sortButton.isSelected {
+            sortedList = decSort()
+        } else {
+            sortedList = ascSort()
+        }
+        
         likePhotoView.collectionView.reloadData()
         likePhotoView.noticeLabel.isHidden = !sortedList.isEmpty
     }
