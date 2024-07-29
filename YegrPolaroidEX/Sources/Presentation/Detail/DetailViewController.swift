@@ -134,7 +134,7 @@ final class DetailViewController: UIViewController {
         }
         
         if let searchViewModel {
-            searchViewModel.statisticCallRequest(imageID: model.imageID)
+            searchViewModel.statisticCallRequest(imageID: model.imageID, index: index)
         }
     }
     

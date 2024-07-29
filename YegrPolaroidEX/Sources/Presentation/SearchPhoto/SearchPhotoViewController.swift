@@ -18,8 +18,6 @@ final class SearchPhotoViewController: UIViewController {
     let cellSpacing: CGFloat = 5
     private var page = 1
     var index: Int?
-    var liked: Bool?
-    var likedItemIndex: [Int] = []
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -38,6 +36,7 @@ final class SearchPhotoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        bindData()
         tabBarController?.tabBar.isHidden = false
         searchPhotoView.collectionView.reloadData()
     }
@@ -53,7 +52,7 @@ final class SearchPhotoViewController: UIViewController {
         }
         
         viewModel.inputStatisticData.bind { statisticData in
-            self.save(statisticItem: statisticData)
+            self.save(statisticItem: statisticData, index: self.viewModel.index)
         }
     }
     
@@ -86,7 +85,7 @@ final class SearchPhotoViewController: UIViewController {
         searchPhotoView.sortButton.addTarget(self, action: #selector(sortButtonClicked), for: .touchUpInside)
     }
     
-    private func save(statisticItem: StatisticsData?){
+    private func save(statisticItem: StatisticsData?, index: Int?) {
         guard let statisticItem = statisticItem else { return }
         guard let index = index else { return }
         let item = viewModel.inputSearchData.value[index]
@@ -162,14 +161,13 @@ final class SearchPhotoViewController: UIViewController {
     
     @objc func likeButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        liked = sender.isSelected
         
         let item = viewModel.inputSearchData.value[sender.tag]
         
         if sender.isSelected {
             // 저장
             index = sender.tag
-            viewModel.statisticCallRequest(imageID: item.id)
+            viewModel.statisticCallRequest(imageID: item.id, index: index)
         } else {
             // 삭제
             let matchItem = PhotoRepository.shared.fetch().first {

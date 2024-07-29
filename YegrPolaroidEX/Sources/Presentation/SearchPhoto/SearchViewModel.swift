@@ -17,7 +17,7 @@ final class SearchViewModel {
     var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
     
     var isDataCountZero: Observable<Bool> = Observable(false)
-    
+    var index: Int?
     
     init() {
         inputCurrentSortType.bind { sortType in
@@ -28,25 +28,21 @@ final class SearchViewModel {
     
     func seachAPIRequest(query: String, page: Int, orderBy: OrderBy) {
         APICall.shared.callRequest(api: .search(query: query, page: page, orderBy: orderBy), model: SearchModel.self) { result in
-            if result.results.count < 1 {
-                self.isDataCountZero.value = true
-                self.inputSearchData.value = result.results
-                self.inputTotalCount.value = result.total
-            } else {
-                self.isDataCountZero.value = false
-                self.inputSearchData.value = result.results
-                self.inputTotalCount.value = result.total
-            }
+            self.inputSearchData.value = result.results
+            self.inputTotalCount.value = result.total
+            self.isDataCountZero.value = result.results.count < 1
         } errorHandler: { error in
             print("Error 발생!!", error)
         }
     }
     
-    func statisticCallRequest(imageID: String) {
+    func statisticCallRequest(imageID: String, index: Int?) {
         // statistic
         APICall.shared.callRequest(api: .statistics(imageID: imageID), model: StatisticsData.self) { result in
+            self.index = index
             self.inputStatisticData.value = result
         } errorHandler: { error in
+            self.index = nil
             print("Error 발생!!", error)
         }
     }
