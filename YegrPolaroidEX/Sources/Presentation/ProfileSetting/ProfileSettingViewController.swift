@@ -100,10 +100,10 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.nicknameTextField.becomeFirstResponder()
         
         if let userTempProfileImageName = UserDefaultsManager.userTempProfileImageName {
-            /// 이미지 선택 화면을 진입한 적이 있는 경우
+            // 이미지 선택 화면을 진입한 적이 있는 경우
             profileSettingView.profileImageView.image = UIImage(named: userTempProfileImageName)
         } else {
-            /// 프로필 설정화면에 갓 진입한 경우
+            // 프로필 설정화면에 갓 진입한 경우
             profileSettingView.profileImageView.image = UIImage(named: UserDefaultsManager.fetchProfileImage())
         }
         
@@ -129,7 +129,7 @@ final class ProfileSettingViewController: UIViewController {
             let udDecisionMaking = UserDefaultsManager.fetchDecisionMaking()
             let udNeedForStructure = UserDefaultsManager.fetchNeedForStructure()
             
-            /// 각각 저장된 MBTI String값에 따라서 대입
+            // 각각 저장된 MBTI String값에 따라서 대입
             if udSourceOfEnergy == "E" {
                 sourceOfEnergy = (true, false)
                 profileSettingView.eButton.isSelected = true
@@ -233,7 +233,7 @@ final class ProfileSettingViewController: UIViewController {
         profileSettingView.nicknameTextField.resignFirstResponder()
     }
     
-    /// Return 클릭 시 keyboard dismiss
+    // Return 클릭 시 keyboard dismiss
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -247,16 +247,16 @@ final class ProfileSettingViewController: UIViewController {
     }
     
     @objc func completeButtonClicked() {
-        /// 닉네임 저장
+        // 닉네임 저장
         guard let userName = profileSettingView.nicknameTextField.text else { return }
         UserDefaultsManager.save(value: userName, key: .name)
         
-        /// 이미지 저장
+        // 이미지 저장
         guard let userImage = UserDefaultsManager.userTempProfileImageName else { return }
         UserDefaultsManager.save(value: userImage, key: .profileImage)
         UserDefaultsManager.userTempProfileImageName = nil
         
-        /// MBTI 저장
+        // MBTI 저장
         saveMBTI()
         
         UserDefaultsManager.save(value: true, key: .isExistUser)
@@ -379,7 +379,7 @@ extension ProfileSettingViewController: UITextFieldDelegate {
         self.viewModel.inputValidationState.value = ()
     }
     
-    /// 화면 터치 시, keyboard dismiss
+    // 화면 터치 시, keyboard dismiss
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
