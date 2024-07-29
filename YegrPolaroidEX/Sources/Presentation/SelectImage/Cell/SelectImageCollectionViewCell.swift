@@ -59,7 +59,7 @@ final class SelectImageCollectionViewCell: UICollectionViewCell {
         
         if imageName == selectedImageName {
             contentView.layer.opacity = 1
-            profileBorderView.layer.borderColor = UIColor.customPoint.cgColor
+            profileBorderView.layer.borderColor = UIColor.customPointColor.cgColor
             profileBorderView.layer.borderWidth = 3
         } else {
             contentView.layer.opacity = 0.5

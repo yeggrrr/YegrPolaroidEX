@@ -155,7 +155,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         profileView.backgroundColor = .white
         
         profileBorderView.layer.borderWidth = 3
-        profileBorderView.layer.borderColor = UIColor.customPoint.cgColor
+        profileBorderView.layer.borderColor = UIColor.customPointColor.cgColor
         
         profileBorderView.layoutIfNeeded()
         profileBorderView.layer.cornerRadius = profileBorderView.frame.width / 2
@@ -164,7 +164,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         profileImageView.contentMode = .scaleAspectFill
         
         camerView.layer.cornerRadius = 20
-        camerView.backgroundColor = .customPoint
+        camerView.backgroundColor = .customPointColor
         
         cameraImageView.image = UIImage(systemName: "camera.fill")
         cameraImageView.tintColor = .white
@@ -173,7 +173,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         nicknameTextField.setTextField(placeholderText: "닉네임을 입력해주세요 :)")
         
         noticeLabel.text = ""
-        noticeLabel.textColor = .customPoint
+        noticeLabel.textColor = .customPointColor
         noticeLabel.font = .systemFont(ofSize: 13)
         noticeLabel.textAlignment = .left
         
@@ -216,7 +216,7 @@ final class ProfileSettingView: UIView, ViewRepresentable {
     
     func updateButtonColor() {
         [eButton, iButton, sButton, nButton, tButton, fButton, jButton, pButton].forEach { btn in
-            btn.backgroundColor = btn.isSelected ? .customPoint : .clear
+            btn.backgroundColor = btn.isSelected ? .customPointColor : .clear
             btn.isSelected ? btn.setTitleColor(.white, for: .normal) : btn.setTitleColor(.incompleteColor, for: .normal)
         }
     }

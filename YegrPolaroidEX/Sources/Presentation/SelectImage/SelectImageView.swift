@@ -84,13 +84,13 @@ final class SelectImageView: UIView, ViewRepresentable {
         profileView.backgroundColor = .white
         
         profileBorderView.layer.borderWidth = 3
-        profileBorderView.layer.borderColor = UIColor.customPoint.cgColor
+        profileBorderView.layer.borderColor = UIColor.customPointColor.cgColor
         profileBorderView.layer.opacity = 1
         
         profileImageView.contentMode = .scaleAspectFill
         
         camerView.layer.cornerRadius = 20
-        camerView.backgroundColor = .customPoint
+        camerView.backgroundColor = .customPointColor
         
         cameraImageView.image = UIImage(systemName: "camera.fill")
         cameraImageView.tintColor = .white

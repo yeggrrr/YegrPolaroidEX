@@ -74,7 +74,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
         sortButton.layer.borderWidth = 1
         sortButton.layer.borderColor = UIColor.lightGray.cgColor
         sortButton.setBackgroundColor(color: .white, forState: .normal)
-        sortButton.setBackgroundColor(color: .customPoint, forState: .selected)
+        sortButton.setBackgroundColor(color: .customPointColor, forState: .selected)
         sortButton.configurationUpdateHandler = { btn in
             var container = AttributeContainer()
             container.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -88,7 +88,7 @@ final class LikePhotoView: UIView, ViewRepresentable {
             
             let buttonStyle = switch btn.state {
             case .selected:
-                ButtonStyle(text: "최신순", color: .customPoint)
+                ButtonStyle(text: "최신순", color: .customPointColor)
             case .normal:
                 ButtonStyle(text: "과거순", color: .white)
             default:

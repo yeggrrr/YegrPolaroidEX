@@ -60,7 +60,7 @@ final class OurTopicViewController: UIViewController {
         
         // navigaion
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .customPoint
+        navigationItem.backBarButtonItem?.tintColor = .customPointColor
         
         // rightBarButtonItem
         let selectedImage = UserDefaultsManager.fetchProfileImage()

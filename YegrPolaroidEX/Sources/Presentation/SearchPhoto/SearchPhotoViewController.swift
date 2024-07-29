@@ -61,10 +61,10 @@ final class SearchPhotoViewController: UIViewController {
         // navigation
         navigationItem.title = "SEARCH PHOTO"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .customPoint
+        navigationItem.backBarButtonItem?.tintColor = .customPointColor
         
         navigationController?.navigationBar.layer.masksToBounds = false
-        navigationController?.navigationBar.layer.shadowColor = UIColor.customPoint.cgColor
+        navigationController?.navigationBar.layer.shadowColor = UIColor.customPointColor.cgColor
         navigationController?.navigationBar.layer.shadowOpacity = 0.8
         navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2)
         navigationController?.navigationBar.layer.shadowRadius = 2

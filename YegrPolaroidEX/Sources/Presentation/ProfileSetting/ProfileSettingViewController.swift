@@ -85,7 +85,7 @@ final class ProfileSettingViewController: UIViewController {
         // navigation
         navigationItem.title = "PROFILE SETTING"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .customPoint
+        navigationItem.backBarButtonItem?.tintColor = .customPointColor
         
         saveButton.setTitle("저장", for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
@@ -195,7 +195,7 @@ final class ProfileSettingViewController: UIViewController {
         if nicknameState && eiState && nsState && tfState && fpState {
             saveButton.isEnabled = true
             profileSettingView.completeButton.isEnabled = true
-            profileSettingView.completeButton.backgroundColor = .customPoint
+            profileSettingView.completeButton.backgroundColor = .customPointColor
         } else {
             saveButton.isEnabled = false
             profileSettingView.completeButton.isEnabled = false

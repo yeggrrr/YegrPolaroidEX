@@ -61,11 +61,11 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationItem.backBarButtonItem?.tintColor = .customPoint
+        navigationItem.backBarButtonItem?.tintColor = .customPointColor
         
         logoLabel.text = "HELLO ◡̎\nMY MEMORIES"
         logoLabel.setUI(
-            txtColor: .customPoint,
+            txtColor: .customPointColor,
             txtAlignment: .left,
             fontStyle: .systemFont(ofSize: 35, weight: .black),
             numOfLines: 2)
@@ -80,7 +80,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
             fontStyle: .systemFont(ofSize: 20, weight: .heavy),
             numOfLines: 1)
         
-        startButton.setPointUI(title: "시작하기", bgColor: .customPoint)
+        startButton.setPointUI(title: "시작하기", bgColor: .customPointColor)
     }
     
     private func configureAction() {
