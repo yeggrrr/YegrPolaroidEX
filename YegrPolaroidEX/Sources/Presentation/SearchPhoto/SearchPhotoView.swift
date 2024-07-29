@@ -60,7 +60,7 @@ final class SearchPhotoView: UIView, ViewRepresentable {
         
         collectionView.snp.makeConstraints {
             $0.top.equalTo(filterbuttonView.snp.bottom)
-            $0.horizontalEdges.bottom.equalTo(safeArea)
+            $0.horizontalEdges.bottom.equalTo(safeArea).inset(5)
         }
         
         noticeLabel.snp.makeConstraints {
