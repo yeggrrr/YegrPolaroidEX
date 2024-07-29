@@ -19,6 +19,7 @@ final class SearchPhotoViewController: UIViewController {
     private var page = 1
     var index: Int?
     var liked: Bool?
+    var likedItemIndex: [Int] = []
     
     // MARK: View Life Cycle
     override func loadView() {
@@ -128,10 +129,10 @@ final class SearchPhotoViewController: UIViewController {
         // FileManager 저장
         let indexItem = IndexPath(item: index, section: 0)
         if let cell = searchPhotoView.collectionView.cellForItem(at: indexItem) as? SearchPhotoCell,
-           // posterImage
+           // poster
            let image = cell.posterImage.image {
             saveImageToDocumentDirectory(directoryType: .poster, imageName: model.imageID, image: image)
-            // profileImage
+            // profile
             fetchImage(from: model.profileImage) { image in
                 if let image = image {
                     self.saveImageToDocumentDirectory(directoryType: .profile, imageName: model.imageID, image: image)
@@ -161,16 +162,16 @@ final class SearchPhotoViewController: UIViewController {
     
     @objc func likeButtonClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
-        
         liked = sender.isSelected
         
         let item = viewModel.inputSearchData.value[sender.tag]
         
         if sender.isSelected {
+            // 저장
             index = sender.tag
             viewModel.statisticCallRequest(imageID: item.id)
         } else {
-            // 좋아요 목록(realm)에서 삭제
+            // 삭제
             let matchItem = PhotoRepository.shared.fetch().first {
                 $0.imageID == item.id
             }
@@ -214,29 +215,14 @@ extension SearchPhotoViewController: UICollectionViewDataSource {
         cell.configureCell(item: item)
         cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
         cell.likeButton.tag = indexPath.item
+        cell.likeButton.isSelected = PhotoRepository.shared.fetch().contains { $0.imageID == item.id }
+        
         return cell
     }
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
-extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width - cellSpacing
-        let size = CGSize(width: width / 2, height: 250)
-        return size
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return cellSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return cellSpacing
-    }
-}
-
 // MARK: UICollectionViewDelegate
-extension SearchPhotoViewController: UICollectionViewDelegate { 
+extension SearchPhotoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = viewModel.inputSearchData.value[indexPath.item]
         
@@ -255,6 +241,23 @@ extension SearchPhotoViewController: UICollectionViewDelegate {
             downloadInfo: nil,
             savedTheDate: Date())
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+extension SearchPhotoViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width - cellSpacing
+        let size = CGSize(width: width / 2, height: 250)
+        return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
     }
 }
 
