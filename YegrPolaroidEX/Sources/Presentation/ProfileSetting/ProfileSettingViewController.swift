@@ -281,6 +281,14 @@ final class ProfileSettingViewController: UIViewController {
     
     @objc func deleteAccountButtonClicked() {
         showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?") { _ in
+            
+            for savedItem in PhotoRepository.shared.fetch() {
+                self.deleteImageFromDucumentDirectory(directoryType: .poster, imageName: savedItem.imageID)
+                self.deleteImageFromDucumentDirectory(directoryType: .profile, imageName: savedItem.imageID)
+            }
+            
+            PhotoRepository.shared.deleteAll()
+            
             for key in UserDefaults.standard.dictionaryRepresentation().keys {
                 UserDefaults.standard.removeObject(forKey: key.description)
             }

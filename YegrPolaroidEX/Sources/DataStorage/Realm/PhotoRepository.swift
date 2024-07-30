@@ -54,6 +54,16 @@ final class PhotoRepository: PhotoRepositoryType {
             print("Failed to delete: \(error)")
         }
     }
+    
+    func deleteAll() {
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            print("Failed to deleteAll: \(error)")
+        }
+    }
 }
 
 protocol PhotoRepositoryType {
