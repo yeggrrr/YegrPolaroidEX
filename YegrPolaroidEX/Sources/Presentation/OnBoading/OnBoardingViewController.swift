@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class OnBoardingViewController: UIViewController, ViewRepresentable {
     // MARK: UI
@@ -15,6 +17,10 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
     private let nameLabel = UILabel()
     private let startButton = UIButton()
     
+    // MARK: Properties
+    private let disposeBag = DisposeBag()
+    private let viewModel = OnBoadingViewModel()
+    
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +28,7 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
         addSubviews()
         setConstraints()
         configureUI()
-        configureAction()
+        bind()
     }
     
     // MARK: Functions
@@ -58,39 +64,60 @@ final class OnBoardingViewController: UIViewController, ViewRepresentable {
         }
     }
     
+    func bind() {
+        let input = OnBoadingViewModel.Input(startButtonTap: startButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.logoText
+            .bind(with: self) { owner, value in
+                owner.logoLabel.text = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.posterImageName
+            .bind(with: self) { owner, value in
+                owner.posterImageView.image = UIImage(named: value)
+            }
+            .disposed(by: disposeBag)
+        
+        output.nameText
+            .bind(with: self) { owner, value in
+                owner.nameLabel.text = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.startButtonText
+            .bind(with: self) { owner, value in
+                owner.startButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
+        output.startButtonTap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(ProfileSettingViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .customPointColor
         
-        logoLabel.text = "HELLO ◡̎\nMY MEMORIES"
         logoLabel.setUI(
             txtColor: .customPointColor,
             txtAlignment: .left,
             fontStyle: .systemFont(ofSize: 35, weight: .black),
             numOfLines: 2)
         
-        posterImageView.image = UIImage(named: "launchPosterImage")
-        posterImageView.contentMode = .scaleAspectFill
-        
-        nameLabel.text = "김예진"
         nameLabel.setUI(
             txtColor: .black,
             txtAlignment: .center,
             fontStyle: .systemFont(ofSize: 20, weight: .heavy),
             numOfLines: 1)
         
-        startButton.setPointUI(title: "시작하기", bgColor: .customPointColor)
-    }
-    
-    private func configureAction() {
-        startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
-    }
-    
-    // MARK: Actions
-    @objc func startButtonClicked() {
-        let vc = ProfileSettingViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        posterImageView.contentMode = .scaleAspectFill
+        startButton.setPointUI(bgColor: .customPointColor)
     }
 }
 
