@@ -8,8 +8,7 @@
 import UIKit
 
 extension UIButton {
-    func setPointUI(title: String, bgColor: UIColor) {
-        setTitle(title, for: .normal)
+    func setPointUI(bgColor: UIColor) {
         setTitleColor(.white, for: .normal)
         titleLabel?.font = .systemFont(ofSize: 17, weight: .heavy)
         backgroundColor = bgColor
