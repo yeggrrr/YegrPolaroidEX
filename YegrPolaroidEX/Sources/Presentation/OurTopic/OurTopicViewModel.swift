@@ -10,19 +10,19 @@ import Alamofire
 
 final class OurTopicViewModel {
     // Trigger
-    var inputViewDidLoadTrigger: Observable<Void?> = Observable(nil)
-    var inputCallRequestCompleteTrigger: Observable<Void?> = Observable(nil)
+    var inputViewDidLoadTrigger: CustomObservable<Void?> = CustomObservable(nil)
+    var inputCallRequestCompleteTrigger: CustomObservable<Void?> = CustomObservable(nil)
     
     // input
-    var inputGoldenHourData: Observable<[TopicData]> = Observable([])
-    var inputBusinessData: Observable<[TopicData]> = Observable([])
-    var inputInteriorData: Observable<[TopicData]> = Observable([])
-    var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
-    var inputGoldenHourDetailData: Observable<TopicData?> = Observable(nil)
-    var inputGolendHourId: Observable<String> = Observable("")
+    var inputGoldenHourData: CustomObservable<[TopicData]> = CustomObservable([])
+    var inputBusinessData: CustomObservable<[TopicData]> = CustomObservable([])
+    var inputInteriorData: CustomObservable<[TopicData]> = CustomObservable([])
+    var inputStatisticData: CustomObservable<StatisticsData?> = CustomObservable(nil)
+    var inputGoldenHourDetailData: CustomObservable<TopicData?> = CustomObservable(nil)
+    var inputGolendHourId: CustomObservable<String> = CustomObservable("")
     
     // output
-    var outputGoldenHourData: Observable<StatisticsData?> = Observable(nil)
+    var outputGoldenHourData: CustomObservable<StatisticsData?> = CustomObservable(nil)
     
     init() {
         transform()

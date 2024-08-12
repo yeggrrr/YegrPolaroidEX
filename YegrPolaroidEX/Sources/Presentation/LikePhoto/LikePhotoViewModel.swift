@@ -9,9 +9,9 @@ import Foundation
 
 final class LikePhotoViewModel {
     // input
-    var inputLikeCountStateTrigger: Observable<Void?> = Observable(nil)
+    var inputLikeCountStateTrigger: CustomObservable<Void?> = CustomObservable(nil)
     // output
-    var outputLikeCountStateTrigger: Observable<Void?> = Observable(nil)
+    var outputLikeCountStateTrigger: CustomObservable<Void?> = CustomObservable(nil)
     
     init() {
         inputLikeCountStateTrigger.bind { _ in

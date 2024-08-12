@@ -8,7 +8,7 @@
 import Foundation
 
 final class SelectImageViewModel {
-    var inputImageName = Observable("")
+    var inputImageName = CustomObservable("")
     
     init() {
         inputImageName.bind { _ in

@@ -10,13 +10,13 @@ import Alamofire
 
 final class SearchViewModel {    
     // input
-    var inputSearchData: Observable<[SearchModel.Results]> = Observable([])
-    var inputSearchText: Observable<String?> = Observable("")
-    var inputCurrentSortType: Observable<OrderBy> = Observable(.relevant)
-    var inputTotalCount: Observable<Int?> = Observable(nil)
-    var inputStatisticData: Observable<StatisticsData?> = Observable(nil)
+    var inputSearchData: CustomObservable<[SearchModel.Results]> = CustomObservable([])
+    var inputSearchText: CustomObservable<String?> = CustomObservable("")
+    var inputCurrentSortType: CustomObservable<OrderBy> = CustomObservable(.relevant)
+    var inputTotalCount: CustomObservable<Int?> = CustomObservable(nil)
+    var inputStatisticData: CustomObservable<StatisticsData?> = CustomObservable(nil)
     
-    var isDataCountZero: Observable<Bool> = Observable(false)
+    var isDataCountZero: CustomObservable<Bool> = CustomObservable(false)
     var index: Int?
     
     init() {

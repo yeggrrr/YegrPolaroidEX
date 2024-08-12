@@ -13,6 +13,7 @@ final class PhotoRepository: PhotoRepositoryType {
     private let realm = try! Realm()
     
     private init() { }
+    
     var count: Int {
         return fetch().count
     }

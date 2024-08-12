@@ -209,7 +209,8 @@ final class ProfileSettingView: UIView, ViewRepresentable {
         pButton.setMbtiUI(title: "P")
         updateButtonColor()
         
-        completeButton.setPointUI(title: "완료", bgColor: .incompleteColor)
+        completeButton.setTitle("완료", for: .normal)
+        completeButton.setPointUI(bgColor: .incompleteColor)
         deleteAccountButton.setTitle("회원탈퇴", for: .normal)
         deleteAccountButton.setTitleColor(.pointDarkColor, for: .normal)
     }

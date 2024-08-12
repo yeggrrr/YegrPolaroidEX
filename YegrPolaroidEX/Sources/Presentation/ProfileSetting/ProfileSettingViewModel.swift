@@ -19,12 +19,12 @@ final class ProfileSettingViewModel {
     }
     
     // MARK: Properties
-    var inputText = Observable("")
-    var inputValidationState: Observable<Void?> = Observable(nil)
+    var inputText = CustomObservable("")
+    var inputValidationState: CustomObservable<Void?> = CustomObservable(nil)
     
-    var outputValidationText = Observable("")
-    var outputValidColor = Observable(false)
-    var outputValidationState: Observable<Void?> = Observable(nil)
+    var outputValidationText = CustomObservable("")
+    var outputValidColor = CustomObservable(false)
+    var outputValidationState: CustomObservable<Void?> = CustomObservable(nil)
     
     var nicknameErrorMessage: NicknameErrorMessage = .empty
     

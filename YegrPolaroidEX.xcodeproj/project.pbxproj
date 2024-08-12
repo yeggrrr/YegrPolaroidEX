@@ -256,8 +256,8 @@
 		68C0A7FA2C4F6D03004B812F /* OnBoading */ = {
 			isa = PBXGroup;
 			children = (
-				688A2DCF2C63BE9000B88198 /* OnBoadingViewModel.swift */,
 				68C0A79B2C4E1791004B812F /* OnBoardingViewController.swift */,
+				688A2DCF2C63BE9000B88198 /* OnBoadingViewModel.swift */,
 			);
 			path = OnBoading;
 			sourceTree = "<group>";
@@ -265,9 +265,9 @@
 		68C0A7FB2C4F6D0E004B812F /* ProfileSetting */ = {
 			isa = PBXGroup;
 			children = (
-				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
-				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
 				68C0A7D02C4E4AD5004B812F /* ProfileSettingViewController.swift */,
+				68C0A7D32C4E4C88004B812F /* ProfileSettingView.swift */,
+				68C0A7DB2C4E5504004B812F /* ProfileSettingViewModel.swift */,
 			);
 			path = ProfileSetting;
 			sourceTree = "<group>";

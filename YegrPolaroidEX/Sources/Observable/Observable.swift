@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Observable<T> {
+class CustomObservable<T> {
     var closure: ((T) -> Void)?
     
     var value: T {
