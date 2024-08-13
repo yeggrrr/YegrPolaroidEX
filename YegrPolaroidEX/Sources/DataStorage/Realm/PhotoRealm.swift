@@ -8,8 +8,8 @@
 
 import Foundation
 import RealmSwift
-
-class PhotoRealm: Object {
+// TODO: imageID를 PK로 활용해보기
+final class PhotoRealm: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var imageID: String
     @Persisted var profileImage: String
